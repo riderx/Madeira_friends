@@ -73,13 +73,13 @@ calendar:
   heading: Calendar
 category:
   game: Repeat games
+  link: Link
   news: News
   sleep: Sleep
   source: Source
 chat:
   close: Close
-  dont-doubt: >-
-    Feel free to ask us anything.The first chat is free.
+  dont-doubt: Feel free to ask us anything.The first chat is free.
   heading: Choose the subject
   loading: Loading
   sending: Sending
@@ -87,7 +87,8 @@ chat:
   subjets: Subjects
   subs: des abonnements
   to_continue_chat: >-
-    To continue to chat with our experts without limits, you can choose to one of 
+    To continue to chat with our experts without limits, you can choose to one
+    of 
   upload: Upload
   valid: Validate
 chats:

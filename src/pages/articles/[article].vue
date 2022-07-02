@@ -98,7 +98,7 @@ watchEffect(async () => {
               <vue-markdown :source="article.description" class="test" />
             </p>
             <p class="pt-3">
-              {{ t(`category.source`) }} : <a class="text-bright-cerulean-500 trucate" :href="article.link" target="_blank">{{ article.link }}</a>
+              {{ t(`category.link`) }} : <a class="text-bright-cerulean-500 trucate" :href="article.link" target="_blank">{{ article.link }}</a>
             </p>
           </div>
         </div>
