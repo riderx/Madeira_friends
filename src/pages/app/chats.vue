@@ -460,7 +460,7 @@ watchEffect(async () => {
                 </span>
                 <IonSpinner v-else name="crescent" color="light" />
               </IonButton>
-              <img src="../../../resources/naissance 1.png" alt="">
+              <!-- <img src="../../../resources/naissance 1.png" alt=""> -->
               <div v-if="!main.professional" class="mt-2">
                 <h2 class="text-sm text-center dark:text-white text-black">
                   {{ t('chat.dont-doubt') }}

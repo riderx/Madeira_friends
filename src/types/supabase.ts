@@ -129,6 +129,8 @@ export interface paths {
           start_date_time?: parameters["rowFilter.events.start_date_time"];
           end_date_time?: parameters["rowFilter.events.end_date_time"];
           owner?: parameters["rowFilter.events.owner"];
+          link?: parameters["rowFilter.events.link"];
+          title?: parameters["rowFilter.events.title"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -184,6 +186,8 @@ export interface paths {
           start_date_time?: parameters["rowFilter.events.start_date_time"];
           end_date_time?: parameters["rowFilter.events.end_date_time"];
           owner?: parameters["rowFilter.events.owner"];
+          link?: parameters["rowFilter.events.link"];
+          title?: parameters["rowFilter.events.title"];
         };
         header: {
           /** Preference */
@@ -203,6 +207,8 @@ export interface paths {
           start_date_time?: parameters["rowFilter.events.start_date_time"];
           end_date_time?: parameters["rowFilter.events.end_date_time"];
           owner?: parameters["rowFilter.events.owner"];
+          link?: parameters["rowFilter.events.link"];
+          title?: parameters["rowFilter.events.title"];
         };
         body: {
           /** events */
@@ -566,6 +572,7 @@ export interface definitions {
      * @description Note:
      * This is a Primary Key.<pk/>
      * This is a Foreign Key to `users.id`.<fk table='users' column='id'/>
+     * @default extensions.uuid_generate_v4()
      */
     id: string;
     /** Format: text */
@@ -606,6 +613,10 @@ export interface definitions {
      * This is a Foreign Key to `public_details.id`.<fk table='public_details' column='id'/>
      */
     owner: string;
+    /** Format: text */
+    link?: string;
+    /** Format: character varying */
+    title?: string;
   };
   notification_token: {
     /**
@@ -641,6 +652,7 @@ export interface definitions {
      * Format: uuid
      * @description Note:
      * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
      */
     id: string;
     /** Format: text */
@@ -702,11 +714,8 @@ export interface definitions {
     title?: string;
     /** Format: text */
     description?: string;
-    /**
-     * Format: public.news_categ
-     * @enum {string}
-     */
-    category?: "game" | "sleep" | "news";
+    /** Format: character varying */
+    category?: string;
     /** Format: character varying */
     img?: string;
     /** Format: character varying */
@@ -779,6 +788,10 @@ export interface parameters {
   "rowFilter.events.end_date_time": string;
   /** Format: uuid */
   "rowFilter.events.owner": string;
+  /** Format: text */
+  "rowFilter.events.link": string;
+  /** Format: character varying */
+  "rowFilter.events.title": string;
   /** @description notification_token */
   "body.notification_token": definitions["notification_token"];
   /** Format: timestamp with time zone */
@@ -833,7 +846,7 @@ export interface parameters {
   "rowFilter.news.title": string;
   /** Format: text */
   "rowFilter.news.description": string;
-  /** Format: public.news_categ */
+  /** Format: character varying */
   "rowFilter.news.category": string;
   /** Format: character varying */
   "rowFilter.news.img": string;

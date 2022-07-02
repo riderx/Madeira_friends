@@ -45,11 +45,7 @@ const getEvents = async (endDate: string, startDate: string) => {
         id,
         start_date_time,
         end_date_time,
-        doctor (
-          first_name,
-          specialisation,
-          last_name
-        )
+        title
       `)
     .lte('end_date_time', endDate)
     .gte('start_date_time', startDate)
@@ -60,7 +56,7 @@ const getEvents = async (endDate: string, startDate: string) => {
       const obj = {
         start: dayjs(value.start_date_time).toDate(),
         end: dayjs(value.end_date_time).toDate(),
-        title: `${value.doctor.first_name} ${value.doctor.last_name}`,
+        title: value.title,
         class: bgColor,
       }
       return obj
@@ -72,6 +68,11 @@ const changeView = async (event: EventReadyChanged) => {
   const endDate = dayjs(event.endDate).toISOString()
   const startDate = dayjs(event.startDate).toISOString()
   await getEvents(endDate, startDate)
+}
+const openEvent = (event, e) => {
+  console.log('event', event)
+  // Prevent navigating to narrower view (default vue-cal behavior).
+  e.stopPropagation()
 }
 
 watchEffect(async () => {
@@ -96,6 +97,7 @@ watchEffect(async () => {
           :time-from="8 * 60"
           :disable-views="['years', 'year', 'day']"
           active-view="month"
+          :on-event-click="openEvent"
           events-on-month-view="short"
           :events="events"
           style="height: 670px"
