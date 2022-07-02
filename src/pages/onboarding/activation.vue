@@ -55,7 +55,7 @@ const submit = async () => {
   if (errorUser)
     errorMessage.value = errorUser.message
   else
-    router.push('/onboarding/security')
+    router.push('/onboarding/articles')
 }
 </script>
 

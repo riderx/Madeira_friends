@@ -87,19 +87,16 @@ const takeFile = async () => {
     errorMessage.value = t('account.error')
     console.error('error', error)
     isLoading.value = false
-    main.displayCode = false
   }
 }
 
 const takePhoto = async (source: CameraSource = CameraSource.Camera) => {
-  main.displayCode = true
   try {
     const cameraPhoto = await Camera.getPhoto({
       resultType: CameraResultType.DataUrl,
       source,
       quality: 100,
     })
-    main.displayCode = false
     isLoading.value = true
     const fileName = `${new Date().getTime()}.${cameraPhoto.format}`
 
@@ -115,7 +112,6 @@ const takePhoto = async (source: CameraSource = CameraSource.Camera) => {
   catch (e) {
     console.error(e)
     isLoading.value = false
-    main.displayCode = false
   }
 }
 
@@ -172,14 +168,6 @@ const presentSelector = async () => {
               <IonIcon :icon="chevronForwardOutline" class="text-bright-cerulean-500" />
             </router-link>
           </li>
-          <li v-if="!main.professional">
-            <router-link class="flex justify-between items-center" to="/infants">
-              <span class="font-bold">
-                {{ t('account.infants') }}
-              </span>
-              <IonIcon :icon="chevronForwardOutline" class="text-bright-cerulean-500" />
-            </router-link>
-          </li>
           <li>
             <router-link class="flex justify-between items-center" to="/app/change_password">
               <span class="font-bold">
@@ -188,26 +176,10 @@ const presentSelector = async () => {
               <IonIcon :icon="chevronForwardOutline" class="text-bright-cerulean-500" />
             </router-link>
           </li>
-          <li v-if="main.pin">
-            <router-link class="flex justify-between items-center" to="/change_code">
-              <span class="font-bold">
-                {{ t('account.changeCode') }}
-              </span>
-              <IonIcon :icon="chevronForwardOutline" class="text-bright-cerulean-500" />
-            </router-link>
-          </li>
           <li>
             <router-link class="flex justify-between items-center" to="/app/notification_settings">
               <span class="font-bold">
                 {{ t('account.preferences') }}
-              </span>
-              <IonIcon :icon="chevronForwardOutline" class="text-bright-cerulean-500" />
-            </router-link>
-          </li>
-          <li v-if="isBiometricAvailable">
-            <router-link class="flex justify-between items-center" to="/app/security">
-              <span class="font-bold">
-                {{ t('account.securitySettings') }}
               </span>
               <IonIcon :icon="chevronForwardOutline" class="text-bright-cerulean-500" />
             </router-link>

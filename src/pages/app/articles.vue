@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, modalController } from '@ionic/vue'
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue'
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import dayjs from 'dayjs'
-import ModalVideoVue from '~/components/ModalVideo.vue'
 import { useSupabase } from '~/services/supabase'
 import type { definitions } from '~/types/supabase'
 
@@ -14,15 +13,6 @@ const router = useRouter()
 const isLoading = ref(false)
 const supabase = useSupabase()
 
-const showVideo = async () => {
-  const modal = await modalController.create({
-    component: ModalVideoVue,
-    backdropDismiss: false,
-    showBackdrop: false,
-    swipeToClose: false,
-  })
-  return modal.present()
-}
 onMounted(async () => {
   isLoading.value = true
   const { data } = await supabase
@@ -48,11 +38,6 @@ onMounted(async () => {
       <IonToolbar>
         <IonTitle>{{ t('news.heading') }}</IonTitle>
       </IonToolbar>
-      <IonButtons slot="end" class="pr-4" @click="showVideo()">
-        <h4 class="underline">
-          {{ t('news.video') }}
-        </h4>
-      </IonButtons>
     </IonHeader>
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
