@@ -65,13 +65,13 @@ const submit = async () => {
         }
       }
       showToastMessage('Connexion réussie')
-      router.replace('/app/chats')
+      router.replace('/app/articles')
     }
   }
 }
 
 const nextLogin = () => {
-  router.push('/app/chats')
+  router.push('/app/articles')
   setTimeout(async () => {
     isLoading.value = false
     if (isPlatform('capacitor'))
