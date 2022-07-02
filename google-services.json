@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "180006113297",
+    "project_id": "madeira-friends",
+    "storage_bucket": "madeira-friends.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180006113297:android:db9ac54088396d8c63e1b0",
+        "android_client_info": {
+          "package_name": "com.madeirafriends.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180006113297-oc894oj7hioasgfdl1edb2s77q75i6um.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGiVRnXrZQe4xHiM1GC6tiMN99DerO3vU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180006113297-oc894oj7hioasgfdl1edb2s77q75i6um.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "180006113297-9jsf4bie05422f6h2gh1sg0l3kpeepmf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.madeirafriends.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

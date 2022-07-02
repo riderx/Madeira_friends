@@ -1,0 +1,277 @@
+account:
+  backButton: Retour
+  changeCode: Modifier mon code de sécurité
+  changePassword: Mon mot de passe
+  error: |-
+    Ada yang salah! 
+    Coba lagi nanti.
+  heading: Mon Compte
+  infants: Mes enfants
+  logout: Se déconnecter
+  personalInformation: Mes informations personnelles
+  preferences: Mes préférences
+  securitySettings: Pengaturan Biometrik
+accountCode:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon code de sécurité
+  invalidCode: Code invalide
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez mon mot de passe
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon mot de passe
+  password: Mon nouveau mot de passe
+  success: Berhasil mengubah kata sandi
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: Keterangan
+  dob: Date de naissance
+  email: Email
+  first-name: prénom
+  heading: Mes informations personnelles
+  infantNumber: Nombre d’enfant
+  isPregnant: Etes-vous enceinte ?
+  job: job
+  last-name: nom de famille
+  mom: Maman
+  multiplePregnancy: Est-ce une grossesse multiple ?
+  'no': non
+  phone: Téléphone
+  pregnancyStartDate: Date de début de la grossesse
+  update: METTRE A JOUR
+  'yes': oui
+activation:
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  doi: Options partenaires + DOI
+  doi-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: activation
+  headline: Pengaturan saya
+  legal: J'accepte les mentions légales
+  legal-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  newsletter: Saya ingin menerima buletin 9 Mois pour Toi
+  notification: J'accepte les notifications
+  notification-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider
+article:
+  heading: Artikel
+biometric:
+  reason: Validasi identitas Anda
+  title: Gabung
+button:
+  about: Tentang
+  back: Kembali
+  go: Pergi
+  home: Beranda
+  toggle_dark: Ubah ke mode gelap
+  toggle_langs: Ubah bahasa
+calendar:
+  heading: Kalender
+category:
+  game: Ulangi permainan
+  news: Berita
+  sleep: Tidur
+  source: Sumber
+chat:
+  close: Menutup
+  dont-doubt: Jangan ragu untuk menanyakan apa pun kepada kami. Obrolan pertama gratis.
+  heading: Pilih subjek
+  loading: Memuat
+  sending: Mengirim
+  sent: Terkirim
+  subjets: mata pelajaran
+  subs: des abonnements
+  to_continue_chat: >-
+    Untuk terus mengobrol dengan pakar kami tanpa batas, Anda dapat memilih
+    salah satu dari
+  upload: Mengunggah
+  valid: Mengesahkan
+chats:
+  active: Aktif
+  archive: Arsip
+  ask: Tanyakan sesuatu
+  heading: Pesan
+  inactive: Untuk menelepon kembali
+  leave: Maju
+  no_chat: Tidak ada pesan
+  unread: Belum dibaca
+forgot:
+  check_email: Periksa email Anda untuk mendapatkan tautan untuk mereset kata sandi Anda
+  email: Surel
+  heading: Tidak ingat kata sandi
+  success: Kata sandi berhasil diperbarui
+forgot-code: Kode PIN lupa
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: Menghapus
+  desc: Renseigne les champs ci-dessous pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Je télécharge une photo
+  save: Valider
+infantList:
+  heading: Mes enfants
+intro:
+  aka: Juga diketahui sebagai
+  desc: Template awal vite
+  dynamic-route: Contoh rute dinamik
+  hi: Halo, {name}!
+  whats-your-name: Siapa nama anda?
+lock:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Créez le code de sécurite qui vous permettra d’acceder à l’application
+  desc2: Indiquez de nouveau votre code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  forgot: lupa kode
+  heading1: PassCode
+  heading2: Confirmation
+  mine: Kode keamanan saya
+  wrongCode: Kode salah
+login:
+  andpass: Dan kata sandi
+  connexion: Hubungan
+  create-new: Buat akun baru
+  email: Surel
+  forgot: lupa
+  hello: Halo
+  login-in: Masuk
+  or: atau
+  password: Kata sandi
+  withemail: Dengan alamat email
+news:
+  by: oleh
+  heading: Berita
+  video: Video orientasi
+not-found: Tidak ditemukan
+notes:
+  by: oleh
+  delete: Menghapus
+  heading: Catatan tentang kontak
+  placeholder: Tulis catatan
+notificationSettings:
+  eula: Lihat EULA
+  heading: Akun
+  legal: Lihat penyebutan hukum
+  privacy: Lihat kebijakan privasi
+  validate: Mengesahkan
+password:
+  heading: Buat Kata Sandi
+  new: kata sandi baru
+  validate: Mengesahkan
+payment:
+  annual: annuel
+  biannual: Biannuel
+  desc: par des sages-femmes diplomés en France, disponible partout dans le monde.
+  desc-bold: Personalisasi Suivi
+  desc2: >-
+    Les abonnements 9moispourtoi sont renouvellés automatiquement. 
+
+    Vous pouvez annuler votre abonnement tout moment dans les 24h précédant la
+    date de renouvellement.
+  heading: Abonnez-vous pour accéder au chat 9moispourtoi
+  month: mois
+  monthly: menu
+  or: sehingga
+  quarterly: trimestriel
+  restore: Memulihkan
+  restore-purchase: Restoran vos achats
+  subscribe: S'ABONNER
+  week: semaine
+  year: tahun
+phone-code:
+  checkPhone: Verifikasi telepon
+  enterCode: Masukkan kode yang diterima melalui sms
+  resend: Kirim ulang SMS
+proProfileInfo:
+  heading: Informasi profesional
+  imgAlt: gambar dokter
+  presentation: Presentasi
+prof_profile:
+  description: Deskripsi profesional
+  info: Info dari profesional
+  picture: Gambar
+profile:
+  archived_chat: Obrolan yang diarsipkan
+  childrens: anak-anak
+  info: Info kontak
+  is_pregnant: Hamil
+  multiple_pregnancy: Kehamilan Ganda
+  no_archived_chat: Tidak ada obrolan yang diarsipkan
+  no_child: Tidak ada anak
+  no_remark: Tidak ada komentar
+  number_of_children: Jumlah anak
+  picture: Gambar
+  pregnancy_date: Tanggal mulai kehamilan
+profileInfo:
+  archivedConversation: Percakapan yang Diarsipkan
+  childrenHeading: Anak mereka
+  heading: Kontak informasi
+  imgAlt: Gambar kontak
+  nil: NOL
+  noInfant: Informasi tidak tersedia
+register:
+  already-account: Anda sudah memiliki akun?
+  check-email: Silakan periksa email Anda dan verifikasi
+  confirm-email: Konfirmasi email
+  confirm-password: Confirmation mot de passe
+  dad: Papa
+  desc: Renseigne les champs ci-dessous pour finaliser ton inscription
+  email: Email
+  first-name: prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: Harus mengandung huruf kecil
+  mom: Maman
+  next: Suivant
+  password: Mot de passe
+  password-hint: Masukkan kombinasi minimal 6 angka, huruf, dan tanda baca.
+  phone: Téléphone
+  specialError: Harus mengandung karakter khusus
+  upperCaseError: Harus mengandung huruf besar
+registerPro:
+  desc: Isi kolom berikut untuk membuat akun profesional baru
+  heading: Pendaftaran Pro
+  job: Pekerjaan
+security:
+  biometric-desc: >-
+    Saya mengaktifkan biometrik, untuk mengunci aplikasi dan menjaga keamanan
+    data saya
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  faceId: J'active Face ID
+  faceId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: Sécurité
+  phone-code: J'active le code sécurité
+  phone-code-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  success: Pendaftaran divalidasi!
+  touchId: J'active le Touch ID
+  touchId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider

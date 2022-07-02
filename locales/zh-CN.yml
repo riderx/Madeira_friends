@@ -1,0 +1,273 @@
+account:
+  backButton: Retour
+  changeCode: Modifier mon code de sécurité
+  changePassword: Mon mot de passe
+  error: |-
+    有些不对劲！
+    稍后再试。
+  heading: Mon Compte
+  infants: Mes enfants
+  logout: Se déconnecter
+  personalInformation: Mes informations personnelles
+  preferences: Mes préférences
+  securitySettings: 生物识别设置
+accountCode:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon code de sécurité
+  invalidCode: Code invalide
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez mon mot de passe
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon mot de passe
+  password: Mon nouveau mot de passe
+  success: 修改密码成功
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: 描述
+  dob: Date de naissance
+  email: Email
+  first-name: prénom
+  heading: Mes informations personnelles
+  infantNumber: Nombre d’enfant
+  isPregnant: Etes-vous enceinte ?
+  job: job
+  last-name: nom de famille
+  mom: Maman
+  multiplePregnancy: Est-ce une grossesse multiple ?
+  'no': non
+  phone: Téléphone
+  pregnancyStartDate: Date de début de la grossesse
+  update: METTRE A JOUR
+  'yes': oui
+activation:
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  doi: Options partenaires + DOI
+  doi-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: activation
+  headline: 我的设置
+  legal: J'accepte les mentions légales
+  legal-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  newsletter: 我想收到 9 Mois pour Toi 时事通讯
+  notification: J'accepte les notifications
+  notification-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider
+article:
+  heading: 文章
+biometric:
+  reason: 验证您的身份
+  title: 登录
+button:
+  about: 关于
+  back: 返回
+  go: 确定
+  home: 首页
+  toggle_dark: 切换深色模式
+  toggle_langs: 切换语言
+calendar:
+  heading: 日历
+category:
+  game: 重复游戏
+  news: 消息
+  sleep: 睡觉
+  source: 资源
+chat:
+  close: 关闭
+  dont-doubt: 随时问我们任何问题。第一次聊天是免费的。
+  heading: 选择主题
+  loading: 正在加载
+  sending: 发送
+  sent: 发送
+  subjets: 科目
+  subs: 去骨肉
+  to_continue_chat: 要继续不受限制地与我们的专家聊天，您可以选择以下之一
+  upload: 上传
+  valid: 证实
+chats:
+  active: 积极的
+  archive: 档案
+  ask: 问一个问题
+  heading: 留言
+  inactive: 回拨
+  leave: 向前
+  no_chat: 没有消息
+  unread: 未读
+forgot:
+  check_email: 检查您的电子邮件以获取重置密码的链接
+  email: 电子邮件
+  heading: 忘记密码
+  success: 密码更新成功
+forgot-code: 忘记密码
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: 删除
+  desc: Renseigne les champs ci-dessous pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Je télécharge une photo
+  save: Valider
+infantList:
+  heading: Mes enfants
+intro:
+  aka: 也叫
+  desc: 固执己见的 Vite 项目模板
+  dynamic-route: 动态路由演示
+  hi: 你好，{name}
+  whats-your-name: 输入你的名字
+lock:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Créez le code de sécurite qui vous permettra d’acceder à l’application
+  desc2: Indiquez de nouveau votre code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  forgot: 忘记密码
+  heading1: PassCode
+  heading2: Confirmation
+  mine: 我的安全码
+  wrongCode: 代码不正确
+login:
+  andpass: 和密码
+  connexion: 连接
+  create-new: 建立新帐户
+  email: 电子邮件
+  forgot: 忘记
+  hello: 你好
+  login-in: 登录
+  or: 要么
+  password: 密码
+  withemail: 有电子邮件地址
+news:
+  by: 经过
+  heading: 消息
+  video: 入职视频
+not-found: 未找到页面
+notes:
+  by: 经过
+  delete: 删除
+  heading: 关于联系人的说明
+  placeholder: 写笔记
+notificationSettings:
+  eula: 请参阅最终用户许可协议
+  heading: 帐户
+  legal: 见法律提及
+  privacy: 查看隐私政策
+  validate: 证实
+password:
+  heading: 创建密码
+  new: 新密码
+  validate: 证实
+payment:
+  annual: 年鉴
+  biannual: 比努埃尔
+  desc: par des sages-femmes diplomés en France, disponible partout dans le monde。
+  desc-bold: 个性化定制
+  desc2: >-
+    Les abonnements 9moispourtoi sont renouvellés automatiquement。 
+
+    Vous pouvez annuler votre abonnement à tout moment dans les 24h précédant la
+    date de renouvellement。
+  heading: Abonnez-vous pour accéder au chat 9moispourtoi
+  month: 莫伊斯
+  monthly: 门苏尔
+  or: 所以
+  quarterly: 三叶草
+  restore: 恢复
+  restore-purchase: 餐厅 vos achats
+  subscribe: 萨邦纳
+  week: 半成品
+  year: 年
+phone-code:
+  checkPhone: 验证电话
+  enterCode: 输入短信收到的验证码
+  resend: 重新发送短信
+proProfileInfo:
+  heading: 专业信息
+  imgAlt: 医生图片
+  presentation: 介绍
+prof_profile:
+  description: 专业描述
+  info: 专业人士资料
+  picture: 图片
+profile:
+  archived_chat: 存档聊天
+  childrens: 孩子们的
+  info: 联系人信息
+  is_pregnant: 孕
+  multiple_pregnancy: 多胎妊娠
+  no_archived_chat: 没有存档的聊天
+  no_child: 没有小孩
+  no_remark: 无备注
+  number_of_children: 儿童数量
+  picture: 图片
+  pregnancy_date: 怀孕开始日期
+profileInfo:
+  archivedConversation: 存档的对话
+  childrenHeading: 他们的孩子
+  heading: 联系信息
+  imgAlt: 联系人图片
+  nil: 零
+  noInfant: 信息不可用
+register:
+  already-account: 你已经有一个账户吗？
+  check-email: 请检查您的电子邮件并验证
+  confirm-email: 确认电子邮件
+  confirm-password: Confirmation mot de passe
+  dad: Papa
+  desc: Renseigne les champs ci-dessous pour finaliser ton inscription
+  email: Email
+  first-name: prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: 应包含小写字母
+  mom: Maman
+  next: Suivant
+  password: Mot de passe
+  password-hint: 输入至少 6 个数字、字母和标点符号的组合。
+  phone: Téléphone
+  specialError: 应包含特殊字符
+  upperCaseError: 应包含大写字母
+registerPro:
+  desc: 填写以下字段以创建新的专业帐户
+  heading: 注册专业版
+  job: 工作
+security:
+  biometric-desc: 我激活生物识别，锁定应用程序并确保我的数据安全
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  faceId: J'active Face ID
+  faceId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: Sécurité
+  phone-code: J'active le code sécurité
+  phone-code-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  success: 注册通过！
+  touchId: J'active le Touch ID
+  touchId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider

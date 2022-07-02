@@ -1,0 +1,265 @@
+account:
+  backButton: Costas
+  changeCode: Mudar meu código de segurança
+  changePassword: Alterar a senha
+  error: |-
+    Algo deu errado! 
+    Tente mais tarde.
+  heading: Conta
+  infants: Minhas crianças
+  logout: Sair
+  personalInformation: Informação pessoal
+  preferences: Notificações
+  securitySettings: Configurações de segurança
+accountCode:
+  codeNoMatch: Código não corresponde
+  desc1: Digite seu código de segurança antigo
+  desc2: Digite seu novo código de segurança
+  desc3: Confirme o seu novo código de segurança
+  errorMsg: Ocorreu um erro, por favor tente novamente
+  heading: Mudar meu código de segurança
+  invalidCode: Código errado
+  validate: Validar
+accountPassword:
+  confirmPassword: Confirme a Senha
+  errorMsg: Ocorreu um erro, por favor tente novamente
+  heading: Mudar minha senha
+  password: Nova Senha
+  success: Senha alterada com sucesso
+  validate: Validar
+accountProfile:
+  city: Cidade
+  country: País
+  dad: Pai
+  description: Descrição
+  dob: Data de nascimento
+  email: E-mail
+  first-name: Primeiro nome
+  heading: Informação pessoal
+  infantNumber: Número de filhos
+  isPregnant: Você está grávida ?
+  job: trabalho
+  last-name: Último nome
+  mom: Mãe
+  multiplePregnancy: Gravidez múltipla
+  'no': não
+  phone: Telefone
+  pregnancyStartDate: Data de início da gravidez
+  update: Atualizar
+  'yes': sim
+activation:
+  desc: Preencha os campos a seguir para completar seu cadastro
+  doi: Consentimento opcional
+  doi-desc: Aceito boletins informativos por e-mail e futuras ofertas de marketing
+  heading: ativação
+  headline: Minhas configurações
+  legal: Menções legais
+  legal-desc: >-
+    Aceito a política de privacidade e os termos de uso do aplicativo capacitor
+    Go
+  newsletter: Quero receber a newsletter 9 Mois pour Toi
+  notification: Notificações
+  notification-desc: >-
+    Aceito receber notificação quando uma nova versão do aplicativo estiver
+    disponível
+  validate: Validar
+article:
+  heading: Artigo
+biometric:
+  reason: Valide sua identidade
+  title: Conecte-se
+button:
+  about: Cerca de
+  back: Costas
+  go: VAI
+  home: Casa
+  toggle_dark: Alternar modo escuro
+  toggle_langs: Mudar os idiomas
+calendar:
+  heading: Calendário
+category:
+  game: Jogos repetidos
+  news: Notícias
+  sleep: Dorme
+  source: Fonte
+chat:
+  close: Fechar
+  dont-doubt: >-
+    Sinta-se à vontade para nos perguntar qualquer coisa. O primeiro bate-papo é
+    gratuito.
+  heading: Escolha o assunto
+  loading: Carregando
+  sending: Enviando
+  sent: Enviei
+  subjets: assuntos
+  subs: des abonnements
+  to_continue_chat: >-
+    Para continuar conversando com nossos especialistas sem limites, você pode
+    escolher um dos
+  upload: Envio
+  valid: Validar
+chats:
+  active: Ativo
+  archive: Arquivo
+  ask: Faça uma pergunta
+  heading: Mensagens
+  inactive: Ligar de volta
+  leave: Sair
+  no_chat: Sem mensagens
+  unread: Não lida
+forgot:
+  check_email: Verifique seu e-mail para obter o link para redefinir sua senha
+  email: E-mail
+  heading: Esqueceu a senha
+  success: Senha atualizada com sucesso
+forgot-code: Código PIN esquecido
+infant:
+  boy: Garoto
+  cancel: Cancelar
+  comments: Comentário
+  delete: Excluir
+  desc: Preencha os seguintes campos para adicionar um filho
+  dob: Data de nascimento
+  errorMsg: Ocorreu um erro, por favor tente novamente
+  girl: Menina
+  heading: Adicionar uma criança
+  name: Nome
+  photo: Baixar foto
+  save: Validar
+infantList:
+  heading: Minhas crianças
+intro:
+  aka: Também conhecido como
+  desc: Modelo opinativo do Vite para iniciantes
+  dynamic-route: Demonstração de rota dinâmica
+  hi: Olá, {name}!
+  whats-your-name: Qual o seu nome?
+lock:
+  codeNoMatch: Código não corresponde
+  desc1: Crie seu código de segurança para acessar o aplicativo
+  desc2: Digite novamente o seu código de segurança para acessar o aplicativo
+  errorMsg: Ocorreu um erro, tente novamente
+  forgot: Esqueci o código
+  heading1: PassCode
+  heading2: Confirmação
+  mine: Meu código de segurança
+  wrongCode: Código está incorreto
+login:
+  andpass: E senha
+  connexion: Conecte-se
+  create-new: Criar nova conta
+  email: E-mail
+  forgot: esquecido
+  hello: Olá
+  login-in: Entrar
+  or: ou
+  password: Senha
+  withemail: Com endereço de e-mail
+news:
+  by: por
+  heading: Notícias
+  video: Vídeo de integração
+not-found: Não encontrado
+notes:
+  by: de
+  delete: Excluir
+  heading: Notas sobre o contato
+  placeholder: Escreva uma nota
+notificationSettings:
+  eula: Ver EULA
+  heading: Conta
+  legal: Veja menções legais
+  privacy: Veja a política de privacidade
+  validate: Validar
+password:
+  heading: Criar senha
+  new: Nova Senha
+  validate: Validar
+payment:
+  annual: Anuel
+  biannual: Biannuel
+  desc: Preencha os campos a seguir para concluir seu cadastro
+  desc-bold: Suivi personnalisé
+  desc2: >-
+    Les abonnements 9moispourtoi sont renouvellés automatiquement. 
+
+    Vous pouvez anular votre abonnement tout moment em les 24h antes da data de
+    renovação.
+  heading: Abonnez-vous para usar a mensagem
+  month: mois
+  monthly: Mensuel
+  or: soit
+  quarterly: Trimestral
+  restore: Restaurar
+  restore-purchase: Restaurar vos achats
+  subscribe: S'ABONNER
+  week: semaine
+  year: ano
+phone-code:
+  checkPhone: Verificar telefone
+  enterCode: Digite o código recebido por sms
+  resend: Reenviar SMS
+proProfileInfo:
+  heading: Informação Profissional
+  imgAlt: Foto de médico
+  presentation: Apresentação
+prof_profile:
+  description: Descrição profissional
+  info: Informações do profissional
+  picture: Foto
+profile:
+  archived_chat: Bate-papo arquivado
+  childrens: Crianças
+  info: Informação do contato
+  is_pregnant: Grávida
+  multiple_pregnancy: Gravidez Múltipla
+  no_archived_chat: Sem bate-papo arquivado
+  no_child: Sem filhos
+  no_remark: Sem observação
+  number_of_children: Número de filhos
+  picture: Foto
+  pregnancy_date: Data de início da gravidez
+profileInfo:
+  archivedConversation: Conversas Arquivadas
+  childrenHeading: Seus filhos
+  heading: Informações de Contato
+  imgAlt: Imagem de contato
+  nil: NADA
+  noInfant: Informação não disponível
+register:
+  already-account: Você já tem uma conta?
+  check-email: Por favor, verifique seu e-mail e verifique
+  confirm-email: Confirmar e-mail
+  confirm-password: Confirme a Senha
+  dad: Pai
+  desc: Preencha os campos a seguir para completar seu cadastro
+  email: E-mail
+  first-name: primeiro nome
+  heading: Cadastro
+  last-name: último nome
+  lowerCaseError: Deve conter letras minúsculas
+  mom: Mãe
+  next: Próximo
+  password: senha
+  password-hint: Insira uma combinação de pelo menos 6 números, letras e pontuações.
+  phone: telefone
+  specialError: Deve conter caracteres especiais
+  upperCaseError: Deve conter letras maiúsculas
+registerPro:
+  desc: Preencha os seguintes campos para criar uma nova conta profissional
+  heading: Registro Pro
+  job: Trabalho
+security:
+  biometric-desc: Eu ativo a biometria, para bloquear o aplicativo e manter meus dados seguros
+  desc: Preencha os campos a seguir para completar seu cadastro
+  faceId: Face ID
+  faceId-desc: Eu ativo o Face Id, para bloquear o aplicativo e manter meus dados seguros
+  heading: Segurança
+  phone-code: Código de segurança
+  phone-code-desc: >-
+    Eu ativo o código de segurança, para bloquear o aplicativo e manter meus
+    dados seguros
+  success: Registro validado!
+  touchId: Touch ID
+  touchId-desc: Eu ativo o Touch Id, para bloquear o aplicativo e manter meus dados seguros
+  validate: Validar

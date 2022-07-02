@@ -1,0 +1,269 @@
+account:
+  backButton: Retour
+  changeCode: Changer mon code de sécurité
+  changePassword: Changer le mot de passe
+  error: "Quelque chose s'est mal passé\_! \nRéessayez plus tard."
+  heading: Compte
+  infants: mes enfants
+  logout: Se déconnecter
+  personalInformation: Informations personnelles
+  preferences: Notifications
+  securitySettings: Les paramètres de sécurité
+accountCode:
+  codeNoMatch: Le code ne correspond pas
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite, veuillez réessayer
+  heading: Changer mon code de sécurité
+  invalidCode: Mauvais code
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez le mot de passe
+  errorMsg: Une erreur s'est produite, veuillez réessayer
+  heading: Changer mon mot de passe
+  password: Nouveau mot de passe
+  success: Mot de passe modifié avec succès
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: La description
+  dob: Date de naissance
+  email: E-mail
+  first-name: Prénom
+  heading: Informations personnelles
+  infantNumber: Nombre d'enfants
+  isPregnant: Es-tu enceinte ?
+  job: travail
+  last-name: Nom de famille
+  mom: Maman
+  multiplePregnancy: Grossesse multiple
+  'no': non
+  phone: Téléphoner
+  pregnancyStartDate: Date de début de grossesse
+  update: Mettre à jour
+  'yes': Oui
+activation:
+  desc: Remplissez les champs suivants pour terminer votre inscription
+  doi: Consentement facultatif
+  doi-desc: J'accepte la newsletter par e-mail et les futures offres marketing
+  heading: Activation
+  headline: Mes paramètres
+  legal: Mentions légales
+  legal-desc: >-
+    J'accepte la politique de confidentialité et les conditions d'utilisation de
+    l'application condensateur Go
+  newsletter: Je souhaite recevoir la newsletter de 9 Mois pour Toi
+  notification: Notifications
+  notification-desc: >-
+    J'accepte de recevoir une notification lorsqu'une nouvelle version de
+    l'application est disponible
+  validate: Valider
+article:
+  heading: Article
+biometric:
+  reason: Validez votre identité
+  title: Connexion
+button:
+  about: Sur
+  back: Retour
+  go: ALLER
+  home: Accueil
+  toggle_dark: Basculer en mode sombre
+  toggle_langs: Changer de langue
+calendar:
+  heading: Calendrier
+category:
+  game: Jeux de répétition
+  news: News
+  sleep: Sommeil
+  source: Source
+chat:
+  close: Fermer
+  dont-doubt: >-
+    N’hésitez pas à nous contacter en cas de question ou de doute sur votre santé ou celle de vos enfants, le premier chat est gratuit. 
+  heading: Choisissez le sujet
+  loading: Chargement
+  sending: Envoi en cours
+  sent: Expédié
+  subjets: Sujets
+  subs: nos différents abonnements
+  to_continue_chat: >-
+    Pour continuer à discuter avec nos experts sans limite, il vous sera proposé
+    par la suite
+  upload: Télécharger
+  valid: Valider
+chats:
+  active: actif
+  archive: Archiver
+  ask: Démarrer une conversation
+  heading: messages
+  inactive: À rappeler
+  leave: Transmettre
+  no_chat: Pas de messages
+  unread: Non lu
+forgot:
+  check_email: >-
+    Vérifiez votre courrier électronique pour obtenir le lien pour réinitialiser
+    votre mot de passe
+  email: E-mail
+  heading: Mot de passe oublié
+  success: Mot de passe mis à jour avec succès
+forgot-code: Code PIN oublié
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: Supprimer
+  desc: Remplissez les champs suivants pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite, veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Télécharger la photo
+  save: Valider
+infantList:
+  heading: mes enfants
+intro:
+  aka: Aussi connu sous le nom
+  desc: Modèle de démarrage de Vite Opinionated
+  dynamic-route: Démo d'itinéraire dynamique
+  hi: "Salut, {nom}\_!"
+  whats-your-name: Quel est ton nom?
+lock:
+  codeNoMatch: Le code ne correspond pas
+  desc1: Créez votre code de sécurité pour accéder à l'application
+  desc2: >-
+    Veuillez saisir à nouveau votre code de sécurité pour accéder à
+    l'application
+  errorMsg: Une erreur s'est produite, réessayez
+  forgot: Code oublié
+  heading1: Code d'accès
+  heading2: Confirmation
+  mine: Mon code de sécurité
+  wrongCode: Le code est incorrect
+login:
+  andpass: Et mot de passe
+  connexion: Connexion
+  create-new: Créer un nouveau compte
+  email: E-mail
+  forgot: oublié
+  hello: Bonjour
+  login-in: Se connecter
+  or: ou
+  password: Mot de passe
+  withemail: Avec adresse e-mail
+news:
+  by: par
+  heading: Des nouvelles
+  video: Vidéo d'intégration
+not-found: Pas trouvé
+notes:
+  by: par
+  delete: Supprimer
+  heading: Remarques sur le contact
+  placeholder: Écrire une note
+notificationSettings:
+  eula: Voir CLUF
+  heading: Compte
+  legal: Voir les mentions légales
+  privacy: Voir la politique de confidentialité
+  validate: Valider
+password:
+  heading: Créer un mot de passe
+  new: nouveau mot de passe
+  validate: Valider
+payment:
+  annual: Annuel
+  biannual: Biannuel
+  desc: par des sages-femmes diplomés en France, disponible partout dans le monde.
+  desc-bold: Suivi personnalisé
+  desc2: >-
+    Les abonnements  9moispourtoi sont renouvellés automatiquement. Vous pouvez
+    annuler votre abonnement à tout moment dans les 24h précédant la date de
+    renouvellement.
+  heading: Abonnez-vous pour accéder au chat 9moispourtoi
+  month: mois
+  monthly: Mensuel
+  or: soit
+  quarterly: Trimestriel
+  restore: Restore
+  restore-purchase: Restaurer vos achats
+  subscribe: S’ABONNER
+  week: semaine
+  year: an
+phone-code:
+  checkPhone: Vérifier le téléphone
+  enterCode: Entrez le code reçu par sms
+  resend: Renvoyer SMS
+proProfileInfo:
+  heading: Informations professionnelles
+  imgAlt: Photo de docteur
+  presentation: Présentation
+prof_profile:
+  description: Descriptif professionnel
+  info: Info du professionnel
+  picture: Image
+profile:
+  archived_chat: Discussion archivée
+  childrens: Enfants
+  info: Infos du contact
+  is_pregnant: Enceinte
+  multiple_pregnancy: Grossesse multiple
+  no_archived_chat: Pas de chat archivé
+  no_child: Pas d'enfant
+  no_remark: Aucune remarque
+  number_of_children: Nombre d'enfants
+  picture: Image
+  pregnancy_date: Date de début de grossesse
+profileInfo:
+  archivedConversation: Conversations archivées
+  childrenHeading: Leurs enfants
+  heading: Informations de contact
+  imgAlt: Image de contact
+  nil: NÉANT
+  noInfant: Information non disponible
+register:
+  already-account: Avez vous déjà un compte?
+  check-email: Veuillez vérifier votre boite email pour confirmer votre compte
+  confirm-email: Confirmez votre e-mail
+  confirm-password: Confirmez le mot de passe
+  dad: Papa
+  desc: Remplissez les champs suivants pour terminer votre inscription
+  email: E-mail
+  first-name: Prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: Doit contenir des lettres minuscules
+  mom: Maman
+  next: Suivant
+  password: le mot de passe
+  password-hint: >-
+    Saisissez une combinaison d'au moins 6 chiffres, lettres et signes de
+    ponctuation.
+  phone: téléphoner
+  specialError: Doit contenir des caractères spéciaux
+  upperCaseError: Doit contenir des lettres majuscules
+registerPro:
+  desc: Remplissez les champs suivants pour créer un nouveau compte professionnel
+  heading: Inscription Pro
+  job: Travail
+security:
+  biometric-desc: >-
+    J'active la biométrie, pour verrouiller l'application et sécuriser mes
+    données
+  desc: Remplissez les champs suivants pour terminer votre inscription
+  faceId: Identité faciale
+  faceId-desc: J'active Face Id, pour verrouiller l'application et sécuriser mes données
+  heading: Sécurité
+  phone-code: Code de sécurité
+  phone-code-desc: >-
+    J'active le code de sécurité, pour verrouiller l'application et sécuriser
+    mes données
+  success: Inscription validée !
+  touchId: ID tactile
+  touchId-desc: J'active Touch Id pour verrouiller l'application et sécuriser mes données
+  validate: Valider

@@ -1,0 +1,15 @@
+.DS_Store
+*.local
+dist
+dist-ssr
+node_modules
+.idea/
+*.log
+.env
+# Local Netlify folder
+.netlify
+.env.production
+
+# Supabase
+**/supabase/.branches
+**/supabase/.temp

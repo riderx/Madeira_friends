@@ -1,0 +1,275 @@
+account:
+  backButton: Retour
+  changeCode: Modifier mon code de sécurité
+  changePassword: Mon mot de passe
+  error: |-
+    Bir şeyler yanlış gitti! 
+    Daha sonra tekrar deneyin.
+  heading: Mon Compte
+  infants: Mes enfants
+  logout: Se déconnecter
+  personalInformation: Mes informations personnelles
+  preferences: Mes préférences
+  securitySettings: Biyometrik Ayarlar
+accountCode:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon code de sécurité
+  invalidCode: Code invalide
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez mon mot de passe
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon mot de passe
+  password: Mon nouveau mot de passe
+  success: Şifre başarıyla değiştirildi
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: Tanım
+  dob: Date de naissance
+  email: Email
+  first-name: prénom
+  heading: Mes informations personnelles
+  infantNumber: Nombre d’enfant
+  isPregnant: Etes-vous enceinte ?
+  job: job
+  last-name: nom de famille
+  mom: Maman
+  multiplePregnancy: Est-ce une grossesse multiple ?
+  'no': non
+  phone: Téléphone
+  pregnancyStartDate: Date de début de la grossesse
+  update: METTRE A JOUR
+  'yes': oui
+activation:
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  doi: Options partenaires + DOI
+  doi-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: activation
+  headline: Ayarlarım
+  legal: J'accepte les mentions légales
+  legal-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  newsletter: 9 Mois pour Toi bülteni almak istiyorum
+  notification: J'accepte les notifications
+  notification-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider
+article:
+  heading: Madde
+biometric:
+  reason: Kimliğinizi doğrulayın
+  title: Giriş yapmak
+button:
+  about: Hakkımda
+  back: Geri
+  go: İLERİ
+  home: Anasayfa
+  toggle_dark: Karanlık modu değiştir
+  toggle_langs: Dilleri değiştir
+calendar:
+  heading: Takvim
+category:
+  game: oyunları tekrarla
+  news: Haberler
+  sleep: Uyumak
+  source: Kaynak
+chat:
+  close: Kapat
+  dont-doubt: Bize her şeyi sormaktan çekinmeyin. İlk sohbet ücretsizdir.
+  heading: Konuyu seçin
+  loading: Yükleniyor
+  sending: gönderme
+  sent: Gönderilmiş
+  subjets: konular
+  subs: des abonnements
+  to_continue_chat: >-
+    Uzmanlarımızla sınırsız sohbete devam etmek için aşağıdaki seçeneklerden
+    birini seçebilirsiniz.
+  upload: Yüklemek
+  valid: Doğrula
+chats:
+  active: Aktif
+  archive: Arşiv
+  ask: Bir soru sor
+  heading: Mesajlar
+  inactive: Geri aramak
+  leave: İleri
+  no_chat: Mesaj yok
+  unread: Okunmamış
+forgot:
+  check_email: Şifrenizi sıfırlamak için bağlantıyı almak için e-postanızı kontrol edin
+  email: E-posta
+  heading: Parolanızı mı unuttunuz
+  success: şifre başarıyla güncellendi
+forgot-code: PIN kodu unutuldu
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: Silmek
+  desc: Renseigne les champs ci-dessous pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Je télécharge une photo
+  save: Valider
+infantList:
+  heading: Mes enfants
+intro:
+  aka: Ayrıca şöyle bilinir
+  desc: Görüşlü Vite Başlangıç Şablonu
+  dynamic-route: Dinamik rota demosu
+  hi: Merhaba, {name}!
+  whats-your-name: Adınız nedir?
+lock:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Créez le code de sécurite qui vous permettra d’acceder à l’application
+  desc2: Indiquez de nouveau votre code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  forgot: Kodu unuttum
+  heading1: PassCode
+  heading2: Confirmation
+  mine: güvenlik kodum
+  wrongCode: Kod yanlış
+login:
+  andpass: Ve şifre
+  connexion: bağlantı
+  create-new: Yeni hesap oluştur
+  email: E-posta
+  forgot: Unuttun
+  hello: Merhaba
+  login-in: Giriş yap
+  or: veya
+  password: Şifre
+  withemail: e-posta adresi ile
+news:
+  by: ile
+  heading: Haberler
+  video: İlk katılım videosu
+not-found: Bulunamadı
+notes:
+  by: ile
+  delete: Silmek
+  heading: Kişiyle ilgili notlar
+  placeholder: Not yaz
+notificationSettings:
+  eula: EULA'ya bakın
+  heading: Hesap
+  legal: Yasal açıklamalara bakın
+  privacy: Gizlilik politikasına bakın
+  validate: Doğrula
+password:
+  heading: Şifre oluştur
+  new: Yeni Şifre
+  validate: Doğrula
+payment:
+  annual: yıllık
+  biannual: iki yıllık
+  desc: Fransa'da par des sages-femmes diplomés, disponible partout dans le monde.
+  desc-bold: suivi kişiliği
+  desc2: |-
+    Les abonnements 9moispourtoi sont renouvellés otomatikleştirme. 
+    Günün 24 saati en büyük seçimler için oy kullanma tarihi.
+  heading: Abonnez-vous pour accéder au sohbet 9moispourtoi
+  month: mois
+  monthly: Mensuel
+  or: pislik
+  quarterly: üç mevsim
+  restore: Onarmak
+  restore-purchase: Restoran sahibi
+  subscribe: S'ABONNER
+  week: deniz suyu
+  year: yıl
+phone-code:
+  checkPhone: Telefonu doğrula
+  enterCode: SMS ile gelen kodu giriniz
+  resend: SMS'i yeniden gönder
+proProfileInfo:
+  heading: Profesyonel bilgi
+  imgAlt: Doktor resmi
+  presentation: Sunum
+prof_profile:
+  description: Profesyonel açıklama
+  info: profesyonel bilgi
+  picture: Resim
+profile:
+  archived_chat: Arşivlenmiş sohbet
+  childrens: çocuk
+  info: İletişim bilgileri
+  is_pregnant: Hamile
+  multiple_pregnancy: Çoklu hamilelik
+  no_archived_chat: Arşivlenmiş sohbet yok
+  no_child: Evlat yok
+  no_remark: açıklama yok
+  number_of_children: Çocuk Sayısı
+  picture: Resim
+  pregnancy_date: Hamilelik başlangıç ​​tarihi
+profileInfo:
+  archivedConversation: Arşivlenmiş Konuşmalar
+  childrenHeading: Onların çoçukları
+  heading: İletişim bilgileri
+  imgAlt: İletişim resmi
+  nil: NIL
+  noInfant: Bilgi yok
+register:
+  already-account: Zaten bir hesabınız var mı?
+  check-email: Lütfen e-postanızı kontrol edin ve doğrulayın
+  confirm-email: E-postanızı Onaylayın
+  confirm-password: Confirmation mot de passe
+  dad: Papa
+  desc: Renseigne les champs ci-dessous pour finaliser ton inscription
+  email: Email
+  first-name: prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: Küçük harfler içermelidir
+  mom: Maman
+  next: Suivant
+  password: Mot de passe
+  password-hint: En az 6 rakam, harf ve noktalama işaretinden oluşan bir kombinasyon girin.
+  phone: Téléphone
+  specialError: Özel karakterler içermelidir
+  upperCaseError: Büyük harfler içermelidir
+registerPro:
+  desc: Yeni profesyonel hesap oluşturmak için aşağıdaki alanları doldurun
+  heading: Kayıt Profesyoneli
+  job: İş
+security:
+  biometric-desc: >-
+    Uygulamayı kilitlemek ve verilerimi güvende tutmak için biyometriyi
+    etkinleştiriyorum
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  faceId: J'active Face ID
+  faceId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: Sécurité
+  phone-code: J'active le code sécurité
+  phone-code-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  success: Kayıt onaylandı!
+  touchId: J'active le Touch ID
+  touchId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider

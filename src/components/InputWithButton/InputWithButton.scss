@@ -1,0 +1,56 @@
+.input-with-giphy {
+  ion-toolbar {
+    --border-color: transparent;
+  }
+
+  ion-textarea {
+    border-radius: 6px;
+    --background: #F5F5F5;
+    @media (prefers-color-scheme: dark) {
+      --background: #333333;
+      --color: white;
+    }
+    --padding-start: 12px;
+    --padding-end: 64px;
+    --padding-top: 6px;
+    --padding-bottom: 8px;
+
+    &.md {
+      margin-bottom: 4px;
+    }
+
+    &.has-auto-grow {
+      .textarea-wrapper, textarea {
+        min-height: 36px;
+      }
+    }
+  }
+
+  .stick-bottom {
+    align-self: flex-end;
+  }
+
+  .button-gif {
+    font-size: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .button-submit {
+    position: absolute;
+    right: 12px;
+    bottom: 6px;
+
+    ion-button {
+      font-weight: 700;
+    }
+  }
+
+  .md .button-submit {
+    bottom: 0;
+  }
+
+  .input-block {
+    margin-left: 8px;
+  }
+}

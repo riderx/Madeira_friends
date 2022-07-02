@@ -1,0 +1,253 @@
+account:
+  backButton: Back
+  changeCode: Change my security code
+  changePassword: Change password
+  error: Something went wrong! Try again later.
+  heading: Account
+  infants: My children
+  logout: Logout
+  personalInformation: Personal information
+  preferences: Notifications
+  securitySettings: Biometric Settings
+accountCode:
+  codeNoMatch: Code does not match
+  desc1: Enter your old security code
+  desc2: Enter your new security code
+  desc3: Confirm your new security code
+  errorMsg: Error happened, please try again
+  heading: Change my security code
+  invalidCode: Wrong code
+  validate: Validate
+accountPassword:
+  confirmPassword: Confirm password
+  errorMsg: Error happened, please try again
+  heading: Change my password
+  password: New password
+  success: Changed password successfully
+  validate: Validate
+accountProfile:
+  city: City
+  country: Country
+  dad: Dad
+  description: Description
+  dob: Date of birth
+  email: Email
+  first-name: First name
+  heading: Personal information
+  infantNumber: Number of children
+  isPregnant: Are you pregnant ?
+  job: job
+  last-name: Last name
+  mom: Mom
+  multiplePregnancy: Multiple pregnancy
+  'no': 'no'
+  phone: Phone
+  pregnancyStartDate: Pregnancy start date
+  update: Update
+  'yes': 'yes'
+activation:
+  desc: Fill the following fields to complete your registration
+  doi: Optional consent
+  doi-desc: I accept Email newsletter and future marketing offers
+  heading: activation
+  headline: My settings
+  legal: Legal mentions
+  legal-desc: I accept 9 Mois pour Toi app privacy policy and terms of use
+  newsletter: I want to receive 9 Mois pour Toi newsletter
+  notification: Notifications
+  notification-desc: I accept to receive notification when new app version are available
+  validate: Validate
+article:
+  heading: Article
+biometric:
+  reason: Validate your identity
+  title: Log in
+button:
+  about: About
+  back: Back
+  go: GO
+  home: Home
+  toggle_dark: Toggle dark mode
+  toggle_langs: Change languages
+calendar:
+  heading: Calendar
+category:
+  game: Repeat games
+  news: News
+  sleep: Sleep
+  source: Source
+chat:
+  close: Close
+  dont-doubt: >-
+    Feel free to ask us anything.The first chat is free.
+  heading: Choose the subject
+  loading: Loading
+  sending: Sending
+  sent: Sent
+  subjets: Subjects
+  subs: des abonnements
+  to_continue_chat: >-
+    To continue to chat with our experts without limits, you can choose to one of 
+  upload: Upload
+  valid: Validate
+chats:
+  active: Active
+  archive: Archive
+  ask: Ask a question
+  heading: Messages
+  inactive: To call back
+  leave: Forward
+  no_chat: No messages
+  unread: Unread
+forgot:
+  check_email: Check your email to get the link to reset your password
+  email: Email
+  heading: Forgot password
+  success: Password updated successfully
+forgot-code: PIN code forgotten
+infant:
+  boy: Boy
+  cancel: Cancel
+  comments: Commentary
+  delete: Delete
+  desc: Fill the following fields to add a child
+  dob: Date of birth
+  errorMsg: Error happened, please try again
+  girl: Girl
+  heading: Add a child
+  name: Name
+  photo: Download picture
+  save: Validate
+infantList:
+  heading: My children
+intro:
+  aka: Also known as
+  desc: Opinionated Vite Starter Template
+  dynamic-route: Demo of dynamic route
+  hi: Hi, {name}!
+  whats-your-name: What's your name?
+lock:
+  codeNoMatch: Code does not match
+  desc1: Create your security code to access the app
+  desc2: Please enter again your security code to access the app
+  errorMsg: Error happen, Try again
+  forgot: Forgot code
+  heading1: PassCode
+  heading2: Confirmation
+  mine: My security code
+  wrongCode: Code is incorrect
+login:
+  andpass: And password
+  connexion: Login
+  create-new: Create new account
+  email: Email
+  forgot: forgot
+  hello: Hello
+  login-in: Login in
+  or: or
+  password: Password
+  withemail: With email adress
+news:
+  by: by
+  heading: News
+  video: Onboarding video
+not-found: Not found
+notes:
+  by: by
+  delete: Delete
+  heading: Notes about the contact
+  placeholder: Write a note
+notificationSettings:
+  eula: See EULA
+  heading: Account
+  legal: See legal mentions
+  privacy: See privacy policy
+  validate: Validate
+password:
+  heading: Create Password
+  new: New Password
+  validate: Validate
+payment:
+  annual: Annual
+  biannual: Biannual
+  desc: by french nurses, available everywhere in the world.
+  desc-bold: customized follow-up
+  desc2: >-
+    9 Mois pour Toi subscriptions are renewed automatically. You can cancel your
+    subscription at any time within 24 hours before the renewal date.
+  heading: Subcribe to access to 9moispourtoi chat
+  month: month
+  monthly: Monthly
+  or: or
+  quarterly: quarterly
+  restore: Restore
+  restore-purchase: Restore subscribe
+  subscribe: subscribe
+  week: week
+  year: year
+phone-code:
+  checkPhone: Verify phone
+  enterCode: Enter the code received by sms
+  resend: Resend SMS
+proProfileInfo:
+  heading: Professional info
+  imgAlt: Doctor picture
+  presentation: Presentation
+prof_profile:
+  description: Professional description
+  info: Info of the professional
+  picture: Picture
+profile:
+  archived_chat: Archived chat
+  childrens: Childrens
+  info: Info of the contact
+  is_pregnant: Pregnant
+  multiple_pregnancy: Multiple Pregnancy
+  no_archived_chat: No archived chat
+  no_child: No children
+  no_remark: No remark
+  number_of_children: Number of children
+  picture: Picture
+  pregnancy_date: Pregnancy start date
+profileInfo:
+  archivedConversation: Archived Conversations
+  childrenHeading: Their children
+  heading: Contact information
+  imgAlt: Contact image
+  nil: NIL
+  noInfant: Information not available
+register:
+  already-account: You already have an account?
+  check-email: Please check your email and verify
+  confirm-email: Confirm email
+  confirm-password: Confirm password
+  dad: Dad
+  desc: Fill the following fields to complete your registration
+  email: Email
+  first-name: first name
+  heading: Registration
+  last-name: last name
+  lowerCaseError: Should contain lowercase letters
+  mom: Mom
+  next: Next
+  password: password
+  password-hint: Enter a combination of at least 6 numbers, letters and punctuations.
+  phone: phone
+  specialError: Should contain special characters
+  upperCaseError: Should contain uppercase letters
+registerPro:
+  desc: Fill the following fields to create new professional account
+  heading: Registration Pro
+  job: Job
+security:
+  biometric-desc: I activate biometric, to lock the app and keep my data secure
+  desc: Fill the following fields to complete your registration
+  faceId: Face ID
+  faceId-desc: I activate Face Id, to lock the app and keep my data secure
+  heading: Security
+  phone-code: Security code
+  phone-code-desc: I activate security code, to lock the app and keep my data secure
+  success: Registration validated!
+  touchId: Touch ID
+  touchId-desc: I activate Touch Id, to lock the app and keep my data secure
+  validate: Validate

@@ -1,0 +1,47 @@
+name: Build source code and send to Capgo
+
+on:
+  push:
+    tags:
+      - '*'
+      
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: "Build code and release"
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.22.2
+      - name: Install dependencies
+        id: install_code
+        run: pnpm i        
+      - name: Lint
+        id: lint_code
+        run: pnpm lint
+      - name: Build
+        if: "contains(github.ref, '-alpha.')"
+        id: build_code_dev
+        run: pnpm run dev-mobile
+      - name: Build
+        if: "contains(github.ref, '-beta.')"
+        id: build_code_preprod
+        run: pnpm run prod-mobile
+      - name: Build
+        id: build_code_prod
+        if: "!contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.')"
+        run: pnpm run mobile
+      - name: Create Release Alpha
+        if: "contains(github.ref, '-alpha.')"
+        id: create_release_dev
+        run: npx @capgo/cli upload -a ${{ secrets.CAPGO_TOKEN }} -c alpha
+      - name: Create Release Production
+        if: "contains(github.ref, '-beta.')"
+        id: create_release_beta
+        run: npx @capgo/cli upload -a ${{ secrets.CAPGO_TOKEN }} -c preproduction
+      - name: Create Release Production
+        if: "!contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.')"
+        id: create_release_prod
+        run: npx @capgo/cli upload -a ${{ secrets.CAPGO_TOKEN }} -c production

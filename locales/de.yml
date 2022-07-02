@@ -1,0 +1,269 @@
+account:
+  backButton: Zurück
+  changeCode: Meinen Sicherheitscode ändern
+  changePassword: Kennwort ändern
+  error: |-
+    Etwas ist schief gelaufen! 
+    Versuchen Sie es später noch einmal.
+  heading: Konto
+  infants: Meine Kinder
+  logout: Ausloggen
+  personalInformation: Persönliche Informationen
+  preferences: Benachrichtigungen
+  securitySettings: Sicherheitseinstellungen
+accountCode:
+  codeNoMatch: Code stimmt nicht überein
+  desc1: Geben Sie Ihren alten Sicherheitscode ein
+  desc2: Geben Sie Ihren neuen Sicherheitscode ein
+  desc3: Bestätigen Sie Ihren neuen Sicherheitscode
+  errorMsg: Es ist ein Fehler aufgetreten, bitte versuche es noch einmal
+  heading: Meinen Sicherheitscode ändern
+  invalidCode: Falscher Code
+  validate: Bestätigen
+accountPassword:
+  confirmPassword: Kennwort bestätigen
+  errorMsg: Es ist ein Fehler aufgetreten, bitte versuche es noch einmal
+  heading: Ändere mein Passwort
+  password: Neues Passwort
+  success: Passwort erfolgreich geändert
+  validate: Bestätigen
+accountProfile:
+  city: Stadt
+  country: Land
+  dad: Vati
+  description: Beschreibung
+  dob: Geburtsdatum
+  email: Email
+  first-name: Vorname
+  heading: Persönliche Informationen
+  infantNumber: Anzahl der Kinder
+  isPregnant: Bist du schwanger ?
+  job: Arbeit
+  last-name: Nachname
+  mom: Mama
+  multiplePregnancy: Multiple Schwangerschaft
+  'no': Nein
+  phone: Telefon
+  pregnancyStartDate: Startdatum der Schwangerschaft
+  update: Aktualisieren
+  'yes': ja
+activation:
+  desc: Füllen Sie die folgenden Felder aus, um Ihre Registrierung abzuschließen
+  doi: Optionale Zustimmung
+  doi-desc: Ich akzeptiere E-Mail-Newsletter und zukünftige Marketingangebote
+  heading: Aktivierung
+  headline: Meine Einstellungen
+  legal: Rechtliche Erwähnungen
+  legal-desc: >-
+    Ich akzeptiere die Datenschutzrichtlinien und Nutzungsbedingungen der
+    Kondensator Go App
+  newsletter: Ich möchte den 9 Mois pour Toi Newsletter erhalten
+  notification: Benachrichtigungen
+  notification-desc: >-
+    Ich stimme zu, Benachrichtigungen zu erhalten, wenn neue App-Versionen
+    verfügbar sind
+  validate: Bestätigen
+article:
+  heading: Artikel
+biometric:
+  reason: Bestätigen Sie Ihre Identität
+  title: Einloggen
+button:
+  about: Etwa
+  back: Zurück
+  go: GEHEN
+  home: Heim
+  toggle_dark: Dunkelmodus umschalten
+  toggle_langs: Sprachen ändern
+calendar:
+  heading: Kalender
+category:
+  game: Spiele wiederholen
+  news: Nachrichten
+  sleep: Schlaf
+  source: Quelle
+chat:
+  close: Nah dran
+  dont-doubt: Fühlen Sie sich frei, uns etwas zu fragen. Der erste Chat ist kostenlos.
+  heading: Wählen Sie das Thema
+  loading: Wird geladen
+  sending: Senden
+  sent: Gesendet
+  subjets: Fächer
+  subs: des Abonnements
+  to_continue_chat: >-
+    Um weiterhin unbegrenzt mit unseren Experten zu chatten, können Sie eine der
+    folgenden auswählen
+  upload: Hochladen
+  valid: Bestätigen
+chats:
+  active: Aktiv
+  archive: Archiv
+  ask: Stelle eine Frage
+  heading: Mitteilungen
+  inactive: Zurückrufen
+  leave: Verlassen
+  no_chat: Keine Nachrichten
+  unread: Ungelesen
+forgot:
+  check_email: >-
+    Überprüfen Sie Ihre E-Mail, um den Link zum Zurücksetzen Ihres Passworts zu
+    erhalten
+  email: Email
+  heading: Passwort vergessen
+  success: Passwort erfolgreich aktualisiert
+forgot-code: PIN-Code vergessen
+infant:
+  boy: Junge
+  cancel: Abbrechen
+  comments: Kommentar
+  delete: Löschen
+  desc: Füllen Sie die folgenden Felder aus, um ein Kind hinzuzufügen
+  dob: Geburtsdatum
+  errorMsg: Es ist ein Fehler aufgetreten, bitte versuche es noch einmal
+  girl: Mädchen
+  heading: Kind hinzufügen
+  name: Name
+  photo: Bild herunterladen
+  save: Bestätigen
+infantList:
+  heading: Meine Kinder
+intro:
+  aka: Auch bekannt als
+  desc: Opinionated Vite Starter-Vorlage
+  dynamic-route: Demo der dynamischen Route
+  hi: Hallo, {name}!
+  whats-your-name: Wie heißen Sie?
+lock:
+  codeNoMatch: Code stimmt nicht überein
+  desc1: Erstellen Sie Ihren Sicherheitscode, um auf die App zuzugreifen
+  desc2: Bitte geben Sie Ihren Sicherheitscode erneut ein, um auf die App zuzugreifen
+  errorMsg: Fehler aufgetreten, versuchen Sie es erneut
+  forgot: Code vergessen
+  heading1: Passcode
+  heading2: Bestätigung
+  mine: Mein Sicherheitscode
+  wrongCode: Code ist falsch
+login:
+  andpass: Und Passwort
+  connexion: Anmeldung
+  create-new: Neuen Account erstellen
+  email: Email
+  forgot: vergessen
+  hello: Hallo
+  login-in: Einloggen in
+  or: oder
+  password: Passwort
+  withemail: Mit E-Mail-Adresse
+news:
+  by: durch
+  heading: Nachrichten
+  video: Onboarding-Video
+not-found: Nicht gefunden
+notes:
+  by: durch
+  delete: Löschen
+  heading: Hinweise zum Kontakt
+  placeholder: Schreib eine Notitz
+notificationSettings:
+  eula: Siehe EULA
+  heading: Konto
+  legal: Siehe rechtliche Erwähnungen
+  privacy: Siehe Datenschutzerklärung
+  validate: Bestätigen
+password:
+  heading: Passwort erstellen
+  new: Neues Passwort
+  validate: Bestätigen
+payment:
+  annual: Jahr
+  biannual: Halbjährlich
+  desc: par des sages-femmes diplomés en France, disponible partout dans le monde.
+  desc-bold: Suivi personalisiert
+  desc2: >-
+    Les abonnements 9moispourtoi sont renouvellés automatiquement. 
+
+    Vous pouvez annuler votre abonnement à tout moment dans les 24h precédant la
+    date de renouvellement.
+  heading: Abonnez-vous pour accéder au chat 9moispourtoi
+  month: mois
+  monthly: Mensuel
+  or: so dass es
+  quarterly: Trimestiel
+  restore: Wiederherstellen
+  restore-purchase: Restaurator vos achats
+  subscribe: S’ABONNER
+  week: Wochenende
+  year: Jahr
+phone-code:
+  checkPhone: Telefon bestätigen
+  enterCode: Geben Sie den per SMS erhaltenen Code ein
+  resend: SMS erneut senden
+proProfileInfo:
+  heading: Berufsinfos
+  imgAlt: Arzt Bild
+  presentation: Präsentation
+prof_profile:
+  description: Berufsbeschreibung
+  info: Infos zum Profi
+  picture: Bild
+profile:
+  archived_chat: Archivierter Chat
+  childrens: Kinder
+  info: Infos zum Kontakt
+  is_pregnant: Schwanger
+  multiple_pregnancy: Multiple Schwangerschaft
+  no_archived_chat: Kein archivierter Chat
+  no_child: Keine Kinder
+  no_remark: Keine Bemerkung
+  number_of_children: Anzahl der Kinder
+  picture: Bild
+  pregnancy_date: Startdatum der Schwangerschaft
+profileInfo:
+  archivedConversation: Archivierte Gespräche
+  childrenHeading: Ihre Kinder
+  heading: Kontaktinformation
+  imgAlt: Kontaktbild
+  nil: 'NULL'
+  noInfant: Information nicht verfügbar
+register:
+  already-account: Sie haben schon ein Konto?
+  check-email: Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie
+  confirm-email: Bestätigungs-E-Mail
+  confirm-password: Kennwort bestätigen
+  dad: Vati
+  desc: Füllen Sie die folgenden Felder aus, um Ihre Registrierung abzuschließen
+  email: Email
+  first-name: Vorname
+  heading: Anmeldung
+  last-name: Nachname
+  lowerCaseError: Sollte Kleinbuchstaben enthalten
+  mom: Mama
+  next: Nächste
+  password: Passwort
+  password-hint: >-
+    Geben Sie eine Kombination aus mindestens 6 Zahlen, Buchstaben und
+    Satzzeichen ein.
+  phone: Telefon
+  specialError: Sollte Sonderzeichen enthalten
+  upperCaseError: Sollte Großbuchstaben enthalten
+registerPro:
+  desc: >-
+    Füllen Sie die folgenden Felder aus, um ein neues professionelles Konto zu
+    erstellen
+  heading: Registrierung Pro
+  job: Arbeit
+security:
+  biometric-desc: Ich aktiviere Biometrie, um die App zu sperren und meine Daten zu schützen
+  desc: Füllen Sie die folgenden Felder aus, um Ihre Registrierung abzuschließen
+  faceId: Gesichts-ID
+  faceId-desc: Ich aktiviere Face Id, um die App zu sperren und meine Daten zu schützen
+  heading: Sicherheit
+  phone-code: Sicherheitscode
+  phone-code-desc: >-
+    Ich aktiviere den Sicherheitscode, um die App zu sperren und meine Daten zu
+    schützen
+  success: Anmeldung bestätigt!
+  touchId: Berührungsidentifikation
+  touchId-desc: Ich aktiviere Touch Id, um die App zu sperren und meine Daten zu schützen
+  validate: Bestätigen

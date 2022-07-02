@@ -1,0 +1,277 @@
+account:
+  backButton: Retour
+  changeCode: Modifier mon code de sécurité
+  changePassword: Mon mot de passe
+  error: |-
+    Что-то пошло не так! 
+    Попробуйте позже.
+  heading: Mon Compte
+  infants: Mes enfants
+  logout: Se déconnecter
+  personalInformation: Mes informations personnelles
+  preferences: Mes préférences
+  securitySettings: Биометрические настройки
+accountCode:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon code de sécurité
+  invalidCode: Code invalide
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez mon mot de passe
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon mot de passe
+  password: Mon nouveau mot de passe
+  success: Пароль успешно изменен
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: Описание
+  dob: Date de naissance
+  email: Email
+  first-name: prénom
+  heading: Mes informations personnelles
+  infantNumber: Nombre d’enfant
+  isPregnant: Etes-vous enceinte ?
+  job: job
+  last-name: nom de famille
+  mom: Maman
+  multiplePregnancy: Est-ce une grossesse multiple ?
+  'no': non
+  phone: Téléphone
+  pregnancyStartDate: Date de début de la grossesse
+  update: METTRE A JOUR
+  'yes': oui
+activation:
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  doi: Options partenaires + DOI
+  doi-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: activation
+  headline: Мои настройки
+  legal: J'accepte les mentions légales
+  legal-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  newsletter: Я хочу получать информационный бюллетень 9 Mois pour Toi
+  notification: J'accepte les notifications
+  notification-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider
+article:
+  heading: Статья
+biometric:
+  reason: Подтвердите свою личность
+  title: Авторизоваться
+button:
+  about: О шаблоне
+  back: Назад
+  go: Перейти
+  home: Главная
+  toggle_dark: Включить темный режим
+  toggle_langs: Сменить язык
+calendar:
+  heading: Календарь
+category:
+  game: Повторить игры
+  news: Новости
+  sleep: Спать
+  source: Источник
+chat:
+  close: Закрывать
+  dont-doubt: Не стесняйтесь спрашивать нас о чем угодно. Первый чат бесплатный.
+  heading: Выберите тему
+  loading: Загрузка
+  sending: Отправка
+  sent: Отправил
+  subjets: Предметы
+  subs: абонементы
+  to_continue_chat: >-
+    Чтобы продолжить общение с нашими экспертами без ограничений, вы можете
+    выбрать один из
+  upload: Загрузить
+  valid: Подтвердить
+chats:
+  active: Активный
+  archive: Архив
+  ask: Задайте вопрос
+  heading: Сообщения
+  inactive: Перезвонить
+  leave: Вперед
+  no_chat: Нет сообщений
+  unread: Непрочитанный
+forgot:
+  check_email: Проверьте свою электронную почту, чтобы получить ссылку для сброса пароля
+  email: Эл. адрес
+  heading: Забыл пароль
+  success: Пароль успешно обновлен
+forgot-code: PIN-код забыт
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: Удалить
+  desc: Renseigne les champs ci-dessous pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Je télécharge une photo
+  save: Valider
+infantList:
+  heading: Mes enfants
+intro:
+  aka: Также известен как
+  desc: Самостоятельный начальный шаблон Vite
+  dynamic-route: Демо динамического маршрута
+  hi: Привет, {name}!
+  whats-your-name: Как тебя зовут?
+lock:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Créez le code de sécurite qui vous permettra d’acceder à l’application
+  desc2: Indiquez de nouveau votre code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  forgot: Забыли код
+  heading1: PassCode
+  heading2: Confirmation
+  mine: Мой защитный код
+  wrongCode: Код указан неверно
+login:
+  andpass: И пароль
+  connexion: Связи
+  create-new: Создать новый аккаунт
+  email: Эл. адрес
+  forgot: забыли
+  hello: Привет
+  login-in: Войти в систему
+  or: или
+  password: Пароль
+  withemail: С адресом электронной почты
+news:
+  by: к
+  heading: Новости
+  video: Вступительное видео
+not-found: Не найден
+notes:
+  by: к
+  delete: Удалить
+  heading: Заметки о контакте
+  placeholder: Написать заметку
+notificationSettings:
+  eula: См. ЛСКП
+  heading: Счет
+  legal: См. юридические упоминания
+  privacy: Посмотреть политику конфиденциальности
+  validate: Подтвердить
+password:
+  heading: Создать пароль
+  new: новый пароль
+  validate: Подтвердить
+payment:
+  annual: Аннуэль
+  biannual: Бианнуэль
+  desc: par des sages-femmes diplomés en France, disponible partout dans le monde.
+  desc-bold: Индивидуальный подход
+  desc2: >-
+    Les abonnements 9moispourtoi sont renouvellés Automaticiques. 
+
+    Vous pouvez annuler votre abonnement à tout moment dans les 24h précédant la
+    date de renouvellement.
+  heading: Abonnez-vous pour accéder au chat 9moispourtoi
+  month: мойс
+  monthly: Менсуэль
+  or: так что
+  quarterly: Триместриэль
+  restore: Восстановить
+  restore-purchase: Ресторатор Вос Ачатс
+  subscribe: С’АБОННЕР
+  week: семэн
+  year: год
+phone-code:
+  checkPhone: Подтвердить телефон
+  enterCode: Введите код, полученный по смс
+  resend: Отправить SMS повторно
+proProfileInfo:
+  heading: Профессиональная информация
+  imgAlt: Доктор фото
+  presentation: Презентация
+prof_profile:
+  description: Профессиональное описание
+  info: Информация о профессионале
+  picture: Картина
+profile:
+  archived_chat: Архивный чат
+  childrens: Детский
+  info: Информация о контакте
+  is_pregnant: Беременная
+  multiple_pregnancy: Многоплодная беременность
+  no_archived_chat: Нет архивного чата
+  no_child: Нет детей
+  no_remark: Нет замечаний
+  number_of_children: Число детей
+  picture: Картина
+  pregnancy_date: Дата начала беременности
+profileInfo:
+  archivedConversation: Архивные разговоры
+  childrenHeading: Их дети
+  heading: Контакты
+  imgAlt: Контактное изображение
+  nil: НОЛЬ
+  noInfant: Информация недоступна
+register:
+  already-account: У вас уже есть аккаунт?
+  check-email: Пожалуйста, проверьте свою электронную почту и подтвердите
+  confirm-email: Подтвердите адрес электронной почты
+  confirm-password: Confirmation mot de passe
+  dad: Papa
+  desc: Renseigne les champs ci-dessous pour finaliser ton inscription
+  email: Email
+  first-name: prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: Должен содержать строчные буквы
+  mom: Maman
+  next: Suivant
+  password: Mot de passe
+  password-hint: Введите комбинацию не менее 6 цифр, букв и знаков препинания.
+  phone: Téléphone
+  specialError: Должен содержать специальные символы
+  upperCaseError: Должен содержать заглавные буквы
+registerPro:
+  desc: >-
+    Заполните следующие поля, чтобы создать новую профессиональную учетную
+    запись
+  heading: Регистрация Pro
+  job: Работа
+security:
+  biometric-desc: Я активирую биометрию, чтобы заблокировать приложение и защитить свои данные
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  faceId: J'active Face ID
+  faceId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: Sécurité
+  phone-code: J'active le code sécurité
+  phone-code-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  success: Регистрация подтверждена!
+  touchId: J'active le Touch ID
+  touchId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider

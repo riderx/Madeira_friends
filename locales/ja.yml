@@ -1,0 +1,273 @@
+account:
+  backButton: Retour
+  changeCode: Modifier mon code de sécurité
+  changePassword: Mon mot de passe
+  error: |-
+    何かがうまくいかなかった！
+    あとでもう一度試してみてください。
+  heading: Mon Compte
+  infants: Mes enfants
+  logout: Se déconnecter
+  personalInformation: Mes informations personnelles
+  preferences: Mes préférences
+  securitySettings: 生体認証設定
+accountCode:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon code de sécurité
+  invalidCode: Code invalide
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez mon mot de passe
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon mot de passe
+  password: Mon nouveau mot de passe
+  success: パスワードが正常に変更されました
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: 説明
+  dob: Date de naissance
+  email: Email
+  first-name: prénom
+  heading: Mes informations personnelles
+  infantNumber: Nombre d’enfant
+  isPregnant: Etes-vous enceinte ?
+  job: job
+  last-name: nom de famille
+  mom: Maman
+  multiplePregnancy: Est-ce une grossesse multiple ?
+  'no': non
+  phone: Téléphone
+  pregnancyStartDate: Date de début de la grossesse
+  update: METTRE A JOUR
+  'yes': oui
+activation:
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  doi: Options partenaires + DOI
+  doi-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: activation
+  headline: 私の設定
+  legal: J'accepte les mentions légales
+  legal-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  newsletter: 9 MoispourToiニュースレターを受け取りたい
+  notification: J'accepte les notifications
+  notification-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider
+article:
+  heading: 記事
+biometric:
+  reason: あなたの身元を確認する
+  title: ログイン
+button:
+  about: これは？
+  back: 戻る
+  go: 進む
+  home: ホーム
+  toggle_dark: ダークモード切り替え
+  toggle_langs: 言語切り替え
+calendar:
+  heading: カレンダー
+category:
+  game: 繰り返しゲーム
+  news: ニュース
+  sleep: 睡眠
+  source: ソース
+chat:
+  close: 選ぶ
+  dont-doubt: お気軽にご相談ください。最初のチャットは無料です。
+  heading: 件名を選択してください
+  loading: 読み込み中
+  sending: 送信
+  sent: 送信済
+  subjets: 科目
+  subs: desabonnements
+  to_continue_chat: 無制限に専門家とチャットを続けるには、次のいずれかを選択できます
+  upload: アップロード
+  valid: 検証
+chats:
+  active: アクティブ
+  archive: 記録
+  ask: 質問する
+  heading: メッセージ
+  inactive: 折り返し電話するには
+  leave: 前方
+  no_chat: メッセージはありません
+  unread: 未読
+forgot:
+  check_email: メールをチェックして、パスワードをリセットするためのリンクを取得してください
+  email: Eメール
+  heading: パスワードをお忘れですか
+  success: パスワードが正常に更新されました
+forgot-code: PINコードを忘れた
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: 消去
+  desc: Renseigne les champs ci-dessous pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Je télécharge une photo
+  save: Valider
+infantList:
+  heading: Mes enfants
+intro:
+  aka: としても知られている
+  desc: 固執された Vite スターターテンプレート
+  dynamic-route: 動的ルートのデモ
+  hi: こんにちは、{name}!
+  whats-your-name: 君の名は。
+lock:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Créez le code de sécurite qui vous permettra d’acceder à l’application
+  desc2: Indiquez de nouveau votre code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  forgot: コードを忘れた
+  heading1: PassCode
+  heading2: Confirmation
+  mine: 私のセキュリティコード
+  wrongCode: コードが正しくありません
+login:
+  andpass: そしてパスワード
+  connexion: 接続
+  create-new: 新しいアカウントを作成する
+  email: Eメール
+  forgot: 忘れた
+  hello: こんにちは
+  login-in: ログイン
+  or: また
+  password: パスワード
+  withemail: メールアドレス付き
+news:
+  by: に
+  heading: ニュース
+  video: オンボーディングビデオ
+not-found: 見つかりませんでした
+notes:
+  by: に
+  delete: 消去
+  heading: 連絡先に関する注意事項
+  placeholder: メモを書く
+notificationSettings:
+  eula: EULAを参照してください
+  heading: アカウント
+  legal: 法的な言及を参照してください
+  privacy: プライバシーポリシーを見る
+  validate: 検証
+password:
+  heading: パスワードの作成
+  new: 新しいパスワード
+  validate: 検証
+payment:
+  annual: アヌエル
+  biannual: ビアヌエル
+  desc: par des sages-femmesdiplomésenFrance、disponible partoutdanslemonde。
+  desc-bold: Suivipersonnalisé
+  desc2: >-
+    Les abonnements9moispourtoisontrenouvellésの自動化。 
+
+    Vous
+    pouvezannulervotreabonnementàtoutmomentdansles24hprécédantladatederenouvellement。
+  heading: Abonnez-vouspouraccéderauchat9moispourtoi
+  month: mois
+  monthly: Mensuel
+  or: それはそう
+  quarterly: トリメストリエル
+  restore: 戻す
+  restore-purchase: Restaurer vos achats
+  subscribe: S’ABONNER
+  week: セマイン
+  year: 年
+phone-code:
+  checkPhone: 電話を確認する
+  enterCode: SMSが受信したコードを入力してください
+  resend: SMSを再送する
+proProfileInfo:
+  heading: 専門家情報
+  imgAlt: 医者の写真
+  presentation: プレゼンテーション
+prof_profile:
+  description: 専門家の説明
+  info: 専門家の情報
+  picture: 写真
+profile:
+  archived_chat: アーカイブされたチャット
+  childrens: 子供たち
+  info: 連絡先の情報
+  is_pregnant: 妊娠中
+  multiple_pregnancy: 多胎妊娠
+  no_archived_chat: アーカイブされたチャットはありません
+  no_child: 子供はいない
+  no_remark: 備考なし
+  number_of_children: 子供達の人数
+  picture: 写真
+  pregnancy_date: 妊娠開始日
+profileInfo:
+  archivedConversation: アーカイブされた会話
+  childrenHeading: 彼らの子供
+  heading: 連絡先
+  imgAlt: 連絡先画像
+  nil: NIL
+  noInfant: 情報はありません
+register:
+  already-account: すでにアカウントをお持ちですか？
+  check-email: メールをチェックして確認してください
+  confirm-email: Eメール確認
+  confirm-password: Confirmation mot de passe
+  dad: Papa
+  desc: Renseigne les champs ci-dessous pour finaliser ton inscription
+  email: Email
+  first-name: prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: 小文字を含める必要があります
+  mom: Maman
+  next: Suivant
+  password: Mot de passe
+  password-hint: 少なくとも6つの数字、文字、句読点の組み合わせを入力してください。
+  phone: Téléphone
+  specialError: 特殊文字を含める必要があります
+  upperCaseError: 大文字を含める必要があります
+registerPro:
+  desc: 次のフィールドに入力して、新しいプロフェッショナルアカウントを作成します
+  heading: 登録プロ
+  job: 仕事
+security:
+  biometric-desc: アプリをロックしてデータを安全に保つために、生体認証を有効にします
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  faceId: J'active Face ID
+  faceId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: Sécurité
+  phone-code: J'active le code sécurité
+  phone-code-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  success: 登録が検証されました！
+  touchId: J'active le Touch ID
+  touchId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider

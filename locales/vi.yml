@@ -1,0 +1,279 @@
+account:
+  backButton: Retour
+  changeCode: Modifier mon code de sécurité
+  changePassword: Mon mot de passe
+  error: |-
+    Đã xảy ra lỗi! 
+    Thử lại sau.
+  heading: Mon Compte
+  infants: Mes enfants
+  logout: Se déconnecter
+  personalInformation: Mes informations personnelles
+  preferences: Mes préférences
+  securitySettings: Cài đặt sinh trắc học
+accountCode:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon code de sécurité
+  invalidCode: Code invalide
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez mon mot de passe
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon mot de passe
+  password: Mon nouveau mot de passe
+  success: Đã thay đổi mật khẩu thành công
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: Sự miêu tả
+  dob: Date de naissance
+  email: Email
+  first-name: prénom
+  heading: Mes informations personnelles
+  infantNumber: Nombre d’enfant
+  isPregnant: Etes-vous enceinte ?
+  job: job
+  last-name: nom de famille
+  mom: Maman
+  multiplePregnancy: Est-ce une grossesse multiple ?
+  'no': non
+  phone: Téléphone
+  pregnancyStartDate: Date de début de la grossesse
+  update: METTRE A JOUR
+  'yes': oui
+activation:
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  doi: Options partenaires + DOI
+  doi-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: activation
+  headline: Cài đặt của tôi
+  legal: J'accepte les mentions légales
+  legal-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  newsletter: Tôi muốn nhận bản tin 9 Mois pour Toi
+  notification: J'accepte les notifications
+  notification-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider
+article:
+  heading: Bài báo
+biometric:
+  reason: Xác thực danh tính của bạn
+  title: Đăng nhập
+button:
+  about: Về
+  back: Quay lại
+  go: Đi
+  home: Khởi đầu
+  toggle_dark: Chuyển đổi chế độ tối
+  toggle_langs: Thay đổi ngôn ngữ
+calendar:
+  heading: Lịch
+category:
+  game: Lặp lại trò chơi
+  news: Tin tức
+  sleep: Ngủ
+  source: Nguồn
+chat:
+  close: Đóng
+  dont-doubt: Hãy hỏi chúng tôi bất cứ điều gì. Cuộc trò chuyện đầu tiên là miễn phí.
+  heading: Chọn chủ đề
+  loading: Đang tải
+  sending: Gửi
+  sent: Gởi
+  subjets: Đối tượng
+  subs: des abonnements
+  to_continue_chat: >-
+    Để tiếp tục trò chuyện với các chuyên gia của chúng tôi mà không có giới
+    hạn, bạn có thể chọn một trong các
+  upload: Tải lên
+  valid: Xác thực
+chats:
+  active: Tích cực
+  archive: Lưu trữ
+  ask: Đặt một câu hỏi
+  heading: Tin nhắn
+  inactive: Gọi lại
+  leave: Ở đằng trước
+  no_chat: Không có tin nhắn
+  unread: Chưa đọc
+forgot:
+  check_email: Kiểm tra email của bạn để lấy liên kết đặt lại mật khẩu của bạn
+  email: E-mail
+  heading: Quên mật khẩu
+  success: Đã cập nhật mật khẩu thành công
+forgot-code: Mã PIN bị quên
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: Xóa bỏ
+  desc: Renseigne les champs ci-dessous pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Je télécharge une photo
+  save: Valider
+infantList:
+  heading: Mes enfants
+intro:
+  aka: Cũng được biết đến như là
+  desc: Ý kiến cá nhân Vite Template để bắt đầu
+  dynamic-route: Bản giới thiệu về dynamic route
+  hi: Hi, {name}!
+  whats-your-name: Tên bạn là gì?
+lock:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Créez le code de sécurite qui vous permettra d’acceder à l’application
+  desc2: Indiquez de nouveau votre code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  forgot: Quên mã
+  heading1: PassCode
+  heading2: Confirmation
+  mine: Mã bảo mật của tôi
+  wrongCode: Mã không chính xác
+login:
+  andpass: Và mật khẩu
+  connexion: Liên quan
+  create-new: Tạo tài khoản mới
+  email: E-mail
+  forgot: quên mất
+  hello: xin chào
+  login-in: Đăng nhập
+  or: hoặc
+  password: Mật khẩu
+  withemail: Với địa chỉ email
+news:
+  by: qua
+  heading: Tin tức
+  video: Giới thiệu video
+not-found: Không tìm thấy
+notes:
+  by: qua
+  delete: Xóa bỏ
+  heading: Ghi chú về liên hệ
+  placeholder: Viết một ghi chú
+notificationSettings:
+  eula: Xem EULA
+  heading: Tài khoản
+  legal: Xem các đề cập pháp lý
+  privacy: Xem chính sách bảo mật
+  validate: Xác thực
+password:
+  heading: Tạo mật khẩu
+  new: mật khẩu mới
+  validate: Xác thực
+payment:
+  annual: Annuel
+  biannual: Biannuel
+  desc: >-
+    par des sages-femmes Diplomés en France, dans le monde, người dự phần tranh
+    chấp.
+  desc-bold: Suivi personnalisé
+  desc2: >-
+    Les abonnements 9moispourtoi sont recuvellés tự động hóa. 
+
+    Vous pouvez annuler votre abonnement à tout moment dans les 24h précédant la
+    date de Renouvellement.
+  heading: Abonnez-vous pour accéder au chat 9moispourtoi
+  month: mois
+  monthly: Mensuel
+  or: do đó, nó
+  quarterly: Trimestriel
+  restore: Khôi phục
+  restore-purchase: Restaurer vos achats
+  subscribe: S’ABONNER
+  week: semaine
+  year: năm
+phone-code:
+  checkPhone: Xác minh số điện thoại
+  enterCode: Nhập mã nhận được bằng sms
+  resend: Gửi lại SMS
+proProfileInfo:
+  heading: Thông tin chuyên nghiệp
+  imgAlt: Hình bác sĩ
+  presentation: Bài thuyết trình
+prof_profile:
+  description: Mô tả chuyên nghiệp
+  info: Thông tin về chuyên gia
+  picture: Hình ảnh
+profile:
+  archived_chat: Trò chuyện đã lưu trữ
+  childrens: Trẻ em
+  info: Thông tin của liên hệ
+  is_pregnant: Có thai
+  multiple_pregnancy: Mang thai nhiều lần
+  no_archived_chat: Không có cuộc trò chuyện được lưu trữ
+  no_child: Không có con
+  no_remark: Không nhận xét
+  number_of_children: Số trẻ em
+  picture: Hình ảnh
+  pregnancy_date: Ngày bắt đầu mang thai
+profileInfo:
+  archivedConversation: Cuộc trò chuyện đã lưu trữ
+  childrenHeading: Con cái của họ
+  heading: Thông tin liên lạc
+  imgAlt: Hình ảnh liên hệ
+  nil: KHÔNG
+  noInfant: Thông tin không có sẵn
+register:
+  already-account: Bạn đã có tài khoản?
+  check-email: Vui lòng kiểm tra email của bạn và xác minh
+  confirm-email: Xác nhận email
+  confirm-password: Confirmation mot de passe
+  dad: Papa
+  desc: Renseigne les champs ci-dessous pour finaliser ton inscription
+  email: Email
+  first-name: prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: Phải chứa các chữ cái thường
+  mom: Maman
+  next: Suivant
+  password: Mot de passe
+  password-hint: Nhập kết hợp của ít nhất 6 số, chữ cái và dấu chấm câu.
+  phone: Téléphone
+  specialError: Phải chứa các ký tự đặc biệt
+  upperCaseError: Nên chứa các chữ cái in hoa
+registerPro:
+  desc: Điền vào các trường sau để tạo tài khoản chuyên nghiệp mới
+  heading: Đăng ký Pro
+  job: Công việc
+security:
+  biometric-desc: >-
+    Tôi kích hoạt sinh trắc học, để khóa ứng dụng và giữ an toàn cho dữ liệu của
+    mình
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  faceId: J'active Face ID
+  faceId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: Sécurité
+  phone-code: J'active le code sécurité
+  phone-code-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  success: Đăng ký đã được xác thực!
+  touchId: J'active le Touch ID
+  touchId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider

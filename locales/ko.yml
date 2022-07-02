@@ -1,0 +1,273 @@
+account:
+  backButton: Retour
+  changeCode: Modifier mon code de sécurité
+  changePassword: Mon mot de passe
+  error: |-
+    문제가 발생했습니다! 
+    나중에 다시 시도하세요.
+  heading: Mon Compte
+  infants: Mes enfants
+  logout: Se déconnecter
+  personalInformation: Mes informations personnelles
+  preferences: Mes préférences
+  securitySettings: 생체 인식 설정
+accountCode:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Entrez votre ancien code de sécurité
+  desc2: Entrez votre nouveau code de sécurité
+  desc3: Confirmez votre nouveau code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon code de sécurité
+  invalidCode: Code invalide
+  validate: Valider
+accountPassword:
+  confirmPassword: Confirmez mon mot de passe
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  heading: Modifier mon mot de passe
+  password: Mon nouveau mot de passe
+  success: 비밀번호가 성공적으로 변경되었습니다.
+  validate: Valider
+accountProfile:
+  city: Ville
+  country: Pays
+  dad: Papa
+  description: 설명
+  dob: Date de naissance
+  email: Email
+  first-name: prénom
+  heading: Mes informations personnelles
+  infantNumber: Nombre d’enfant
+  isPregnant: Etes-vous enceinte ?
+  job: job
+  last-name: nom de famille
+  mom: Maman
+  multiplePregnancy: Est-ce une grossesse multiple ?
+  'no': non
+  phone: Téléphone
+  pregnancyStartDate: Date de début de la grossesse
+  update: METTRE A JOUR
+  'yes': oui
+activation:
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  doi: Options partenaires + DOI
+  doi-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: activation
+  headline: 내 설정
+  legal: J'accepte les mentions légales
+  legal-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  newsletter: 9 Mois pour Toi 뉴스레터를 받고 싶습니다.
+  notification: J'accepte les notifications
+  notification-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider
+article:
+  heading: 기사
+biometric:
+  reason: 신원 확인
+  title: 로그인
+button:
+  about: 소개
+  back: 뒤로가기
+  go: 이동
+  home: 홈
+  toggle_dark: 다크모드 토글
+  toggle_langs: 언어 변경
+calendar:
+  heading: 달력
+category:
+  game: 게임 반복
+  news: 소식
+  sleep: 자다
+  source: 원천
+chat:
+  close: 닫기
+  dont-doubt: 무엇이든 물어보세요.첫 채팅은 무료입니다.
+  heading: 주제 선택
+  loading: 로딩 중
+  sending: 배상
+  sent: 전송 된
+  subjets: 과목
+  subs: 데스 보네먼트
+  to_continue_chat: 제한 없이 전문가와 계속 채팅하려면 다음 중 하나를 선택할 수 있습니다.
+  upload: 업로드
+  valid: 확인
+chats:
+  active: 활동적인
+  archive: 보관소
+  ask: 질문하기
+  heading: 메시지
+  inactive: 다시 전화하려면
+  leave: 앞으로
+  no_chat: 메시지 없음
+  unread: 읽히지 않는
+forgot:
+  check_email: 이메일을 확인하여 비밀번호 재설정 링크를 받으세요
+  email: 이메일
+  heading: 비밀번호를 잊으 셨나요
+  success: 비밀번호가 성공적으로 업데이트되었습니다.
+forgot-code: 비밀번호 분실
+infant:
+  boy: Garçon
+  cancel: Annuler
+  comments: Commentaire
+  delete: 삭제
+  desc: Renseigne les champs ci-dessous pour ajouter un enfant
+  dob: Date de naissance
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  girl: Fille
+  heading: Ajouter un enfant
+  name: Nom
+  photo: Je télécharge une photo
+  save: Valider
+infantList:
+  heading: Mes enfants
+intro:
+  aka: 또한 ~으로 알려진
+  desc: Vite 애플리케이션 템플릿
+  dynamic-route: 다이나믹 라우트 데모
+  hi: 안녕, {name}!
+  whats-your-name: 이름이 뭐예요?
+lock:
+  codeNoMatch: les codes doivent correspondre
+  desc1: Créez le code de sécurite qui vous permettra d’acceder à l’application
+  desc2: Indiquez de nouveau votre code de sécurité
+  errorMsg: Une erreur s'est produite. Veuillez réessayer
+  forgot: 코드를 잊어버렸습니다.
+  heading1: PassCode
+  heading2: Confirmation
+  mine: 내 보안 코드
+  wrongCode: 코드가 잘못되었습니다.
+login:
+  andpass: 그리고 비밀번호
+  connexion: 연결
+  create-new: 새 계정을 만들
+  email: 이메일
+  forgot: 잊어 버렸다
+  hello: 안녕하십니까
+  login-in: 로그인
+  or: 또는
+  password: 비밀번호
+  withemail: 이메일 주소로
+news:
+  by: ~에 의해
+  heading: 소식
+  video: 온보딩 비디오
+not-found: 찾을 수 없습니다
+notes:
+  by: ~에 의해
+  delete: 삭제
+  heading: 연락처에 대한 참고 사항
+  placeholder: 메모 작성
+notificationSettings:
+  eula: EULA 참조
+  heading: 계정
+  legal: 법적 언급 보기
+  privacy: 개인정보 보호정책 보기
+  validate: 확인
+password:
+  heading: 비밀번호 생성
+  new: 새 비밀번호
+  validate: 확인
+payment:
+  annual: 기념일
+  biannual: 비아누엘
+  desc: par des sages-femmes diplomés en France, disponible partout dans le monde.
+  desc-bold: 수이비 퍼스널라이즈
+  desc2: >-
+    Les abonnements 9moispourtoi sont renuvelles automatiquement. 
+
+    Vous pouvez annuler votre abonnement à tout moment dans les 24h précédant la
+    date de renouvellement.
+  heading: Abonnez-vous pour accéder au chat 9moispourtoi
+  month: 습기
+  monthly: 멘수엘
+  or: 그래서
+  quarterly: 트리메스트리엘
+  restore: 복원하다
+  restore-purchase: 레스토랑 보스 achats
+  subscribe: 샤보네르
+  week: 세메인
+  year: 년도
+phone-code:
+  checkPhone: 전화 인증
+  enterCode: SMS로 받은 코드를 입력하세요.
+  resend: SMS 재전송
+proProfileInfo:
+  heading: 전문적인 정보
+  imgAlt: 의사 사진
+  presentation: 프레젠테이션
+prof_profile:
+  description: 전문적인 설명
+  info: 전문가의 정보
+  picture: 그림
+profile:
+  archived_chat: 보관된 채팅
+  childrens: 어린이
+  info: 연락처 정보
+  is_pregnant: 임신 한
+  multiple_pregnancy: 다태임신
+  no_archived_chat: 보관된 채팅 없음
+  no_child: 어린이 없음
+  no_remark: 언급 없음
+  number_of_children: 자녀의 수
+  picture: 그림
+  pregnancy_date: 임신 시작일
+profileInfo:
+  archivedConversation: 보관된 대화
+  childrenHeading: 그들의 아이들
+  heading: 연락처 정보
+  imgAlt: 연락처 이미지
+  nil: 무
+  noInfant: 정보가 없습니다
+register:
+  already-account: 이미 계정이 있습니까?
+  check-email: 이메일을 확인하고 확인하십시오
+  confirm-email: 이메일 확인
+  confirm-password: Confirmation mot de passe
+  dad: Papa
+  desc: Renseigne les champs ci-dessous pour finaliser ton inscription
+  email: Email
+  first-name: prénom
+  heading: Inscription
+  last-name: nom de famille
+  lowerCaseError: 소문자를 포함해야 합니다.
+  mom: Maman
+  next: Suivant
+  password: Mot de passe
+  password-hint: 6개 이상의 숫자, 문자, 구두점 조합을 입력하세요.
+  phone: Téléphone
+  specialError: 특수 문자를 포함해야 합니다.
+  upperCaseError: 대문자를 포함해야 합니다.
+registerPro:
+  desc: 새 전문 계정을 만들려면 다음 필드를 채우십시오.
+  heading: 등록 프로
+  job: 직업
+security:
+  biometric-desc: 앱을 잠그고 데이터를 안전하게 유지하기 위해 생체 인식을 활성화합니다.
+  desc: Renseigne les champs ci-dessous pour active ton compte
+  faceId: J'active Face ID
+  faceId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  heading: Sécurité
+  phone-code: J'active le code sécurité
+  phone-code-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  success: 등록이 확인되었습니다!
+  touchId: J'active le Touch ID
+  touchId-desc: >-
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a excepturi
+    ratione et deleniti beatae, nihil earum qui in similique deserunt odit nam.
+    Delectus optio voluptates sed dolores ullam modi!
+  validate: Valider

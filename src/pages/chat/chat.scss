@@ -1,0 +1,28 @@
+@import './chatui.scss';
+
+.chat-page {
+  .header-custom {
+    ion-toolbar {
+      --min-height: 100px;
+    }
+  }
+
+  .user-name {
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--ion-color-medium);
+  }
+
+  .match-info {
+    font-size: var(--font-size-sm);
+  }
+
+}
+ion-toolbar{
+  --background: white;
+  --color: black;
+  @media (prefers-color-scheme: dark) {
+    --background: black;
+    --color: white;
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "base_domain": {
+      "prod": "madeirafriends.com",
+      "development": "development.madeirafriends.com",
+      "local": "localhost:3332"
+    },
+    "supa_anon": {
+      "prod": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxhaHBjeW51b3RsdmNnYnd6d21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTY3ODIyNjksImV4cCI6MTk3MjM1ODI2OX0.jWl2Hk6vTBLB0SnQMpT69z5fzIAIzxJTedU-3G0QsFY",
+      "development": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxhaHBjeW51b3RsdmNnYnd6d21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTY3ODIyNjksImV4cCI6MTk3MjM1ODI2OX0.jWl2Hk6vTBLB0SnQMpT69z5fzIAIzxJTedU-3G0QsFY",
+      "local": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxhaHBjeW51b3RsdmNnYnd6d21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTY3ODIyNjksImV4cCI6MTk3MjM1ODI2OX0.jWl2Hk6vTBLB0SnQMpT69z5fzIAIzxJTedU-3G0QsFY"
+    },
+    "supa_url": {
+      "prod": "https://lahpcynuotlvcgbwzwmh.supabase.co",
+      "development": "https://lahpcynuotlvcgbwzwmh.supabase.co",
+      "local": "https://lahpcynuotlvcgbwzwmh.supabase.co"
+    }
+  }
