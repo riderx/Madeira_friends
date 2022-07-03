@@ -36,14 +36,14 @@ onMounted(async () => {
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <IonTitle>{{ t('news.heading') }}</IonTitle>
+        <IonTitle>{{ t('events.heading') }}</IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
           <IonTitle size="large">
-            {{ t('news.heading') }}
+            {{ t('events.heading') }}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

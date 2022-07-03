@@ -19,7 +19,7 @@ const isTab = computed(() => {
       <IonTabBar v-if="isTab" slot="bottom" class="ion-padding">
         <IonTabButton tab="tab1" href="/app/articles">
           <IonIcon :icon="gridOutline" />
-          <IonLabel>{{ t('news.heading') }}</IonLabel>
+          <IonLabel>{{ t('events.heading') }}</IonLabel>
         </IonTabButton>
         <IonTabButton tab="tab2" href="/app/calendar">
           <IonIcon :icon="calendarOutline" />
