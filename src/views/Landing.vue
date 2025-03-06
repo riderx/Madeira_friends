@@ -212,10 +212,10 @@ async function handleContactSubmit(formData: any) {
         <p class="mb-8 text-lg">To pay for Marelin and Luis' minimum salary</p>
         
         <div class="flex flex-col justify-center gap-4 mb-12 sm:flex-row">
-          <a href="https://buy.stripe.com/5kA5ltaTI3vgffOeVb" target="_blank" class="px-8 py-4 btn-primary">
+          <a href="https://buy.stripe.com/5kA5ltaTI3vgffOeVb" target="_blank" class="px-8 py-4 font-bold text-white uppercase bg-black border-2 border-black hover:bg-white hover:text-black">
             SUPPORT MONTHLY
           </a>
-          <a href="https://buy.stripe.com/bIY8xF8LA2rc5Fe8wM" target="_blank" class="px-8 py-4 btn-primary">
+          <a href="https://buy.stripe.com/bIY8xF8LA2rc5Fe8wM" target="_blank" class="px-8 py-4 font-bold text-white uppercase bg-black border-2 border-black hover:bg-white hover:text-black">
             ONE-OFF DONATION
           </a>
         </div>
