@@ -1,14 +1,17 @@
 {
   "name": "madeira-friends",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "download-assets": "tsx scripts/download-assets.ts",
-    "gen:types": "supabase gen types typescript --project-id xjgvssemgzjwcrzmuepg > src/types/supabase.ts"
+    "gen:types": "supabase gen types typescript --project-id xjgvssemgzjwcrzmuepg > src/types/supabase.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "eslint . --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
@@ -24,10 +27,12 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^4.6.0",
     "@types/markdown-it": "^13.0.7",
     "@types/uuid": "^9.0.7",
     "@vitejs/plugin-vue": "^4.5.2",
     "autoprefixer": "^10.4.16",
+    "eslint": "^9.21.0",
     "glob": "^10.4.5",
     "postcss": "^8.4.32",
     "supabase": "^1.152.1",

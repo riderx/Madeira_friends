@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useAuthStore } from '../stores/auth'
-import { supabase } from '../lib/supabase'
 import { v4 as uuidv4 } from 'uuid'
+import { onMounted, ref } from 'vue'
+import { supabase } from '../lib/supabase'
+import { useAuthStore } from '../stores/auth'
 
 const authStore = useAuthStore()
 const loading = ref(false)
@@ -17,7 +17,7 @@ const profile = ref({
   phone: '',
   bio: '',
   location_madeira: '',
-  avatar_url: ''
+  avatar_url: '',
 })
 
 async function loadProfile() {
@@ -27,17 +27,17 @@ async function loadProfile() {
     if (!authStore.user?.id) {
       throw new Error('User not authenticated')
     }
-    
-    let { data, error: fetchError } = await supabase
+
+    const { data, error: fetchError } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', authStore.user?.id)
       .maybeSingle()
-    
+
     if (fetchError) {
       throw fetchError
     }
-    
+
     if (data) {
       profile.value = {
         ...profile.value,
@@ -46,30 +46,35 @@ async function loadProfile() {
         phone: data.phone || '',
         bio: data.bio || '',
         location_madeira: data.location_madeira || '',
-        avatar_url: data.avatar_url || ''
+        avatar_url: data.avatar_url || '',
       }
-    } else {
+    }
+    else {
       // Create profile if it doesn't exist
       const { error: createError } = await supabase
         .from('profiles')
-        .insert([{
-          id: authStore.user?.id,
-          full_name: authStore.user?.email?.split('@')[0] || 'New User'
-        }])
+        .insert([
+          {
+            id: authStore.user?.id,
+            full_name: authStore.user?.email?.split('@')[0] || 'New User',
+          },
+        ])
         .select('*')
         .single()
-      
-      if (createError) throw createError
-      
+
+      if (createError)
+        throw createError
+
       // Reload profile after creation
       const { data: newProfile, error: reloadError } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', authStore.user?.id)
         .single()
-      
-      if (reloadError) throw reloadError
-      
+
+      if (reloadError)
+        throw reloadError
+
       if (newProfile) {
         profile.value = {
           ...profile.value,
@@ -78,13 +83,15 @@ async function loadProfile() {
           phone: newProfile.phone || '',
           bio: newProfile.bio || '',
           location_madeira: newProfile.location_madeira || '',
-          avatar_url: newProfile.avatar_url || ''
+          avatar_url: newProfile.avatar_url || '',
         }
       }
     }
-  } catch (e) {
+  }
+  catch (e) {
     error.value = (e as Error).message
-  } finally {
+  }
+  finally {
     loading.value = false
   }
 }
@@ -103,11 +110,14 @@ async function updateProfile() {
       .update(profile.value)
       .eq('id', authStore.user?.id)
 
-    if (updateError) throw updateError
+    if (updateError)
+      throw updateError
     success.value = 'Profile updated successfully!'
-  } catch (e) {
+  }
+  catch (e) {
     error.value = (e as Error).message
-  } finally {
+  }
+  finally {
     saving.value = false
   }
 }
@@ -115,7 +125,8 @@ async function updateProfile() {
 async function uploadAvatar(event: Event) {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
-  if (!file) return
+  if (!file)
+    return
 
   try {
     uploading.value = true
@@ -129,20 +140,22 @@ async function uploadAvatar(event: Event) {
       .from('avatars')
       .upload(filePath, file)
 
-    if (uploadError) throw uploadError
+    if (uploadError)
+      throw uploadError
 
     // Get public URL
-    const { data: { publicUrl } } = supabase.storage
-      .from('avatars')
-      .getPublicUrl(filePath)
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from('avatars').getPublicUrl(filePath)
 
     // Update profile
     profile.value.avatar_url = publicUrl
     await updateProfile()
-
-  } catch (e) {
+  }
+  catch (e) {
     error.value = (e as Error).message
-  } finally {
+  }
+  finally {
     uploading.value = false
   }
 }
@@ -160,23 +173,28 @@ onMounted(() => {
 
 <template>
   <div class="container px-4 py-8 mx-auto">
-    <h1 class="mb-8 text-4xl">Account</h1>
-    
+    <h1 class="mb-8 text-4xl">
+      Account
+    </h1>
+
     <div v-if="loading" class="flex justify-center py-12">
-      <span class="loading loading-spinner loading-lg"></span>
+      <span class="loading loading-spinner loading-lg" />
     </div>
-    
+
     <div v-else class="max-w-2xl mx-auto">
       <div class="p-8 bg-black border-2 border-white">
-        <form @submit.prevent="updateProfile" class="space-y-6">
+        <form class="space-y-6" @submit.prevent="updateProfile">
           <div class="flex flex-col items-center mb-8">
             <div class="relative w-32 h-32 mb-4">
               <img
-                :src="profile.avatar_url || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'"
+                :src="
+                  profile.avatar_url
+                    || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
+                "
                 alt="Profile"
                 class="object-cover w-full h-full border-2 border-white rounded-full"
-              />
-              <label 
+              >
+              <label
                 class="absolute bottom-0 right-0 p-2 text-black bg-white rounded-full cursor-pointer"
                 :class="{ 'opacity-50 cursor-not-allowed': uploading }"
               >
@@ -184,10 +202,10 @@ onMounted(() => {
                   type="file"
                   accept="image/*"
                   class="hidden"
-                  @change="uploadAvatar"
                   :disabled="uploading"
-                />
-                <i class="fas fa-camera"></i>
+                  @change="uploadAvatar"
+                >
+                <i class="fas fa-camera" />
               </label>
             </div>
           </div>
@@ -200,7 +218,7 @@ onMounted(() => {
                 type="text"
                 required
                 class="w-full px-3 py-2 input-primary"
-              />
+              >
             </div>
 
             <div>
@@ -209,7 +227,7 @@ onMounted(() => {
                 v-model="profile.telegram_username"
                 type="text"
                 class="w-full px-3 py-2 input-primary"
-              />
+              >
             </div>
 
             <div>
@@ -218,7 +236,7 @@ onMounted(() => {
                 v-model="profile.phone"
                 type="tel"
                 class="w-full px-3 py-2 input-primary"
-              />
+              >
             </div>
 
             <div>
@@ -227,7 +245,7 @@ onMounted(() => {
                 v-model="profile.location_madeira"
                 type="text"
                 class="w-full px-3 py-2 input-primary"
-              />
+              >
             </div>
 
             <div>
@@ -236,7 +254,7 @@ onMounted(() => {
                 v-model="profile.bio"
                 rows="4"
                 class="w-full px-3 py-2 input-primary"
-              ></textarea>
+              />
             </div>
           </div>
 
@@ -254,14 +272,14 @@ onMounted(() => {
               class="flex-1 py-3 btn-primary"
               :disabled="saving"
             >
-              <span v-if="saving" class="loading loading-spinner"></span>
+              <span v-if="saving" class="loading loading-spinner" />
               <span v-else>Save Changes</span>
             </button>
 
             <button
               type="button"
-              @click="signOut"
               class="flex-1 py-3 btn-secondary"
+              @click="signOut"
             >
               Sign Out
             </button>

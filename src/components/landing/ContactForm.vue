@@ -11,7 +11,7 @@ const form = ref({
   email: '',
   phone: '',
   subject: '',
-  message: ''
+  message: '',
 })
 
 async function handleSubmit() {
@@ -19,27 +19,30 @@ async function handleSubmit() {
     submitting.value = true
     error.value = ''
     success.value = ''
-    
+
     await emit('submit', form.value)
-    
+
     success.value = 'Message sent successfully! We will get back to you soon.'
     form.value = {
       name: '',
       email: '',
       phone: '',
       subject: '',
-      message: ''
+      message: '',
     }
-  } catch (e) {
+  }
+  catch (e) {
     error.value = 'Failed to send message. Please try again.'
-  } finally {
+    console.error(e)
+  }
+  finally {
     submitting.value = false
   }
 }
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="max-w-xl mx-auto mb-12">
+  <form class="max-w-xl mx-auto mb-12" @submit.prevent="handleSubmit">
     <div class="space-y-6">
       <div>
         <input
@@ -48,9 +51,9 @@ async function handleSubmit() {
           placeholder="Your Name"
           required
           class="w-full px-4 py-3 text-white bg-black border-2 border-white"
-        />
+        >
       </div>
-      
+
       <div>
         <input
           v-model="form.email"
@@ -58,18 +61,18 @@ async function handleSubmit() {
           placeholder="Your Email"
           required
           class="w-full px-4 py-3 text-white bg-black border-2 border-white"
-        />
+        >
       </div>
-      
+
       <div>
         <input
           v-model="form.phone"
           type="tel"
           placeholder="Your Phone (Optional)"
           class="w-full px-4 py-3 text-white bg-black border-2 border-white"
-        />
+        >
       </div>
-      
+
       <div>
         <input
           v-model="form.subject"
@@ -77,9 +80,9 @@ async function handleSubmit() {
           placeholder="Subject"
           required
           class="w-full px-4 py-3 text-white bg-black border-2 border-white"
-        />
+        >
       </div>
-      
+
       <div>
         <textarea
           v-model="form.message"
@@ -87,22 +90,22 @@ async function handleSubmit() {
           required
           rows="4"
           class="w-full px-4 py-3 text-white bg-black border-2 border-white"
-        ></textarea>
+        />
       </div>
-      
-      <button 
+
+      <button
         type="submit"
         class="w-full py-4 btn-primary"
         :disabled="submitting"
       >
-        <span v-if="submitting" class="loading loading-spinner"></span>
+        <span v-if="submitting" class="loading loading-spinner" />
         <span v-else>SEND MESSAGE</span>
       </button>
-      
+
       <div v-if="error" class="text-sm font-bold text-red-500">
         {{ error }}
       </div>
-      
+
       <div v-if="success" class="text-sm font-bold text-green-500">
         {{ success }}
       </div>
