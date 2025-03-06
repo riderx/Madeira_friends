@@ -1,0 +1,17 @@
+{
+  "https://madeirafriends.org/assets/images/image05.jpg": "/assets/0dda504c1271353caf0da902a832d69b.jpg",
+  "https://madeirafriends.org/assets/images/image06.jpg": "/assets/9740224e2b2027d5804437920ff0ae8b.jpg",
+  "https://madeirafriends.org/assets/images/image12.jpg": "/assets/cb7da4affd3eb25a331f9295842a2da4.jpg",
+  "https://madeirafriends.org/assets/images/image09.jpg": "/assets/9b492b4e23e004e9c93fc02c565a943a.jpg",
+  "https://madeirafriends.org/assets/images/${activity.image}.jpg": "https://madeirafriends.org/assets/images/${activity.image}.jpg",
+  "https://madeirafriends.org/assets/images/image23.png": "/assets/eb504603164af71766f1e999c7019236.png",
+  "https://madeirafriends.org/assets/images/image02.png": "/assets/6771fe6414c4b9757fbcd8bf649813ae.png",
+  "https://madeirafriends.org/assets/images/image03.png": "/assets/2275c9ec2042ab9f0dc9898ccc4403a5.png",
+  "https://madeirafriends.org/assets/images/image24.png": "/assets/23af35895dac291128650a5f0eb3802d.png",
+  "https://madeirafriends.org/assets/images/image01.png": "/assets/8669937fefa31f14281d177dc230064f.png",
+  "https://madeirafriends.org/assets/images/image22.png": "/assets/082f23b86af03e177365f1869504906e.png",
+  "https://madeirafriends.org/assets/images/image21.png": "/assets/e4d99f081aa471efc0846195a67d8e9f.png",
+  "https://madeirafriends.org/assets/images/image08.png": "/assets/ed8508bf83b62ef2bfcd23c0e9ed2e2e.png",
+  "https://madeirafriends.org/assets/images/image07.png": "/assets/12d58a797b0a3cb0c80ad6532136a25d.png",
+  "https://madeirafriends.org/assets/images/image20.jpg": "/assets/6cf6d34f7a43dd7e192cce5422460503.jpg"
+}

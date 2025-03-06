@@ -1,0 +1,267 @@
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useAuthStore } from '../stores/auth'
+import { supabase } from '../lib/supabase'
+import { v4 as uuidv4 } from 'uuid'
+
+const authStore = useAuthStore()
+const loading = ref(false)
+const saving = ref(false)
+const uploading = ref(false)
+const error = ref('')
+const success = ref('')
+
+const profile = ref({
+  full_name: '',
+  telegram_username: '',
+  phone: '',
+  bio: '',
+  location_madeira: '',
+  avatar_url: ''
+})
+
+async function loadProfile() {
+  try {
+    loading.value = true
+    error.value = ''
+    
+    let { data, error: fetchError } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', authStore.user?.id)
+      .maybeSingle()
+    
+    if (fetchError) {
+      throw fetchError
+    }
+    
+    if (data) {
+      profile.value = {
+        ...profile.value,
+        full_name: data.full_name || '',
+        telegram_username: data.telegram_username || '',
+        phone: data.phone || '',
+        bio: data.bio || '',
+        location_madeira: data.location_madeira || '',
+        avatar_url: data.avatar_url || ''
+      }
+    } else {
+      // Create profile if it doesn't exist
+      const { error: createError } = await supabase
+        .from('profiles')
+        .insert([{
+          id: authStore.user?.id,
+          full_name: authStore.user?.email?.split('@')[0] || 'New User'
+        }])
+        .select('*')
+        .single()
+      
+      if (createError) throw createError
+      
+      // Reload profile after creation
+      const { data: newProfile, error: reloadError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', authStore.user?.id)
+        .single()
+      
+      if (reloadError) throw reloadError
+      
+      if (newProfile) {
+        profile.value = {
+          ...profile.value,
+          full_name: newProfile.full_name || '',
+          telegram_username: newProfile.telegram_username || '',
+          phone: newProfile.phone || '',
+          bio: newProfile.bio || '',
+          location_madeira: newProfile.location_madeira || '',
+          avatar_url: newProfile.avatar_url || ''
+        }
+      }
+    }
+  } catch (e) {
+    error.value = (e as Error).message
+  } finally {
+    loading.value = false
+  }
+}
+
+async function updateProfile() {
+  try {
+    saving.value = true
+    error.value = ''
+    success.value = ''
+
+    const { error: updateError } = await supabase
+      .from('profiles')
+      .update(profile.value)
+      .eq('id', authStore.user?.id)
+
+    if (updateError) throw updateError
+    success.value = 'Profile updated successfully!'
+  } catch (e) {
+    error.value = (e as Error).message
+  } finally {
+    saving.value = false
+  }
+}
+
+async function uploadAvatar(event: Event) {
+  const target = event.target as HTMLInputElement
+  const file = target.files?.[0]
+  if (!file) return
+
+  try {
+    uploading.value = true
+    error.value = ''
+
+    // Upload image
+    const fileExt = file.name.split('.').pop()
+    const filePath = `${authStore.user?.id}/${uuidv4()}.${fileExt}`
+
+    const { error: uploadError } = await supabase.storage
+      .from('avatars')
+      .upload(filePath, file)
+
+    if (uploadError) throw uploadError
+
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(filePath)
+
+    // Update profile
+    profile.value.avatar_url = publicUrl
+    await updateProfile()
+
+  } catch (e) {
+    error.value = (e as Error).message
+  } finally {
+    uploading.value = false
+  }
+}
+
+async function signOut() {
+  await supabase.auth.signOut()
+}
+
+onMounted(() => {
+  if (authStore.user) {
+    loadProfile()
+  }
+})
+</script>
+
+<template>
+  <div class="container px-4 py-8 mx-auto">
+    <h1 class="mb-8 text-4xl">Account</h1>
+    
+    <div v-if="loading" class="flex justify-center py-12">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+    
+    <div v-else class="max-w-2xl mx-auto">
+      <div class="p-8 bg-black border-2 border-white">
+        <form @submit.prevent="updateProfile" class="space-y-6">
+          <div class="flex flex-col items-center mb-8">
+            <div class="relative w-32 h-32 mb-4">
+              <img
+                :src="profile.avatar_url || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'"
+                alt="Profile"
+                class="object-cover w-full h-full border-2 border-white rounded-full"
+              />
+              <label 
+                class="absolute bottom-0 right-0 p-2 text-black bg-white rounded-full cursor-pointer"
+                :class="{ 'opacity-50 cursor-not-allowed': uploading }"
+              >
+                <input
+                  type="file"
+                  accept="image/*"
+                  class="hidden"
+                  @change="uploadAvatar"
+                  :disabled="uploading"
+                />
+                <i class="fas fa-camera"></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block mb-2 text-sm font-bold uppercase">Full Name</label>
+              <input
+                v-model="profile.full_name"
+                type="text"
+                required
+                class="w-full px-3 py-2 input-primary"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 text-sm font-bold uppercase">Telegram Username</label>
+              <input
+                v-model="profile.telegram_username"
+                type="text"
+                class="w-full px-3 py-2 input-primary"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 text-sm font-bold uppercase">Phone</label>
+              <input
+                v-model="profile.phone"
+                type="tel"
+                class="w-full px-3 py-2 input-primary"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 text-sm font-bold uppercase">Location in Madeira</label>
+              <input
+                v-model="profile.location_madeira"
+                type="text"
+                class="w-full px-3 py-2 input-primary"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 text-sm font-bold uppercase">Bio</label>
+              <textarea
+                v-model="profile.bio"
+                rows="4"
+                class="w-full px-3 py-2 input-primary"
+              ></textarea>
+            </div>
+          </div>
+
+          <div v-if="error" class="text-sm font-bold text-red-500">
+            {{ error }}
+          </div>
+
+          <div v-if="success" class="text-sm font-bold text-green-500">
+            {{ success }}
+          </div>
+
+          <div class="flex gap-4">
+            <button
+              type="submit"
+              class="flex-1 py-3 btn-primary"
+              :disabled="saving"
+            >
+              <span v-if="saving" class="loading loading-spinner"></span>
+              <span v-else>Save Changes</span>
+            </button>
+
+            <button
+              type="button"
+              @click="signOut"
+              class="flex-1 py-3 btn-secondary"
+            >
+              Sign Out
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
