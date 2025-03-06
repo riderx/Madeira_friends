@@ -5,11 +5,15 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:local": "vite --mode dev",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status",
     "build": "vite build",
     "typecheck": "vue-tsc",
     "preview": "vite preview",
-    "download-assets": "tsx scripts/download-assets.ts",
     "gen:types": "supabase gen types typescript --project-id xjgvssemgzjwcrzmuepg > src/types/supabase.ts",
+    "gen:types:local": "supabase gen types typescript --local > src/types/supabase.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "eslint . --fix"
