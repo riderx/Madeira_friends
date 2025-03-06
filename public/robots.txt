@@ -1,0 +1,12 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://madeirafriends.com/sitemap.xml
+
+# Disallow sensitive areas
+Disallow: /app/account/
+Disallow: /app/bookings/
+Disallow: /login/
+Disallow: /register/ 
