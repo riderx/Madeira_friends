@@ -1,6 +1,54 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #000000;
+  --color-secondary: #000000;
+  --color-accent: #000000;
+  --color-neutral: #000000;
+  --color-base-100: #FFFFFF;
+  --color-info: #3ABFF8;
+  --color-success: #36D399;
+  --color-warning: #FBBD23;
+  --color-error: #F87272;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility btn-primary {
+  @apply font-bold text-black uppercase bg-white border-2 border-white hover:bg-black hover:text-white;
+}
+
+@utility btn-secondary {
+  @apply text-white bg-black border-2 border-white hover:bg-white hover:text-black;
+}
+
+@utility input-primary {
+  @apply text-white bg-black border-2 border-white outline-hidden focus:border-white;
+}
+
+@utility card-event {
+  @apply p-4 text-white bg-black border-2 border-white;
+}
+
+@utility badge-category {
+  @apply px-2 py-1 font-bold text-black uppercase bg-white;
+}
 
 @layer base {
   :root {
@@ -27,27 +75,5 @@
 
   button {
     @apply font-bold uppercase transition-transform hover:scale-105;
-  }
-}
-
-@layer components {
-  .btn-primary {
-    @apply font-bold text-black uppercase bg-white border-2 border-white hover:bg-black hover:text-white;
-  }
-
-  .btn-secondary {
-    @apply text-white bg-black border-2 border-white hover:bg-white hover:text-black;
-  }
-
-  .input-primary {
-    @apply text-white bg-black border-2 border-white outline-none focus:border-white;
-  }
-
-  .card-event {
-    @apply p-4 text-white bg-black border-2 border-white;
-  }
-
-  .badge-category {
-    @apply px-2 py-1 font-bold text-black uppercase bg-white;
   }
 }
