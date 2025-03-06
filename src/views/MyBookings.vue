@@ -74,11 +74,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-8">
+  <div class="container px-4 py-8 mx-auto">
+    <div class="flex items-center justify-between mb-8">
       <h1 class="text-4xl">Bookings</h1>
       
-      <div class="flex gap-4 items-center">
+      <div class="flex items-center gap-4">
         <!-- View Mode Toggle -->
         <div class="flex border-2 border-white">
           <button 
@@ -95,7 +95,7 @@ onMounted(() => {
         <!-- Status Filter -->
         <select 
           v-model="statusFilter"
-          class="bg-black border-2 border-white px-3 py-2 uppercase"
+          class="px-3 py-2 uppercase bg-black border-2 border-white"
           @change="fetchBookings()"
         >
           <option value="all">All</option>
@@ -111,7 +111,7 @@ onMounted(() => {
     </div>
     
     <div v-else class="space-y-6">
-      <div v-if="bookings.length === 0" class="text-center py-8">
+      <div v-if="bookings.length === 0" class="py-8 text-center">
         <p class="text-white/60">No bookings found.</p>
       </div>
       
@@ -119,11 +119,11 @@ onMounted(() => {
         <div 
           v-for="booking in bookings" 
           :key="booking.id"
-          class="border-2 border-white p-6"
+          class="p-6 border-2 border-white"
         >
-          <div class="flex justify-between items-start mb-4">
+          <div class="flex items-start justify-between mb-4">
             <div>
-              <h3 class="text-xl mb-2">
+              <h3 class="mb-2 text-xl">
                 {{ booking.events?.title || booking.rentals?.title }}
               </h3>
               <p class="text-white/60">
@@ -144,7 +144,7 @@ onMounted(() => {
             </span>
           </div>
           
-          <div class="prose prose-sm prose-invert mb-4" v-if="booking.message">
+          <div class="mb-4 prose-sm prose prose-invert" v-if="booking.message">
             {{ booking.message }}
           </div>
           
@@ -155,14 +155,14 @@ onMounted(() => {
           >
             <button 
               @click="updateBookingStatus(booking.id, 'approved')"
-              class="btn-primary px-4 py-2"
+              class="px-4 py-2 btn-primary"
             >
               Approve
             </button>
             
             <button 
               @click="updateBookingStatus(booking.id, 'rejected')"
-              class="btn-secondary px-4 py-2"
+              class="px-4 py-2 btn-secondary"
             >
               Reject
             </button>

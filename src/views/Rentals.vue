@@ -67,13 +67,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-8">
+  <div class="container px-4 py-8 mx-auto">
+    <div class="flex items-center justify-between mb-8">
       <h1 class="text-4xl">Rentals</h1>
       
       <select 
         v-model="selectedType"
-        class="bg-black border-2 border-white px-3 py-2 uppercase"
+        class="px-3 py-2 uppercase bg-black border-2 border-white"
         @change="page = 1; fetchRentals()"
       >
         <option value="">All Types</option>
@@ -87,43 +87,43 @@ onMounted(() => {
       <span class="loading loading-spinner loading-lg"></span>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div v-if="rentals.length === 0" class="col-span-full text-center py-8">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div v-if="rentals.length === 0" class="py-8 text-center col-span-full">
         <p class="text-gray-400">No rentals available at the moment.</p>
       </div>
       
       <div v-for="rental in rentals" :key="rental.id" class="card-event">
         <figure v-if="rental.images?.[0]" class="relative h-48">
-          <img :src="rental.images[0]" :alt="rental.title" class="w-full h-full object-cover" />
+          <img :src="rental.images[0]" :alt="rental.title" class="object-cover w-full h-full" />
           <div class="absolute top-2 right-2">
             <span class="badge-category">{{ rental.type }}</span>
           </div>
         </figure>
         
         <div class="p-4">
-          <h2 class="text-xl mb-4">{{ rental.title }}</h2>
+          <h2 class="mb-4 text-xl">{{ rental.title }}</h2>
           
-          <div class="flex items-center gap-2 text-sm text-white/60 mb-2">
-            <span class="material-icons text-base">euro</span>
+          <div class="flex items-center gap-2 mb-2 text-sm text-white/60">
+            <span class="text-base material-icons">euro</span>
             {{ rental.price_per_day }} € per day
           </div>
           
-          <div class="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <span class="material-icons text-base">location_on</span>
+          <div class="flex items-center gap-2 mb-4 text-sm text-white/60">
+            <span class="text-base material-icons">location_on</span>
             {{ rental.location }}
           </div>
           
-          <div class="prose prose-invert prose-sm mb-4" v-html="md.render(rental.description || '')"></div>
+          <div class="mb-4 prose-sm prose prose-invert" v-html="md.render(rental.description || '')"></div>
           
           <div class="flex items-center gap-2 text-sm text-white/60">
-            <span class="material-icons text-base">person</span>
+            <span class="text-base material-icons">person</span>
             <span>By {{ rental.profiles?.full_name }}</span>
-            <span class="material-icons text-base ml-4">schedule</span>
+            <span class="ml-4 text-base material-icons">schedule</span>
             <span>Min {{ rental.min_duration }} days</span>
           </div>
           
           <div class="flex justify-end mt-4">
-            <router-link :to="`/rentals/${rental.id}`" class="btn-primary px-6 py-2">
+            <router-link :to="`/app/rentals/${rental.id}`" class="px-6 py-2 btn-primary">
               View Details
             </router-link>
           </div>
@@ -134,7 +134,7 @@ onMounted(() => {
     <div v-if="hasMore" class="flex justify-center mt-8">
       <button 
         @click="loadMore"
-        class="btn-primary px-8 py-2"
+        class="px-8 py-2 btn-primary"
         :disabled="loading"
       >
         <span v-if="loading" class="loading loading-spinner"></span>

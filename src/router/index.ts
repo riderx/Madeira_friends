@@ -82,14 +82,27 @@ export const routes: RouteRecordRaw[] = [
 ]
 
 export function setupRouterGuards(router: any) {
-  router.beforeEach((to: any, from: any, next: any) => {
+  router.beforeEach(async (to: any, from: any, next: any) => {
     const authStore = useAuthStore()
     const requiresAuth = to.matched.some((record: any) => record.meta.requiresAuth)
 
+    // If auth state is still loading, wait for it to complete
+    if (authStore.loading) {
+      try {
+        await authStore.initUser()
+      } catch (error) {
+        console.error('Error initializing user:', error)
+      }
+    }
+
+    // Now check route requirements with the loaded auth state
     if (requiresAuth && !authStore.user) {
+      // Save the original destination for redirect after login
+      sessionStorage.setItem('redirectPath', to.fullPath)
       next('/login')
-    } else if (!requiresAuth && authStore.user) {
-      next('/')
+    } else if (!requiresAuth && authStore.user && (to.path === '/login' || to.path === '/register')) {
+      // If user is logged in and tries to access login/register pages, redirect to app
+      next('/app')
     } else {
       next()
     }

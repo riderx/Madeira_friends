@@ -9,7 +9,7 @@ const currentPath = computed(() => route.path)
 <template>
   <div class="min-h-screen bg-black">
     <!-- Content Area -->
-    <div class="container mx-auto px-4 py-8">
+    <div class="container px-4 py-8 mx-auto">
       <router-view></router-view>
     </div>
   </div>

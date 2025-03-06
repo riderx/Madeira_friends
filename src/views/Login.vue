@@ -8,6 +8,16 @@ const email = ref('')
 const password = ref('')
 const loading = ref(false)
 const error = ref('')
+const redirectPath = ref('/app')
+
+onMounted(() => {
+  // Check if there's a saved redirect path
+  const savedPath = sessionStorage.getItem('redirectPath')
+  if (savedPath) {
+    redirectPath.value = savedPath
+    console.log('Redirect path after login:', redirectPath.value)
+  }
+})
 
 async function handleLogin() {
   try {
@@ -21,7 +31,9 @@ async function handleLogin() {
 
     if (signInError) throw signInError
     
-    router.push('/')
+    // Clear the stored path and redirect to the saved path or default
+    sessionStorage.removeItem('redirectPath')
+    router.push(redirectPath.value)
   } catch (e) {
     error.value = (e as Error).message
   } finally {

@@ -47,7 +47,7 @@ async function handleSubmit() {
           type="text"
           placeholder="Your Name"
           required
-          class="w-full px-4 py-3 bg-black border-2 border-white text-white"
+          class="w-full px-4 py-3 text-white bg-black border-2 border-white"
         />
       </div>
       
@@ -57,7 +57,7 @@ async function handleSubmit() {
           type="email"
           placeholder="Your Email"
           required
-          class="w-full px-4 py-3 bg-black border-2 border-white text-white"
+          class="w-full px-4 py-3 text-white bg-black border-2 border-white"
         />
       </div>
       
@@ -66,7 +66,7 @@ async function handleSubmit() {
           v-model="form.phone"
           type="tel"
           placeholder="Your Phone (Optional)"
-          class="w-full px-4 py-3 bg-black border-2 border-white text-white"
+          class="w-full px-4 py-3 text-white bg-black border-2 border-white"
         />
       </div>
       
@@ -76,7 +76,7 @@ async function handleSubmit() {
           type="text"
           placeholder="Subject"
           required
-          class="w-full px-4 py-3 bg-black border-2 border-white text-white"
+          class="w-full px-4 py-3 text-white bg-black border-2 border-white"
         />
       </div>
       
@@ -86,24 +86,24 @@ async function handleSubmit() {
           placeholder="Your Message"
           required
           rows="4"
-          class="w-full px-4 py-3 bg-black border-2 border-white text-white"
+          class="w-full px-4 py-3 text-white bg-black border-2 border-white"
         ></textarea>
       </div>
       
       <button 
         type="submit"
-        class="btn-primary w-full py-4"
+        class="w-full py-4 btn-primary"
         :disabled="submitting"
       >
         <span v-if="submitting" class="loading loading-spinner"></span>
         <span v-else>SEND MESSAGE</span>
       </button>
       
-      <div v-if="error" class="text-red-500 font-bold text-sm">
+      <div v-if="error" class="text-sm font-bold text-red-500">
         {{ error }}
       </div>
       
-      <div v-if="success" class="text-green-500 font-bold text-sm">
+      <div v-if="success" class="text-sm font-bold text-green-500">
         {{ success }}
       </div>
     </div>

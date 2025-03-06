@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-black text-white min-h-screen;
+    @apply min-h-screen text-white bg-black;
   }
 
   .router-link-active {
@@ -26,28 +26,28 @@
   }
 
   button {
-    @apply uppercase font-bold transition-transform hover:scale-105;
+    @apply font-bold uppercase transition-transform hover:scale-105;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-white text-black border-2 border-white hover:bg-black hover:text-white uppercase font-bold;
+    @apply font-bold text-black uppercase bg-white border-2 border-white hover:bg-black hover:text-white;
   }
 
   .btn-secondary {
-    @apply bg-black text-white border-2 border-white hover:bg-white hover:text-black;
+    @apply text-white bg-black border-2 border-white hover:bg-white hover:text-black;
   }
 
   .input-primary {
-    @apply bg-black text-white border-2 border-white focus:border-white outline-none;
+    @apply text-white bg-black border-2 border-white outline-none focus:border-white;
   }
 
   .card-event {
-    @apply bg-black text-white border-2 border-white p-4;
+    @apply p-4 text-white bg-black border-2 border-white;
   }
 
   .badge-category {
-    @apply bg-white text-black uppercase font-bold px-2 py-1;
+    @apply px-2 py-1 font-bold text-black uppercase bg-white;
   }
 }

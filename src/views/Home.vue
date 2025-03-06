@@ -81,14 +81,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-8">
+  <div class="container px-4 py-8 mx-auto">
+    <div class="flex items-center justify-between mb-8">
       <h1 class="text-4xl">Events</h1>
       
       <div class="flex gap-4">
         <select 
           v-model="timeFilter"
-          class="bg-black border-2 border-white px-3 py-2 uppercase"
+          class="px-3 py-2 uppercase bg-black border-2 border-white"
           @change="page = 1; fetchEvents()"
         >
           <option v-for="option in timeFilterOptions" :key="option.value" :value="option.value">
@@ -98,7 +98,7 @@ onMounted(() => {
         
         <select 
           v-model="selectedCategory"
-          class="bg-black border-2 border-white px-3 py-2 uppercase"
+          class="px-3 py-2 uppercase bg-black border-2 border-white"
           @change="page = 1; fetchEvents()"
         >
           <option value="">All Categories</option>
@@ -113,47 +113,47 @@ onMounted(() => {
       <span class="loading loading-spinner loading-lg"></span>
     </div>
     
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div v-if="events.length === 0" class="col-span-full text-center py-8">
+    <div v-else class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div v-if="events.length === 0" class="py-8 text-center col-span-full">
         <p class="text-gray-400">No events available at the moment.</p>
       </div>
       
       <div v-for="event in events" :key="event.id" class="card-event">
         <figure v-if="event.images?.[0]" class="relative h-48">
-          <img :src="event.images[0]" :alt="event.title" class="w-full h-full object-cover" />
+          <img :src="event.images[0]" :alt="event.title" class="object-cover w-full h-full" />
           <div class="absolute top-2 right-2">
             <span class="badge-category">{{ event.category }}</span>
           </div>
         </figure>
         
         <div class="p-4">
-          <h2 class="text-xl mb-4">{{ event.title }}</h2>
+          <h2 class="mb-4 text-xl">{{ event.title }}</h2>
           
-          <div class="flex items-center gap-2 text-sm text-white/60 mb-2">
-            <span class="material-icons text-base">schedule</span>
+          <div class="flex items-center gap-2 mb-2 text-sm text-white/60">
+            <span class="text-base material-icons">schedule</span>
             {{ format(new Date(event.date), 'PPP') }}
           </div>
           
-          <div class="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <span class="material-icons text-base">location_on</span>
+          <div class="flex items-center gap-2 mb-4 text-sm text-white/60">
+            <span class="text-base material-icons">location_on</span>
             {{ event.location }}
           </div>
           
-          <div class="prose prose-invert prose-sm mb-4" v-html="md.render(event.description || '')"></div>
+          <div class="mb-4 prose-sm prose prose-invert" v-html="md.render(event.description || '')"></div>
           
           <div class="flex items-center gap-2 text-sm text-white/60">
             <div class="flex items-center gap-2">
-              <span class="material-icons text-base">person</span>
+              <span class="text-base material-icons">person</span>
               <span>By {{ event.profiles?.full_name }}</span>
             </div>
             <div class="flex items-center gap-2 ml-4">
-              <span class="material-icons text-base">group</span>
+              <span class="text-base material-icons">group</span>
               <span>{{ event.max_attendees ? `${event.max_attendees} spots` : 'Unlimited' }}</span>
             </div>
           </div>
           
           <div class="flex justify-end mt-4">
-            <router-link :to="`/events/${event.id}`" class="btn-primary px-6 py-2">
+            <router-link :to="`/app/events/${event.id}`" class="px-6 py-2 btn-primary">
               View Details
             </router-link>
           </div>
@@ -164,7 +164,7 @@ onMounted(() => {
     <div v-if="hasMore" class="flex justify-center mt-8">
       <button 
         @click="loadMore"
-        class="btn-primary px-8 py-2"
+        class="px-8 py-2 btn-primary"
         :disabled="loading"
       >
         <span v-if="loading" class="loading loading-spinner"></span>

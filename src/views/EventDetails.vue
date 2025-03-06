@@ -10,11 +10,25 @@ const router = useRouter()
 const event = ref(null)
 const attendees = ref([])
 const loading = ref(true)
+
+// Enhanced markdown configuration
 const md = new MarkdownIt({
-  breaks: true,
-  linkify: true,
-  typographer: true
+  html: false, // Disable HTML for security
+  breaks: true, // Convert \n to <br>
+  linkify: true, // Auto-convert URLs to links
+  typographer: true, // Enable smart quotes and other typographic replacements
 })
+
+function formatDescription(description) {
+  if (!description) return ''
+  
+  // Replace multiple consecutive newlines with double breaks
+  const formattedText = description
+    .replace(/\n{3,}/g, '\n\n') // Normalize multiple newlines to at most 2
+    .replace(/\n/g, '\n\n') // Ensure single newlines are treated as paragraphs
+  
+  return md.render(formattedText)
+}
 
 async function fetchEvent() {
   try {
@@ -140,8 +154,14 @@ onMounted(() => {
           </div>
         </div>
         
-        <!-- Description -->
-        <div class="prose prose-invert mb-8" v-html="md.render(event.description || '')"></div>
+        <!-- Description - Enhanced with better markdown rendering -->
+        <div>
+          <h2 class="text-2xl mb-4">Description</h2>
+          <div 
+            class="prose prose-invert prose-p:my-4 prose-headings:mt-6 prose-headings:mb-4 prose-ul:my-4 prose-li:my-1 max-w-none mb-8"
+            v-html="formatDescription(event.description)"
+          ></div>
+        </div>
         
         <!-- Attendees -->
         <div class="space-y-4">
@@ -178,3 +198,33 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Ensuring markdown lists display properly */
+:deep(ul) {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+:deep(ol) {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+:deep(p) {
+  margin-bottom: 1rem;
+}
+
+:deep(blockquote) {
+  border-left: 4px solid white;
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+:deep(hr) {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 1.5rem 0;
+}
+</style>

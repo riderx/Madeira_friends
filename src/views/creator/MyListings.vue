@@ -157,8 +157,8 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-8">
+  <div class="container px-4 py-8 mx-auto">
+    <div class="flex items-center justify-between mb-8">
       <h1 class="text-4xl">My Listings</h1>
       
       <div class="flex gap-4">
@@ -177,7 +177,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
         <button 
           v-if="activeFilter === 'owned'"
           @click="showCreateModal = true" 
-          class="btn-primary px-6 py-2"
+          class="px-6 py-2 btn-primary"
         >
           Create {{ activeTab === 'events' ? 'Event' : 'Rental' }}
         </button>
@@ -206,21 +206,21 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
     </div>
     
     <div v-else-if="activeTab === 'events'" class="space-y-6">
-      <div v-if="events.length === 0" class="text-center py-8">
+      <div v-if="events.length === 0" class="py-8 text-center">
         <p class="text-white/60">No events created yet.</p>
       </div>
       <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div 
           v-for="event in events" 
           :key="event.id"
-          class="border-2 border-white p-6"
+          class="p-6 border-2 border-white"
         >
-          <div class="flex justify-between items-start mb-4">
+          <div class="flex items-start justify-between mb-4">
             <h3 class="text-xl">{{ event.title }}</h3>
             <span class="badge-category">{{ event.status }}</span>
           </div>
           
-          <div class="space-y-2 mb-4">
+          <div class="mb-4 space-y-2">
             <p>{{ format(new Date(event.date), 'PPP p') }}</p>
             <p>{{ event.location }}</p>
           </div>
@@ -228,7 +228,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
           <div class="flex gap-4">
             <router-link 
               :to="`/events/${event.id}`"
-              class="btn-primary px-4 py-2"
+              class="px-4 py-2 btn-primary"
             >
               View
             </router-link>
@@ -236,7 +236,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
             <button 
               v-if="activeFilter === 'owned'"
               @click="deleteListing('event', event.id)"
-              class="btn-secondary px-4 py-2"
+              class="px-4 py-2 btn-secondary"
             >
               Delete
             </button>
@@ -244,7 +244,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
             <button 
               v-if="activeFilter === 'managed'"
               @click="stopManaging('event', event.id)"
-              class="btn-secondary px-4 py-2"
+              class="px-4 py-2 btn-secondary"
             >
               Stop Managing
             </button>
@@ -254,21 +254,21 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
     </div>
     
     <div v-else class="space-y-6">
-      <div v-if="rentals.length === 0" class="text-center py-8">
+      <div v-if="rentals.length === 0" class="py-8 text-center">
         <p class="text-white/60">No rentals created yet.</p>
       </div>
       <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div 
           v-for="rental in rentals" 
           :key="rental.id"
-          class="border-2 border-white p-6"
+          class="p-6 border-2 border-white"
         >
-          <div class="flex justify-between items-start mb-4">
+          <div class="flex items-start justify-between mb-4">
             <h3 class="text-xl">{{ rental.title }}</h3>
             <span class="badge-category">{{ rental.status }}</span>
           </div>
           
-          <div class="space-y-2 mb-4">
+          <div class="mb-4 space-y-2">
             <p>{{ rental.price_per_day }}€ per day</p>
             <p>{{ rental.location }}</p>
           </div>
@@ -276,7 +276,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
           <div class="flex gap-4">
             <router-link 
               :to="`/rentals/${rental.id}`"
-              class="btn-primary px-4 py-2"
+              class="px-4 py-2 btn-primary"
             >
               View
             </router-link>
@@ -284,7 +284,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
             <button 
               v-if="activeFilter === 'owned'"
               @click="deleteListing('rental', rental.id)"
-              class="btn-secondary px-4 py-2"
+              class="px-4 py-2 btn-secondary"
             >
               Delete
             </button>
@@ -292,7 +292,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
             <button 
               v-if="activeFilter === 'managed'"
               @click="stopManaging('rental', rental.id)"
-              class="btn-secondary px-4 py-2"
+              class="px-4 py-2 btn-secondary"
             >
               Stop Managing
             </button>
@@ -303,26 +303,26 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
     
     <!-- Create Event Modal -->
     <dialog :open="showCreateModal" class="modal modal-bottom sm:modal-middle">
-      <div class="bg-black border-2 border-white p-8 w-full max-w-2xl mx-auto">
-        <h2 class="text-2xl mb-6">Create New Event</h2>
+      <div class="w-full max-w-2xl p-8 mx-auto bg-black border-2 border-white">
+        <h2 class="mb-6 text-2xl">Create New Event</h2>
         
         <form @submit.prevent="createEvent" class="space-y-6">
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Title</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Title</label>
             <input
               v-model="newEvent.title"
               type="text"
               required
-              class="input-primary w-full px-3 py-2"
+              class="w-full px-3 py-2 input-primary"
             />
           </div>
           
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Category</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Category</label>
             <select
               v-model="newEvent.category"
               required
-              class="input-primary w-full px-3 py-2"
+              class="w-full px-3 py-2 input-primary"
             >
               <option>Party</option>
               <option>Sports</option>
@@ -334,61 +334,61 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
           </div>
           
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Date & Time</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Date & Time</label>
             <input
               v-model="newEvent.date"
               type="datetime-local"
               required
-              class="input-primary w-full px-3 py-2"
+              class="w-full px-3 py-2 input-primary"
             />
           </div>
           
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Location</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Location</label>
             <input
               v-model="newEvent.location"
               type="text"
               required
-              class="input-primary w-full px-3 py-2"
+              class="w-full px-3 py-2 input-primary"
             />
           </div>
           
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Max Attendees</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Max Attendees</label>
             <input
               v-model="newEvent.max_attendees"
               type="number"
               min="1"
-              class="input-primary w-full px-3 py-2"
+              class="w-full px-3 py-2 input-primary"
             />
           </div>
           
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Telegram Contact</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Telegram Contact</label>
             <input
               v-model="newEvent.telegram_contact"
               type="text"
               required
               placeholder="@username"
-              class="input-primary w-full px-3 py-2"
+              class="w-full px-3 py-2 input-primary"
             />
           </div>
           
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Description</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Description</label>
             <textarea
               v-model="newEvent.description"
               rows="4"
-              class="input-primary w-full px-3 py-2"
+              class="w-full px-3 py-2 input-primary"
             ></textarea>
           </div>
           
           <!-- Image Upload -->
           <div>
-            <label class="block text-sm uppercase font-bold mb-2">Images</label>
+            <label class="block mb-2 text-sm font-bold uppercase">Images</label>
             <div class="space-y-4">
               <!-- Image Preview -->
-              <div v-if="newEvent.images?.length" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div v-if="newEvent.images?.length" class="grid grid-cols-2 gap-4 md:grid-cols-3">
                 <div 
                   v-for="(image, index) in newEvent.images" 
                   :key="index"
@@ -396,11 +396,11 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
                 >
                   <img 
                     :src="image" 
-                    class="w-full h-full object-cover"
+                    class="object-cover w-full h-full"
                   />
                   <button
                     @click="removeImage(index)"
-                    class="absolute top-2 right-2 bg-black/50 p-1 rounded-full hover:bg-black"
+                    class="absolute p-1 rounded-full top-2 right-2 bg-black/50 hover:bg-black"
                   >
                     <i class="fas fa-times"></i>
                   </button>
@@ -409,7 +409,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
               
               <!-- Upload Button -->
               <label 
-                class="block w-full border-2 border-dashed border-white p-4 text-center cursor-pointer hover:bg-white hover:text-black transition-colors"
+                class="block w-full p-4 text-center transition-colors border-2 border-white border-dashed cursor-pointer hover:bg-white hover:text-black"
                 :class="{ 'opacity-50 cursor-not-allowed': uploading }"
               >
                 <input
@@ -421,14 +421,14 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
                   :disabled="uploading"
                 />
                 <div class="space-y-2">
-                  <i class="fas fa-cloud-upload-alt text-2xl"></i>
+                  <i class="text-2xl fas fa-cloud-upload-alt"></i>
                   <p>{{ uploading ? 'Uploading...' : 'Click to upload images' }}</p>
                 </div>
               </label>
             </div>
           </div>
           
-          <div v-if="error" class="text-red-500 text-sm font-bold">
+          <div v-if="error" class="text-sm font-bold text-red-500">
             {{ error }}
           </div>
           
@@ -436,14 +436,14 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
             <button
               type="button"
               @click="showCreateModal = false"
-              class="btn-secondary flex-1 py-3"
+              class="flex-1 py-3 btn-secondary"
             >
               Cancel
             </button>
             
             <button
               type="submit"
-              class="btn-primary flex-1 py-3"
+              class="flex-1 py-3 btn-primary"
               :disabled="saving"
             >
               <span v-if="saving" class="loading loading-spinner"></span>

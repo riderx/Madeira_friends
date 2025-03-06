@@ -1,11 +1,11 @@
 <template>
-  <section class="bg-white text-black py-16">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-8">WE HELPED MANY FRIENDS IN 2023</h2>
+  <section class="py-16 text-black bg-white">
+    <div class="container px-4 mx-auto text-center">
+      <h2 class="mb-8 text-3xl font-bold">WE HELPED MANY FRIENDS IN 2023</h2>
       
-      <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
+      <div class="grid max-w-6xl gap-8 mx-auto mb-16 md:grid-cols-4">
         <div v-for="(stat, index) in stats" :key="index">
-          <p class="text-4xl font-bold mb-2">{{ stat.value }}</p>
+          <p class="mb-2 text-4xl font-bold">{{ stat.value }}</p>
           <p class="text-xl">{{ stat.label }}</p>
         </div>
       </div>
