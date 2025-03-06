@@ -34,7 +34,7 @@ async function handleRegister() {
       return
     }
 
-    router.push('/')
+    router.push('/app')
   } catch (e) {
     error.value = (e as Error).message
   } finally {

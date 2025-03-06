@@ -1,15 +1,24 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { format } from 'date-fns'
 import MarkdownIt from 'markdown-it'
+import { useAuthStore } from '../stores/auth'
 
 const route = useRoute()
 const router = useRouter()
+const authStore = useAuthStore()
 const event = ref(null)
 const attendees = ref([])
 const loading = ref(true)
+const bookingStatus = ref(null)
+const isSubmitting = ref(false)
+const showBookingForm = ref(false)
+const bookingMessage = ref('')
+const bookingSuccess = ref(false)
+const bookingError = ref('')
+const numberOfAttendees = ref(1)
 
 // Enhanced markdown configuration
 const md = new MarkdownIt({
@@ -17,6 +26,17 @@ const md = new MarkdownIt({
   breaks: true, // Convert \n to <br>
   linkify: true, // Auto-convert URLs to links
   typographer: true, // Enable smart quotes and other typographic replacements
+})
+
+// Check if user has already booked
+const hasUserBooked = computed(() => {
+  return bookingStatus.value !== null
+})
+
+// Check if spots are available
+const spotsAvailable = computed(() => {
+  if (!event.value || !event.value.max_attendees) return true
+  return attendees.value.length < event.value.max_attendees
 })
 
 function formatDescription(description) {
@@ -79,9 +99,73 @@ async function fetchAttendees() {
   }
 }
 
+async function checkUserBooking() {
+  if (!authStore.user) return
+  
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('id, status')
+      .eq('event_id', route.params.id)
+      .eq('user_id', authStore.user.id)
+      .single()
+    
+    if (error && error.code !== 'PGRST116') {
+      // PGRST116 is the error code for "No rows returned" which is expected if no booking exists
+      throw error
+    }
+    
+    bookingStatus.value = data?.status || null
+  } catch (error) {
+    console.error('Error checking user booking:', error)
+  }
+}
+
+async function submitBooking() {
+  if (!authStore.user) {
+    bookingError.value = 'You must be logged in to book this event'
+    return
+  }
+  
+  if (!event.value) {
+    bookingError.value = 'Event details not available'
+    return
+  }
+  
+  isSubmitting.value = true
+  bookingError.value = ''
+  
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .insert({
+        user_id: authStore.user.id,
+        booking_type: 'event',
+        event_id: event.value.id,
+        start_date: event.value.date,
+        num_attendees: numberOfAttendees.value,
+        message: bookingMessage.value,
+        status: 'pending'
+      })
+      .select()
+    
+    if (error) throw error
+    
+    bookingSuccess.value = true
+    bookingStatus.value = 'pending'
+    showBookingForm.value = false
+  } catch (error) {
+    console.error('Error submitting booking:', error)
+    bookingError.value = error.message || 'Failed to submit booking. Please try again.'
+  } finally {
+    isSubmitting.value = false
+  }
+}
+
 onMounted(() => {
   fetchEvent()
   fetchAttendees()
+  checkUserBooking()
 })
 </script>
 
@@ -188,11 +272,106 @@ onMounted(() => {
           </div>
         </div>
         
+        <!-- Booking Form -->
+        <div v-if="showBookingForm" class="mt-8 border-2 border-white p-4">
+          <h2 class="text-2xl mb-4">Book This Event</h2>
+          
+          <form @submit.prevent="submitBooking" class="space-y-4">
+            <div>
+              <label for="attendees" class="block text-sm font-bold uppercase">Number of attendees</label>
+              <input
+                id="attendees"
+                v-model="numberOfAttendees"
+                type="number"
+                min="1"
+                :max="event.max_attendees ? event.max_attendees - attendees.length : 10"
+                required
+                class="block w-full px-3 py-2 mt-1 text-white bg-black border-2 border-white"
+              />
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-bold uppercase">Message to organizer (optional)</label>
+              <textarea
+                id="message"
+                v-model="bookingMessage"
+                rows="3"
+                class="block w-full px-3 py-2 mt-1 text-white bg-black border-2 border-white"
+              ></textarea>
+            </div>
+            
+            <div v-if="bookingError" class="text-red-500">
+              {{ bookingError }}
+            </div>
+            
+            <div class="flex justify-end gap-4">
+              <button 
+                type="button" 
+                class="px-6 py-2 btn-secondary"
+                @click="showBookingForm = false"
+              >
+                Cancel
+              </button>
+              <button 
+                type="submit" 
+                class="px-6 py-2 btn-primary"
+                :disabled="isSubmitting"
+              >
+                <span v-if="isSubmitting" class="loading loading-spinner loading-sm"></span>
+                <span v-else>Submit Booking</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Booking Status -->
+        <div v-else-if="bookingStatus" class="mt-8 p-4 border-2 border-white">
+          <div v-if="bookingStatus === 'pending'" class="text-yellow-400 flex items-center gap-2">
+            <span class="material-icons">pending</span>
+            <span>Your booking request is pending approval from the organizer.</span>
+          </div>
+          <div v-else-if="bookingStatus === 'approved'" class="text-green-400 flex items-center gap-2">
+            <span class="material-icons">check_circle</span>
+            <span>Your booking has been approved! See you at the event.</span>
+          </div>
+          <div v-else-if="bookingStatus === 'rejected'" class="text-red-400 flex items-center gap-2">
+            <span class="material-icons">cancel</span>
+            <span>Your booking request was not approved.</span>
+          </div>
+          <div v-else-if="bookingStatus === 'expired'" class="text-gray-400 flex items-center gap-2">
+            <span class="material-icons">schedule</span>
+            <span>Your booking request has expired.</span>
+          </div>
+        </div>
+        
+        <!-- Booking Success Message -->
+        <div v-else-if="bookingSuccess" class="mt-8 p-4 border-2 border-green-500 text-green-400">
+          <div class="flex items-center gap-2">
+            <span class="material-icons">check_circle</span>
+            <span>Your booking request has been submitted successfully! The organizer will review your request.</span>
+          </div>
+        </div>
+        
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
-          <button class="btn-primary px-8 py-3">
-            Book Now
-          </button>
+          <div v-if="!authStore.user">
+            <router-link to="/login" class="btn-primary px-8 py-3">
+              Login to Book
+            </router-link>
+          </div>
+          <div v-else-if="!hasUserBooked && !bookingSuccess && !showBookingForm">
+            <button 
+              @click="showBookingForm = true" 
+              class="btn-primary px-8 py-3"
+              :disabled="!spotsAvailable"
+              :title="!spotsAvailable ? 'No spots available' : ''"
+            >
+              Book Now
+            </button>
+            <div v-if="!spotsAvailable" class="text-red-400 text-sm mt-2">
+              Sorry, this event is full.
+            </div>
+          </div>
         </div>
       </div>
     </div>

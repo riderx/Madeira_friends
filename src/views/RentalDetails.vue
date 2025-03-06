@@ -1,13 +1,26 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import MarkdownIt from 'markdown-it'
+import { useAuthStore } from '../stores/auth'
+import { addDays, format, isAfter, isBefore, differenceInDays } from 'date-fns'
 
 const route = useRoute()
 const router = useRouter()
+const authStore = useAuthStore()
 const rental = ref(null)
 const loading = ref(true)
+const bookingStatus = ref(null)
+const isSubmitting = ref(false)
+const showBookingForm = ref(false)
+const bookingMessage = ref('')
+const bookingSuccess = ref(false)
+const bookingError = ref('')
+const startDate = ref(new Date().toISOString().split('T')[0])
+const endDate = ref('')
+const existingBookings = ref([])
+const loadingBookings = ref(false)
 
 // Enhanced markdown configuration
 const md = new MarkdownIt({
@@ -15,6 +28,69 @@ const md = new MarkdownIt({
   breaks: true, // Convert \n to <br>
   linkify: true, // Auto-convert URLs to links
   typographer: true, // Enable smart quotes and other typographic replacements
+})
+
+// Calculate minimum end date (startDate + minDuration)
+const minEndDate = computed(() => {
+  if (!startDate.value || !rental.value) return ''
+  
+  const start = new Date(startDate.value)
+  const minDuration = rental.value.min_duration || 1
+  const minEnd = addDays(start, minDuration - 1)
+  
+  return minEnd.toISOString().split('T')[0]
+})
+
+// Calculate maximum end date (startDate + maxDuration)
+const maxEndDate = computed(() => {
+  if (!startDate.value || !rental.value || !rental.value.max_duration) return ''
+  
+  const start = new Date(startDate.value)
+  const maxEnd = addDays(start, rental.value.max_duration - 1)
+  
+  return maxEnd.toISOString().split('T')[0]
+})
+
+// Calculate booking duration
+const bookingDuration = computed(() => {
+  if (!startDate.value || !endDate.value) return 0
+  
+  const start = new Date(startDate.value)
+  const end = new Date(endDate.value)
+  
+  return differenceInDays(end, start) + 1
+})
+
+// Calculate total price
+const totalPrice = computed(() => {
+  if (!rental.value || !bookingDuration.value) return 0
+  return rental.value.price_per_day * bookingDuration.value
+})
+
+// Check if date range is available
+const isDateRangeAvailable = computed(() => {
+  if (!startDate.value || !endDate.value || existingBookings.value.length === 0) return true
+  
+  const start = new Date(startDate.value)
+  const end = new Date(endDate.value)
+  
+  return !existingBookings.value.some(booking => {
+    const bookingStart = new Date(booking.start_date)
+    const bookingEnd = new Date(booking.end_date)
+    
+    // Check if there's an overlap
+    return (
+      (isAfter(start, bookingStart) && isBefore(start, bookingEnd)) ||
+      (isAfter(end, bookingStart) && isBefore(end, bookingEnd)) ||
+      (isBefore(start, bookingStart) && isAfter(end, bookingEnd)) ||
+      (isBefore(start, bookingStart) && isAfter(end, bookingEnd))
+    )
+  })
+})
+
+// Check if user has already booked
+const hasUserBooked = computed(() => {
+  return bookingStatus.value !== null
 })
 
 function formatDescription(description) {
@@ -46,6 +122,13 @@ async function fetchRental() {
 
     if (error) throw error
     rental.value = data
+    
+    // Set default end date based on minimum duration
+    if (data.min_duration) {
+      const start = new Date(startDate.value)
+      const minEnd = addDays(start, data.min_duration - 1)
+      endDate.value = minEnd.toISOString().split('T')[0]
+    }
   } catch (error) {
     console.error('Error fetching rental:', error)
     router.push('/rentals')
@@ -54,8 +137,116 @@ async function fetchRental() {
   }
 }
 
+async function fetchExistingBookings() {
+  if (!rental.value) return
+  
+  loadingBookings.value = true
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('start_date, end_date')
+      .eq('rental_id', rental.value.id)
+      .eq('status', 'approved')
+    
+    if (error) throw error
+    existingBookings.value = data || []
+  } catch (error) {
+    console.error('Error fetching bookings:', error)
+  } finally {
+    loadingBookings.value = false
+  }
+}
+
+async function checkUserBooking() {
+  if (!authStore.user) return
+  
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .select('id, status')
+      .eq('rental_id', route.params.id)
+      .eq('user_id', authStore.user.id)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    
+    if (error) throw error
+    
+    bookingStatus.value = data?.status || null
+  } catch (error) {
+    console.error('Error checking user booking:', error)
+  }
+}
+
+async function submitBooking() {
+  if (!authStore.user) {
+    bookingError.value = 'You must be logged in to book this rental'
+    return
+  }
+  
+  if (!rental.value) {
+    bookingError.value = 'Rental details not available'
+    return
+  }
+  
+  if (!startDate.value || !endDate.value) {
+    bookingError.value = 'Please select valid dates'
+    return
+  }
+  
+  if (!isDateRangeAvailable.value) {
+    bookingError.value = 'Selected dates are not available'
+    return
+  }
+  
+  isSubmitting.value = true
+  bookingError.value = ''
+  
+  try {
+    const { data, error } = await supabase
+      .from('bookings')
+      .insert({
+        user_id: authStore.user.id,
+        booking_type: 'rental',
+        rental_id: rental.value.id,
+        start_date: startDate.value,
+        end_date: endDate.value,
+        message: bookingMessage.value,
+        status: 'pending'
+      })
+      .select()
+    
+    if (error) throw error
+    
+    bookingSuccess.value = true
+    bookingStatus.value = 'pending'
+    showBookingForm.value = false
+  } catch (error) {
+    console.error('Error submitting booking:', error)
+    bookingError.value = error.message || 'Failed to submit booking. Please try again.'
+  } finally {
+    isSubmitting.value = false
+  }
+}
+
+function handleStartDateChange() {
+  // Ensure end date is not before the start date
+  const start = new Date(startDate.value)
+  const end = new Date(endDate.value)
+  
+  if (isBefore(end, start)) {
+    // Reset end date to minimum allowed
+    const minDuration = rental.value.min_duration || 1
+    const newEnd = addDays(start, minDuration - 1)
+    endDate.value = newEnd.toISOString().split('T')[0]
+  }
+}
+
 onMounted(() => {
-  fetchRental()
+  fetchRental().then(() => {
+    fetchExistingBookings()
+  })
+  checkUserBooking()
 })
 </script>
 
@@ -146,11 +337,139 @@ onMounted(() => {
           ></div>
         </div>
         
+        <!-- Booking Form -->
+        <div v-if="showBookingForm" class="mt-8 border-2 border-white p-4">
+          <h2 class="text-2xl mb-4">Book This Rental</h2>
+          
+          <form @submit.prevent="submitBooking" class="space-y-4">
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label for="start-date" class="block text-sm font-bold uppercase">Check-in Date</label>
+                <input
+                  id="start-date"
+                  v-model="startDate"
+                  type="date"
+                  required
+                  :min="new Date().toISOString().split('T')[0]"
+                  @change="handleStartDateChange"
+                  class="block w-full px-3 py-2 mt-1 text-white bg-black border-2 border-white"
+                />
+              </div>
+              
+              <div>
+                <label for="end-date" class="block text-sm font-bold uppercase">Check-out Date</label>
+                <input
+                  id="end-date"
+                  v-model="endDate"
+                  type="date"
+                  required
+                  :min="minEndDate"
+                  :max="maxEndDate || undefined"
+                  class="block w-full px-3 py-2 mt-1 text-white bg-black border-2 border-white"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-bold uppercase">Message to owner (optional)</label>
+              <textarea
+                id="message"
+                v-model="bookingMessage"
+                rows="3"
+                class="block w-full px-3 py-2 mt-1 text-white bg-black border-2 border-white"
+              ></textarea>
+            </div>
+            
+            <!-- Price Summary -->
+            <div v-if="startDate && endDate" class="p-4 border-2 border-white">
+              <h3 class="text-xl mb-2">Booking Summary</h3>
+              <div class="grid gap-2 grid-cols-2">
+                <div>Duration:</div>
+                <div class="text-right">{{ bookingDuration }} days</div>
+                
+                <div>Price per day:</div>
+                <div class="text-right">{{ rental.price_per_day }}€</div>
+                
+                <div class="font-bold">Total Price:</div>
+                <div class="text-right font-bold">{{ totalPrice }}€</div>
+                
+                <div v-if="rental.security_deposit" class="text-sm mt-2 col-span-2">
+                  *Plus {{ rental.security_deposit }}€ security deposit (refundable)
+                </div>
+              </div>
+            </div>
+            
+            <div v-if="bookingError" class="text-red-500">
+              {{ bookingError }}
+            </div>
+            
+            <div v-if="!isDateRangeAvailable" class="text-yellow-400">
+              ⚠️ Selected dates are not available. Please choose different dates.
+            </div>
+            
+            <div class="flex justify-end gap-4">
+              <button 
+                type="button" 
+                class="px-6 py-2 btn-secondary"
+                @click="showBookingForm = false"
+              >
+                Cancel
+              </button>
+              <button 
+                type="submit" 
+                class="px-6 py-2 btn-primary"
+                :disabled="isSubmitting || !isDateRangeAvailable"
+              >
+                <span v-if="isSubmitting" class="loading loading-spinner loading-sm"></span>
+                <span v-else>Submit Booking</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Booking Status -->
+        <div v-else-if="bookingStatus" class="mt-8 p-4 border-2 border-white">
+          <div v-if="bookingStatus === 'pending'" class="text-yellow-400 flex items-center gap-2">
+            <span class="material-icons">pending</span>
+            <span>Your booking request is pending approval from the owner.</span>
+          </div>
+          <div v-else-if="bookingStatus === 'approved'" class="text-green-400 flex items-center gap-2">
+            <span class="material-icons">check_circle</span>
+            <span>Your booking has been approved!</span>
+          </div>
+          <div v-else-if="bookingStatus === 'rejected'" class="text-red-400 flex items-center gap-2">
+            <span class="material-icons">cancel</span>
+            <span>Your booking request was not approved.</span>
+          </div>
+          <div v-else-if="bookingStatus === 'expired'" class="text-gray-400 flex items-center gap-2">
+            <span class="material-icons">schedule</span>
+            <span>Your booking request has expired.</span>
+          </div>
+        </div>
+        
+        <!-- Booking Success Message -->
+        <div v-else-if="bookingSuccess" class="mt-8 p-4 border-2 border-green-500 text-green-400">
+          <div class="flex items-center gap-2">
+            <span class="material-icons">check_circle</span>
+            <span>Your booking request has been submitted successfully! The owner will review your request.</span>
+          </div>
+        </div>
+        
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
-          <button class="px-8 py-3 btn-primary">
-            Book Now
-          </button>
+          <div v-if="!authStore.user">
+            <router-link to="/login" class="btn-primary px-8 py-3">
+              Login to Book
+            </router-link>
+          </div>
+          <div v-else-if="!hasUserBooked && !bookingSuccess && !showBookingForm">
+            <button 
+              @click="showBookingForm = true" 
+              class="btn-primary px-8 py-3"
+            >
+              Book Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
