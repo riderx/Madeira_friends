@@ -5,14 +5,19 @@ import { supabase } from '../lib/supabase'
 import { format } from 'date-fns'
 import MarkdownIt from 'markdown-it'
 import { useAuthStore } from '../stores/auth'
+import type { Database } from '../types/supabase'
+
+type Event = Database['public']['Tables']['events']['Row']
+type Profile = Database['public']['Tables']['profiles']['Row']
+type Booking = Database['public']['Tables']['bookings']['Row']
 
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
-const event = ref(null)
-const attendees = ref([])
+const event = ref<Event & { profiles: Profile } | null>(null)
+const attendees = ref<(Booking & { profiles: Profile })[]>([])
 const loading = ref(true)
-const bookingStatus = ref(null)
+const bookingStatus = ref<string | null>(null)
 const isSubmitting = ref(false)
 const showBookingForm = ref(false)
 const bookingMessage = ref('')
@@ -39,7 +44,7 @@ const spotsAvailable = computed(() => {
   return attendees.value.length < event.value.max_attendees
 })
 
-function formatDescription(description) {
+function formatDescription(description: string | null) {
   if (!description) return ''
   
   // Replace multiple consecutive newlines with double breaks
@@ -51,6 +56,10 @@ function formatDescription(description) {
 }
 
 async function fetchEvent() {
+  if (!route.params.id) {
+    router.push('/')
+    return
+  }
   try {
     const { data, error } = await supabase
       .from('events')
@@ -63,11 +72,11 @@ async function fetchEvent() {
           telegram_username
         )
       `)
-      .eq('id', route.params.id)
+      .eq('id', route.params.id as string)
       .single()
 
     if (error) throw error
-    event.value = data
+    event.value = data as Event & { profiles: Profile }
   } catch (error) {
     console.error('Error fetching event:', error)
     router.push('/')
@@ -75,6 +84,10 @@ async function fetchEvent() {
 }
 
 async function fetchAttendees() {
+  if (!route.params.id) {
+    router.push('/')
+    return
+  }
   try {
     const { data, error } = await supabase
       .from('bookings')
@@ -87,11 +100,11 @@ async function fetchAttendees() {
           telegram_username
         )
       `)
-      .eq('event_id', route.params.id)
+      .eq('event_id', route.params.id as string)
       .eq('status', 'approved')
 
     if (error) throw error
-    attendees.value = data
+    attendees.value = data as any
   } catch (error) {
     console.error('Error fetching attendees:', error)
   } finally {
@@ -101,12 +114,15 @@ async function fetchAttendees() {
 
 async function checkUserBooking() {
   if (!authStore.user) return
-  
+  if (!route.params.id) {
+    router.push('/')
+    return
+  }
   try {
     const { data, error } = await supabase
       .from('bookings')
       .select('id, status')
-      .eq('event_id', route.params.id)
+      .eq('event_id', route.params.id as string)
       .eq('user_id', authStore.user.id)
       .single()
     
@@ -156,7 +172,7 @@ async function submitBooking() {
     showBookingForm.value = false
   } catch (error) {
     console.error('Error submitting booking:', error)
-    bookingError.value = error.message || 'Failed to submit booking. Please try again.'
+    bookingError.value = (error as Error).message || 'Failed to submit booking. Please try again.'
   } finally {
     isSubmitting.value = false
   }
@@ -170,18 +186,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="container px-4 py-8 mx-auto">
     <div v-if="loading" class="flex justify-center py-12">
       <span class="loading loading-spinner loading-lg"></span>
     </div>
     
     <div v-else-if="event" class="max-w-4xl mx-auto">
       <!-- Image Gallery -->
-      <div v-if="event.images?.length" class="relative h-96 mb-8">
+      <div v-if="event.images?.length" class="relative mb-8 h-96">
         <img 
           :src="event.images[0]" 
           :alt="event.title"
-          class="w-full h-full object-cover"
+          class="object-cover w-full h-full"
         />
         <div class="absolute top-4 right-4">
           <span class="badge-category">{{ event.category }}</span>
@@ -189,10 +205,10 @@ onMounted(() => {
       </div>
       
       <!-- Event Details -->
-      <div class="bg-black border-2 border-white p-8">
-        <h1 class="text-4xl mb-6">{{ event.title }}</h1>
+      <div class="p-8 bg-black border-2 border-white">
+        <h1 class="mb-6 text-4xl">{{ event.title }}</h1>
         
-        <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div class="grid gap-8 mb-8 md:grid-cols-2">
           <div class="space-y-4">
             <div class="flex items-center gap-2">
               <span class="material-icons">schedule</span>
@@ -240,9 +256,9 @@ onMounted(() => {
         
         <!-- Description - Enhanced with better markdown rendering -->
         <div>
-          <h2 class="text-2xl mb-4">Description</h2>
+          <h2 class="mb-4 text-2xl">Description</h2>
           <div 
-            class="prose prose-invert prose-p:my-4 prose-headings:mt-6 prose-headings:mb-4 prose-ul:my-4 prose-li:my-1 max-w-none mb-8"
+            class="mb-8 prose prose-invert prose-p:my-4 prose-headings:mt-6 prose-headings:mb-4 prose-ul:my-4 prose-li:my-1 max-w-none"
             v-html="formatDescription(event.description)"
           ></div>
         </div>
@@ -255,17 +271,17 @@ onMounted(() => {
             No attendees yet. Be the first to join!
           </div>
           
-          <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div v-else class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             <router-link
               v-for="booking in attendees"
               :key="booking.id"
               :to="'/profile/' + booking.profiles.id"
-              class="flex flex-col items-center p-4 border-2 border-white hover:bg-white hover:text-black transition-colors"
+              class="flex flex-col items-center p-4 transition-colors border-2 border-white hover:bg-white hover:text-black"
             >
               <img
                 :src="booking.profiles.avatar_url || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'"
                 :alt="booking.profiles.full_name"
-                class="w-16 h-16 rounded-full object-cover mb-2"
+                class="object-cover w-16 h-16 mb-2 rounded-full"
               />
               <span class="text-sm text-center">{{ booking.profiles.full_name }}</span>
             </router-link>
@@ -273,8 +289,8 @@ onMounted(() => {
         </div>
         
         <!-- Booking Form -->
-        <div v-if="showBookingForm" class="mt-8 border-2 border-white p-4">
-          <h2 class="text-2xl mb-4">Book This Event</h2>
+        <div v-if="showBookingForm" class="p-4 mt-8 border-2 border-white">
+          <h2 class="mb-4 text-2xl">Book This Event</h2>
           
           <form @submit.prevent="submitBooking" class="space-y-4">
             <div>
@@ -325,27 +341,27 @@ onMounted(() => {
         </div>
         
         <!-- Booking Status -->
-        <div v-else-if="bookingStatus" class="mt-8 p-4 border-2 border-white">
-          <div v-if="bookingStatus === 'pending'" class="text-yellow-400 flex items-center gap-2">
+        <div v-else-if="bookingStatus" class="p-4 mt-8 border-2 border-white">
+          <div v-if="bookingStatus === 'pending'" class="flex items-center gap-2 text-yellow-400">
             <span class="material-icons">pending</span>
             <span>Your booking request is pending approval from the organizer.</span>
           </div>
-          <div v-else-if="bookingStatus === 'approved'" class="text-green-400 flex items-center gap-2">
+          <div v-else-if="bookingStatus === 'approved'" class="flex items-center gap-2 text-green-400">
             <span class="material-icons">check_circle</span>
             <span>Your booking has been approved! See you at the event.</span>
           </div>
-          <div v-else-if="bookingStatus === 'rejected'" class="text-red-400 flex items-center gap-2">
+          <div v-else-if="bookingStatus === 'rejected'" class="flex items-center gap-2 text-red-400">
             <span class="material-icons">cancel</span>
             <span>Your booking request was not approved.</span>
           </div>
-          <div v-else-if="bookingStatus === 'expired'" class="text-gray-400 flex items-center gap-2">
+          <div v-else-if="bookingStatus === 'expired'" class="flex items-center gap-2 text-gray-400">
             <span class="material-icons">schedule</span>
             <span>Your booking request has expired.</span>
           </div>
         </div>
         
         <!-- Booking Success Message -->
-        <div v-else-if="bookingSuccess" class="mt-8 p-4 border-2 border-green-500 text-green-400">
+        <div v-else-if="bookingSuccess" class="p-4 mt-8 text-green-400 border-2 border-green-500">
           <div class="flex items-center gap-2">
             <span class="material-icons">check_circle</span>
             <span>Your booking request has been submitted successfully! The organizer will review your request.</span>
@@ -355,20 +371,20 @@ onMounted(() => {
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
           <div v-if="!authStore.user">
-            <router-link to="/login" class="btn-primary px-8 py-3">
+            <router-link to="/login" class="px-8 py-3 btn-primary">
               Login to Book
             </router-link>
           </div>
           <div v-else-if="!hasUserBooked && !bookingSuccess && !showBookingForm">
             <button 
               @click="showBookingForm = true" 
-              class="btn-primary px-8 py-3"
+              class="px-8 py-3 btn-primary"
               :disabled="!spotsAvailable"
               :title="!spotsAvailable ? 'No spots available' : ''"
             >
               Book Now
             </button>
-            <div v-if="!spotsAvailable" class="text-red-400 text-sm mt-2">
+            <div v-if="!spotsAvailable" class="mt-2 text-sm text-red-400">
               Sorry, this event is full.
             </div>
           </div>

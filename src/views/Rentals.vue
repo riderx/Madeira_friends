@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabase'
-import { format } from 'date-fns'
 import MarkdownIt from 'markdown-it'
+import type { Database } from '../types/supabase'
 
+type Rental = Database['public']['Tables']['rentals']['Row']  
+type Profile = Database['public']['Tables']['profiles']['Row']
 const md = new MarkdownIt({
   breaks: true,
   linkify: true,
   typographer: true
 })
-const rentals = ref([])
+const rentals = ref<(Rental & { profiles: Profile })[]>([])
 const loading = ref(true)
 const page = ref(1)
 const hasMore = ref(true)
@@ -19,6 +21,9 @@ const perPage = 9
 const rentalTypes = ['flat', 'house', 'scooter', 'motorbike', 'car']
 
 async function fetchRentals() {
+  if (!selectedType.value) {
+    throw new Error('Selected type is required')
+  }
   try {
     let query = supabase
       .from('rentals')
@@ -29,7 +34,7 @@ async function fetchRentals() {
       .range((page.value - 1) * perPage, page.value * perPage - 1)
     
     if (selectedType.value) {
-      query = query.eq('type', selectedType.value)
+      query = query.eq('type', selectedType.value as NonNullable<Rental['type']>)
     }
     
     const { data, error } = await query
@@ -37,9 +42,9 @@ async function fetchRentals() {
     if (error) throw error
     
     if (page.value === 1) {
-      rentals.value = data
+      rentals.value = data as (Rental & { profiles: Profile })[]
     } else {
-      rentals.value = [...rentals.value, ...data]
+      rentals.value = [...rentals.value, ...data] as (Rental & { profiles: Profile })[]
     }
     
     hasMore.value = data.length === perPage

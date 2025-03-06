@@ -24,6 +24,9 @@ async function loadProfile() {
   try {
     loading.value = true
     error.value = ''
+    if (!authStore.user?.id) {
+      throw new Error('User not authenticated')
+    }
     
     let { data, error: fetchError } = await supabase
       .from('profiles')
@@ -88,6 +91,9 @@ async function loadProfile() {
 
 async function updateProfile() {
   try {
+    if (!authStore.user?.id) {
+      throw new Error('User not authenticated')
+    }
     saving.value = true
     error.value = ''
     success.value = ''

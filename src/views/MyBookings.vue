@@ -3,14 +3,18 @@ import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
 import { format } from 'date-fns'
-import MarkdownIt from 'markdown-it'
+import type { Database } from '../types/supabase'
+
+type Booking = Database['public']['Tables']['bookings']['Row']
+type Profile = Database['public']['Tables']['profiles']['Row']
+type Event = Database['public']['Tables']['events']['Row']
+type Rental = Database['public']['Tables']['rentals']['Row']
 
 const authStore = useAuthStore()
-const bookings = ref([])
+const bookings = ref<(Booking & { profiles: Profile, events: Event, rentals: Rental })[]>([])
 const loading = ref(true)
 const viewMode = ref('guest') // 'guest' or 'host'
 const statusFilter = ref('all') // 'pending', 'future', 'past', 'all'
-const md = new MarkdownIt()
 
 async function fetchBookings() {
   try {
@@ -26,6 +30,9 @@ async function fetchBookings() {
 
     // Apply base filter based on view mode
     if (viewMode.value === 'guest') {
+      if (!authStore.user?.id) {
+        throw new Error('User not authenticated')
+      }
       query = query.eq('user_id', authStore.user?.id)
     } else {
       query = query.or(`events.creator_id.eq.${authStore.user?.id},rentals.creator_id.eq.${authStore.user?.id}`)
@@ -46,7 +53,7 @@ async function fetchBookings() {
 
     const { data, error } = await query
     if (error) throw error
-    bookings.value = data
+    bookings.value = data as (Booking & { profiles: Profile, events: Event, rentals: Rental })[]
   } catch (error) {
     console.error('Error fetching bookings:', error)
   } finally {
@@ -54,7 +61,7 @@ async function fetchBookings() {
   }
 }
 
-async function updateBookingStatus(bookingId: string, status: string) {
+async function updateBookingStatus(bookingId: string, status: Database['public']['Enums']['booking_status']) {
   try {
     const { error } = await supabase
       .from('bookings')

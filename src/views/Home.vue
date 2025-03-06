@@ -3,13 +3,16 @@ import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabase'
 import { format } from 'date-fns'
 import MarkdownIt from 'markdown-it'
+import type { Database } from '../types/supabase'
 
+type Event = Database['public']['Tables']['events']['Row']
+type Profile = Database['public']['Tables']['profiles']['Row']
 const md = new MarkdownIt({
   breaks: true,
   linkify: true,
   typographer: true
 })
-const events = ref([])
+const events = ref<(Event & { profiles: Profile })[]>([])
 const loading = ref(true)
 const page = ref(1)
 const hasMore = ref(true)
@@ -50,9 +53,9 @@ async function fetchEvents() {
     if (error) throw error
     
     if (page.value === 1) {
-      events.value = data
+      events.value = data as (Event & { profiles: Profile })[]
     } else {
-      events.value = [...events.value, ...data]
+      events.value = [...events.value, ...data] as (Event & { profiles: Profile })[]
     }
     
     hasMore.value = data.length === perPage

@@ -4,14 +4,25 @@ import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import MarkdownIt from 'markdown-it'
 import { useAuthStore } from '../stores/auth'
-import { addDays, format, isAfter, isBefore, differenceInDays } from 'date-fns'
+import { addDays, isAfter, isBefore, differenceInDays } from 'date-fns'
+import type { Database } from '../types/supabase'
+
+// Define the types based on the generated schema
+type Rental = Database['public']['Tables']['rentals']['Row']
+type Profile = Database['public']['Tables']['profiles']['Row']
+type Booking = Database['public']['Tables']['bookings']['Row']
+
+// Define a combined type for rental with its related profile
+interface RentalWithProfile extends Rental {
+  profiles: Profile
+}
 
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
-const rental = ref(null)
+const rental = ref<RentalWithProfile | null>(null)
 const loading = ref(true)
-const bookingStatus = ref(null)
+const bookingStatus = ref<string | null>(null)
 const isSubmitting = ref(false)
 const showBookingForm = ref(false)
 const bookingMessage = ref('')
@@ -19,7 +30,7 @@ const bookingSuccess = ref(false)
 const bookingError = ref('')
 const startDate = ref(new Date().toISOString().split('T')[0])
 const endDate = ref('')
-const existingBookings = ref([])
+const existingBookings = ref<Pick<Booking, 'start_date' | 'end_date'>[]>([])
 const loadingBookings = ref(false)
 
 // Enhanced markdown configuration
@@ -76,7 +87,7 @@ const isDateRangeAvailable = computed(() => {
   
   return !existingBookings.value.some(booking => {
     const bookingStart = new Date(booking.start_date)
-    const bookingEnd = new Date(booking.end_date)
+    const bookingEnd = new Date(booking.end_date || booking.start_date)
     
     // Check if there's an overlap
     return (
@@ -93,15 +104,10 @@ const hasUserBooked = computed(() => {
   return bookingStatus.value !== null
 })
 
-function formatDescription(description) {
+function formatDescription(description: string | null): string {
   if (!description) return ''
   
-  // Replace multiple consecutive newlines with double breaks
-  const formattedText = description
-    .replace(/\n{3,}/g, '\n\n') // Normalize multiple newlines to at most 2
-    .replace(/\n/g, '\n\n') // Ensure single newlines are treated as paragraphs
-  
-  return md.render(formattedText)
+  return md.render(description)
 }
 
 async function fetchRental() {
@@ -117,11 +123,11 @@ async function fetchRental() {
           telegram_username
         )
       `)
-      .eq('id', route.params.id)
+      .eq('id', route.params.id as string)
       .single()
 
     if (error) throw error
-    rental.value = data
+    rental.value = data as RentalWithProfile
     
     // Set default end date based on minimum duration
     if (data.min_duration) {
@@ -164,7 +170,7 @@ async function checkUserBooking() {
     const { data, error } = await supabase
       .from('bookings')
       .select('id, status')
-      .eq('rental_id', route.params.id)
+      .eq('rental_id', route.params.id as string)
       .eq('user_id', authStore.user.id)
       .order('created_at', { ascending: false })
       .limit(1)
@@ -221,7 +227,7 @@ async function submitBooking() {
     bookingSuccess.value = true
     bookingStatus.value = 'pending'
     showBookingForm.value = false
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error submitting booking:', error)
     bookingError.value = error.message || 'Failed to submit booking. Please try again.'
   } finally {
@@ -234,7 +240,7 @@ function handleStartDateChange() {
   const start = new Date(startDate.value)
   const end = new Date(endDate.value)
   
-  if (isBefore(end, start)) {
+  if (isBefore(end, start) && rental.value) {
     // Reset end date to minimum allowed
     const minDuration = rental.value.min_duration || 1
     const newEnd = addDays(start, minDuration - 1)
@@ -321,9 +327,9 @@ onMounted(() => {
         
         <!-- Description - Enhanced with better markdown rendering -->
         <div>
-          <h2 class="text-2xl mb-4">Description</h2>
+          <h2 class="mb-4 text-2xl">Description</h2>
           <div 
-            class="prose prose-invert prose-p:my-4 prose-headings:mt-6 prose-headings:mb-4 prose-ul:my-4 prose-li:my-1 max-w-none mb-8"
+            class="mb-8 prose prose-invert prose-p:my-4 prose-headings:mt-6 prose-headings:mb-4 prose-ul:my-4 prose-li:my-1 max-w-none"
             v-html="formatDescription(rental.description)"
           ></div>
         </div>
@@ -338,8 +344,8 @@ onMounted(() => {
         </div>
         
         <!-- Booking Form -->
-        <div v-if="showBookingForm" class="mt-8 border-2 border-white p-4">
-          <h2 class="text-2xl mb-4">Book This Rental</h2>
+        <div v-if="showBookingForm" class="p-4 mt-8 border-2 border-white">
+          <h2 class="mb-4 text-2xl">Book This Rental</h2>
           
           <form @submit.prevent="submitBooking" class="space-y-4">
             <div class="grid gap-4 md:grid-cols-2">
@@ -382,8 +388,8 @@ onMounted(() => {
             
             <!-- Price Summary -->
             <div v-if="startDate && endDate" class="p-4 border-2 border-white">
-              <h3 class="text-xl mb-2">Booking Summary</h3>
-              <div class="grid gap-2 grid-cols-2">
+              <h3 class="mb-2 text-xl">Booking Summary</h3>
+              <div class="grid grid-cols-2 gap-2">
                 <div>Duration:</div>
                 <div class="text-right">{{ bookingDuration }} days</div>
                 
@@ -391,9 +397,9 @@ onMounted(() => {
                 <div class="text-right">{{ rental.price_per_day }}€</div>
                 
                 <div class="font-bold">Total Price:</div>
-                <div class="text-right font-bold">{{ totalPrice }}€</div>
+                <div class="font-bold text-right">{{ totalPrice }}€</div>
                 
-                <div v-if="rental.security_deposit" class="text-sm mt-2 col-span-2">
+                <div v-if="rental.security_deposit" class="col-span-2 mt-2 text-sm">
                   *Plus {{ rental.security_deposit }}€ security deposit (refundable)
                 </div>
               </div>
@@ -428,27 +434,27 @@ onMounted(() => {
         </div>
         
         <!-- Booking Status -->
-        <div v-else-if="bookingStatus" class="mt-8 p-4 border-2 border-white">
-          <div v-if="bookingStatus === 'pending'" class="text-yellow-400 flex items-center gap-2">
+        <div v-else-if="bookingStatus" class="p-4 mt-8 border-2 border-white">
+          <div v-if="bookingStatus === 'pending'" class="flex items-center gap-2 text-yellow-400">
             <span class="material-icons">pending</span>
             <span>Your booking request is pending approval from the owner.</span>
           </div>
-          <div v-else-if="bookingStatus === 'approved'" class="text-green-400 flex items-center gap-2">
+          <div v-else-if="bookingStatus === 'approved'" class="flex items-center gap-2 text-green-400">
             <span class="material-icons">check_circle</span>
             <span>Your booking has been approved!</span>
           </div>
-          <div v-else-if="bookingStatus === 'rejected'" class="text-red-400 flex items-center gap-2">
+          <div v-else-if="bookingStatus === 'rejected'" class="flex items-center gap-2 text-red-400">
             <span class="material-icons">cancel</span>
             <span>Your booking request was not approved.</span>
           </div>
-          <div v-else-if="bookingStatus === 'expired'" class="text-gray-400 flex items-center gap-2">
+          <div v-else-if="bookingStatus === 'expired'" class="flex items-center gap-2 text-gray-400">
             <span class="material-icons">schedule</span>
             <span>Your booking request has expired.</span>
           </div>
         </div>
         
         <!-- Booking Success Message -->
-        <div v-else-if="bookingSuccess" class="mt-8 p-4 border-2 border-green-500 text-green-400">
+        <div v-else-if="bookingSuccess" class="p-4 mt-8 text-green-400 border-2 border-green-500">
           <div class="flex items-center gap-2">
             <span class="material-icons">check_circle</span>
             <span>Your booking request has been submitted successfully! The owner will review your request.</span>
@@ -458,14 +464,14 @@ onMounted(() => {
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
           <div v-if="!authStore.user">
-            <router-link to="/login" class="btn-primary px-8 py-3">
+            <router-link to="/login" class="px-8 py-3 btn-primary">
               Login to Book
             </router-link>
           </div>
           <div v-else-if="!hasUserBooked && !bookingSuccess && !showBookingForm">
             <button 
               @click="showBookingForm = true" 
-              class="btn-primary px-8 py-3"
+              class="px-8 py-3 btn-primary"
             >
               Book Now
             </button>
