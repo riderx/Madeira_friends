@@ -2,17 +2,23 @@
 import ContactForm from '../components/landing/ContactForm.vue'
 import Hero from '../components/landing/Hero.vue'
 import Stats from '../components/landing/Stats.vue'
+import { submitContactForm } from '../services/contactService'
 
 async function handleContactSubmit(formData: any) {
-  // try {
-  //   // Here you would typically send the form data to your backend
-  //   // For now, we'll just simulate a successful submission
-  //   await new Promise(resolve => setTimeout(resolve, 1000))
-  // }
-  // catch (e) {
-  //   throw e
-  // }
-  console.log(formData)
+  try {
+    // Submit the form data to the contact service
+    const result = await submitContactForm(formData)
+
+    if (!result.success) {
+      throw new Error(result.error)
+    }
+
+    return true
+  }
+  catch (e) {
+    console.error('Error submitting contact form:', e)
+    throw e
+  }
 }
 </script>
 
