@@ -1,16 +1,12 @@
 <script setup lang="ts">
 import type { Database } from '../types/supabase'
-import MarkdownIt from 'markdown-it'
 import { onMounted, ref } from 'vue'
 import { supabase } from '../lib/supabase'
+import { createMarkdownRenderer } from '../utils/markdown'
 
 type Rental = Database['public']['Tables']['rentals']['Row']
 type Profile = Database['public']['Tables']['profiles']['Row']
-const md = new MarkdownIt({
-  breaks: true,
-  linkify: true,
-  typographer: true,
-})
+const md = createMarkdownRenderer()
 const rentals = ref<(Rental & { profiles: Profile })[]>([])
 const loading = ref(true)
 const page = ref(1)
