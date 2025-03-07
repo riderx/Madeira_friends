@@ -1,7 +1,8 @@
 BEGIN;
 SELECT plan(1);
 
--- Examples: https://pgtap.org/documentation.html
+-- Test that the rentals table exists
+SELECT has_table('public', 'rentals', 'Rentals table should exist');
 
 SELECT * FROM finish();
 ROLLBACK;
