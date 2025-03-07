@@ -1,8 +1,15 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import ContactForm from '../components/landing/ContactForm.vue'
 import Hero from '../components/landing/Hero.vue'
 import Stats from '../components/landing/Stats.vue'
 import { submitContactForm } from '../services/contactService'
+
+const router = useRouter()
+
+function navigateToRegister() {
+  router.push('/register')
+}
 
 async function handleContactSubmit(formData: any) {
   try {
@@ -84,6 +91,15 @@ async function handleContactSubmit(formData: any) {
             home - you'll find your place here. Together, we're building a more
             connected, vibrant, and inclusive Madeira.
           </p>
+
+          <div class="flex justify-center">
+            <button
+              class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-white border-2 border-white hover:bg-black hover:text-white"
+              @click="navigateToRegister"
+            >
+              JOIN OUR COMMUNITY
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -149,6 +165,15 @@ async function handleContactSubmit(formData: any) {
             </h3>
             <p>Technology, networking, opportunities and investment</p>
           </div>
+        </div>
+
+        <div class="flex justify-center mb-8">
+          <button
+            class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-white border-2 border-white hover:bg-black hover:text-white"
+            @click="navigateToRegister"
+          >
+            JOIN US TODAY
+          </button>
         </div>
       </div>
     </section>
@@ -407,6 +432,14 @@ async function handleContactSubmit(formData: any) {
           <a href="mailto:hello@madeirafriends.com" class="hover:text-white/80">
             <i class="fas fa-envelope" />
           </a>
+        </div>
+        <div class="mb-6">
+          <button
+            class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-yellow-400 border-2 border-yellow-400 hover:bg-black hover:text-yellow-400"
+            @click="navigateToRegister"
+          >
+            BECOME A MEMBER
+          </button>
         </div>
         <p>
           © {{ new Date().getFullYear() }} Madeira Friends. All rights
