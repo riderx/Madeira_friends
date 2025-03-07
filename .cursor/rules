@@ -2,6 +2,7 @@ BRUTALIST DESIGN RULES
 Black, white, and yellow color scheme
 No rounded corners
 We use tailwind v4 and daisy UI the max we can, we design bold and brutalist design with main color black and white and highlight yellow
+Mobile first 
 
 To create new database migration do `supabase migration new [NAME]`
 To migrate the database you created do `supabase db push --local`

@@ -36,6 +36,8 @@ const rentals = ref<Database['public']['Tables']['rentals']['Row'][]>([])
 const ownershipFilter = ref('all') // 'all', 'owned' or 'managed'
 const activeTab = ref('events') // 'events' or 'rentals'
 const showCreateModal = ref(false)
+const isEditing = ref(false)
+const editId = ref('')
 const newEvent = ref<Database['public']['Tables']['events']['Row']>({
   ...INITIAL_EVENT,
 })
@@ -83,32 +85,65 @@ function removeImage(index: number) {
     = newEvent.value.images?.filter((_, i) => i !== index) ?? []
 }
 
+async function editEvent(event: Database['public']['Tables']['events']['Row']) {
+  isEditing.value = true
+  editId.value = event.id
+  
+  // Format the date for datetime-local input
+  const formattedEvent = { ...event }
+  if (formattedEvent.date) {
+    // Convert to local timezone format for datetime-local input
+    const date = new Date(formattedEvent.date)
+    formattedEvent.date = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, 16) // Format to YYYY-MM-DDThh:mm
+  }
+  
+  newEvent.value = formattedEvent
+  showCreateModal.value = true
+}
+
 async function createEvent() {
   try {
     saving.value = true
     error.value = ''
 
-    // Extract the id from newEvent.value and create a new object without it
-    const { id, ...eventData } = newEvent.value
+    const { id, ...itemData } = newEvent.value
+    const tableName = activeTab.value === 'events' ? 'events' : 'rentals'
 
-    const { error: createError } = await supabase
-      .from('events')
-      .insert([
-        {
-          ...eventData,
-          creator_id: authStore.user?.id,
-          status: 'draft',
-        },
-      ])
-      .select()
-      .single()
+    if (isEditing.value) {
+      // Update existing item
+      const { error: updateError } = await supabase
+        .from(tableName)
+        .update(itemData)
+        .eq('id', editId.value)
 
-    if (createError)
-      throw createError
+      if (updateError)
+        throw updateError
+    }
+    else {
+      // Create new item
+      const { error: createError } = await supabase
+        .from(tableName)
+        .insert([
+          {
+            ...itemData,
+            creator_id: authStore.user?.id,
+            status: 'draft',
+          },
+        ])
+        .select()
+        .single()
+
+      if (createError)
+        throw createError
+    }
 
     // Reset form and close modal
     newEvent.value = { ...INITIAL_EVENT }
     showCreateModal.value = false
+    isEditing.value = false
+    editId.value = ''
 
     // Refresh listings
     await fetchListings()
@@ -243,6 +278,22 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
     console.error('Error removing moderator:', error)
   }
 }
+
+// Add editRental function
+async function editRental(rental: Database['public']['Tables']['rentals']['Row']) {
+  isEditing.value = true
+  editId.value = rental.id
+  
+  // Type assertion to avoid type errors - we're only using this to populate the form
+  // For rentals, we should handle any date fields if they exist
+  const formattedRental = { ...rental }
+  
+  // If rental has date fields like start_date or availability_date, they would be formatted here
+  
+  newEvent.value = formattedRental as any
+  activeTab.value = 'rentals'
+  showCreateModal.value = true
+}
 </script>
 
 <template>
@@ -332,6 +383,14 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
               </router-link>
 
               <button
+                v-if="event.status === 'draft' && event.creator_id === authStore.user?.id"
+                class="px-4 py-2 btn-secondary"
+                @click="editEvent(event)"
+              >
+                Edit
+              </button>
+
+              <button
                 v-if="event.creator_id === authStore.user?.id"
                 class="px-4 py-2 btn-secondary"
                 @click="deleteListing('event', event.id)"
@@ -385,6 +444,14 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
               </router-link>
 
               <button
+                v-if="rental.status === 'draft' && rental.creator_id === authStore.user?.id"
+                class="px-4 py-2 btn-secondary"
+                @click="editRental(rental)"
+              >
+                Edit
+              </button>
+
+              <button
                 v-if="rental.creator_id === authStore.user?.id"
                 class="px-4 py-2 btn-secondary"
                 @click="deleteListing('rental', rental.id)"
@@ -409,7 +476,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
     <dialog :open="showCreateModal" class="modal modal-bottom sm:modal-middle">
       <div class="w-full max-w-2xl p-8 mx-auto bg-black border-2 border-white">
         <h2 class="mb-6 text-2xl">
-          Create New {{ activeTab === "rentals" ? "Rental" : "Event" }}
+          {{ isEditing ? 'Edit' : 'Create New' }} {{ activeTab === "rentals" ? "Rental" : "Event" }}
         </h2>
 
         <form class="space-y-6" @submit.prevent="createEvent">
@@ -560,7 +627,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
               :disabled="saving"
             >
               <span v-if="saving" class="loading loading-spinner" />
-              <span v-else>Create {{ activeTab === "rentals" ? "Rental" : "Event" }}</span>
+              <span v-else>{{ isEditing ? 'Save Changes' : 'Create' }} {{ activeTab === "rentals" ? "Rental" : "Event" }}</span>
             </button>
           </div>
         </form>
