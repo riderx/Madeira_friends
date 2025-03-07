@@ -3,9 +3,9 @@ BEGIN;
 
 SELECT plan(6);
 
--- Enable auth hooks for testing
-SET LOCAL session_preload_libraries = 'supabase_functions';
-SET LOCAL pgrst.db_schemas = 'public, storage';
+-- Comment out auth hooks that require special permissions
+-- SET LOCAL session_preload_libraries = 'supabase_functions';
+-- SET LOCAL pgrst.db_schemas = 'public, storage';
 
 -- Create test users
 SELECT tests.create_supabase_user('creator@example.com', 'password', 'creator') AS creator_id \gset
@@ -110,4 +110,4 @@ DELETE FROM public.events WHERE id = :'event_id';
 DELETE FROM public.rentals WHERE id = :'rental_id';
 
 SELECT * FROM finish();
-ROLLBACK; 
+ROLLBACK;  
