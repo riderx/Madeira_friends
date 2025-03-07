@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { Bell } from 'lucide-vue-next'
 import { v4 as uuidv4 } from 'uuid'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import NotificationsBadge from '../components/NotificationsBadge.vue'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
-import { Bell } from 'lucide-vue-next'
-import NotificationsBadge from '../components/NotificationsBadge.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -196,8 +196,8 @@ onMounted(() => {
       <h1 class="text-4xl">
         Account
       </h1>
-      
-      <button 
+
+      <button
         class="relative p-2 border-2 border-white hover:bg-white/10"
         @click="goToNotifications"
       >

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Database } from '../types/supabase'
 import { addDays, differenceInDays, isAfter, isBefore } from 'date-fns'
-import MarkdownIt from 'markdown-it'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
+import { renderMarkdown } from '../utils/markdown'
 
 // Define the types based on the generated schema
 type Rental = Database['public']['Tables']['rentals']['Row']
@@ -33,13 +33,7 @@ const endDate = ref('')
 const existingBookings = ref<Pick<Booking, 'start_date' | 'end_date'>[]>([])
 const loadingBookings = ref(false)
 
-// Enhanced markdown configuration
-const md = new MarkdownIt({
-  html: false, // Disable HTML for security
-  breaks: true, // Convert \n to <br>
-  linkify: true, // Auto-convert URLs to links
-  typographer: true, // Enable smart quotes and other typographic replacements
-})
+// Define a combined type for rental with its related profile
 
 // Calculate minimum end date (startDate + minDuration)
 const minEndDate = computed(() => {
@@ -115,10 +109,7 @@ const isDraft = computed(() => {
 })
 
 function formatDescription(description: string | null): string {
-  if (!description)
-    return ''
-
-  return md.render(description)
+  return renderMarkdown(description, { maxLength: 20000 })
 }
 
 async function fetchRental() {

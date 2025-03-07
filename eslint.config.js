@@ -6,5 +6,5 @@ export default antfu({
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
-  ignores: ['dist', 'public', '**/supabase.types*', 'CHANGELOG.md', 'scripts', '.github'],
+  ignores: ['dist', 'public', '**/supabase.types*', 'CHANGELOG.md', 'scripts', '.github', '**/*.md', 'docs'],
 })

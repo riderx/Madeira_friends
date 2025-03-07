@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import type { Database } from '../types/supabase'
-import MarkdownIt from 'markdown-it'
 import { onMounted, ref } from 'vue'
 import { supabase } from '../lib/supabase'
+import { renderMarkdown } from '../utils/markdown'
 
 type Rental = Database['public']['Tables']['rentals']['Row']
 type Profile = Database['public']['Tables']['profiles']['Row']
-const md = new MarkdownIt({
-  breaks: true,
-  linkify: true,
-  typographer: true,
-})
 const rentals = ref<(Rental & { profiles: Profile })[]>([])
 const loading = ref(true)
 const page = ref(1)
@@ -135,7 +130,7 @@ onMounted(() => {
 
           <div
             class="mb-4 prose-xs md:prose-sm prose prose-invert"
-            v-html="md.render(rental.description || '')"
+            v-html="renderMarkdown(rental.description, { maxLength: 10000 })"
           />
 
           <div class="flex flex-wrap items-center gap-2 text-xs md:text-sm text-white/60">
