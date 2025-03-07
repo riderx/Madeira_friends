@@ -64,7 +64,7 @@ function formatDescription(description: string | null) {
 
 async function fetchEvent() {
   if (!route.params.id) {
-    router.push('/')
+    router.push('/app/events')
     return
   }
   try {
@@ -90,13 +90,13 @@ async function fetchEvent() {
   }
   catch (error) {
     console.error('Error fetching event:', error)
-    router.push('/')
+    router.push('/app/events')
   }
 }
 
 async function fetchAttendees() {
   if (!route.params.id) {
-    router.push('/')
+    router.push('/app/events')
     return
   }
   try {
@@ -132,7 +132,7 @@ async function checkUserBooking() {
   if (!authStore.user)
     return
   if (!route.params.id) {
-    router.push('/')
+    router.push('/app/events')
     return
   }
   try {

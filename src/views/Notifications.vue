@@ -210,7 +210,7 @@ onMounted(() => {
           <!-- Booking-related actions -->
           <router-link
             v-if="notification.data?.booking_id"
-            :to="`/app/bookings/${notification.data.booking_id}`"
+            :to="`/app/rentals/${notification.data.booking_id}`"
             class="px-3 py-1 text-sm btn-primary"
           >
             View Booking

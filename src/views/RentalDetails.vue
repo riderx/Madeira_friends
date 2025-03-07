@@ -152,7 +152,7 @@ async function fetchRental() {
   }
   catch (error) {
     console.error('Error fetching rental:', error)
-    router.push('/rentals')
+    router.push('/app/rentals')
   }
   finally {
     loading.value = false
