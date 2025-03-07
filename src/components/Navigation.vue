@@ -36,18 +36,6 @@ const currentPath = computed(() => route.path)
       </router-link>
 
       <router-link
-        to="/app/bookings"
-        class="flex flex-col items-center p-2"
-        :class="{
-          'text-white': currentPath === '/app/bookings',
-          'text-white/60': currentPath !== '/app/bookings',
-        }"
-      >
-        <i class="text-2xl fas fa-ticket" />
-        <span class="mt-1 text-xs">Bookings</span>
-      </router-link>
-
-      <router-link
         to="/app/creator"
         class="flex flex-col items-center p-2"
         :class="{
@@ -57,6 +45,18 @@ const currentPath = computed(() => route.path)
       >
         <i class="text-2xl fas fa-plus" />
         <span class="mt-1 text-xs">Create</span>
+      </router-link>
+
+      <router-link
+        to="/app/bookings"
+        class="flex flex-col items-center p-2"
+        :class="{
+          'text-white': currentPath === '/app/bookings',
+          'text-white/60': currentPath !== '/app/bookings',
+        }"
+      >
+        <i class="text-2xl fas fa-ticket" />
+        <span class="mt-1 text-xs">Bookings</span>
       </router-link>
 
       <router-link

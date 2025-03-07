@@ -73,14 +73,14 @@ onMounted(() => {
 
 <template>
   <div class="container px-4 py-8 mx-auto">
-    <div class="flex items-center justify-between mb-8">
-      <h1 class="text-4xl">
-        Rentals
-      </h1>
+    <h1 class="mb-4 text-3xl md:text-4xl">
+      Rentals
+    </h1>
 
+    <div class="flex flex-wrap items-center justify-end gap-3 mb-8">
       <select
         v-model="selectedType"
-        class="px-3 py-2 uppercase bg-black border-2 border-white"
+        class="px-3 py-2 text-sm uppercase bg-black border-2 border-white"
         @change="
           page = 1;
           fetchRentals();
@@ -114,41 +114,45 @@ onMounted(() => {
             class="object-cover w-full h-full"
           >
           <div class="absolute top-2 right-2">
-            <span class="badge-category">{{ rental.type }}</span>
+            <span class="px-2 py-1 text-xs rounded-full badge-category">{{ rental.type }}</span>
           </div>
         </figure>
 
         <div class="p-4">
-          <h2 class="mb-4 text-xl">
+          <h2 class="mb-4 text-lg md:text-xl">
             {{ rental.title }}
           </h2>
 
-          <div class="flex items-center gap-2 mb-2 text-sm text-white/60">
+          <div class="flex items-center gap-2 mb-2 text-xs md:text-sm text-white/60">
             <span class="text-base material-icons">euro</span>
             {{ rental.price_per_day }} € per day
           </div>
 
-          <div class="flex items-center gap-2 mb-4 text-sm text-white/60">
+          <div class="flex items-center gap-2 mb-4 text-xs md:text-sm text-white/60">
             <span class="text-base material-icons">location_on</span>
             {{ rental.location }}
           </div>
 
           <div
-            class="mb-4 prose-sm prose prose-invert"
+            class="mb-4 prose-xs md:prose-sm prose prose-invert"
             v-html="md.render(rental.description || '')"
           />
 
-          <div class="flex items-center gap-2 text-sm text-white/60">
-            <span class="text-base material-icons">person</span>
-            <span>By {{ rental.profiles?.full_name }}</span>
-            <span class="ml-4 text-base material-icons">schedule</span>
-            <span>Min {{ rental.min_duration }} days</span>
+          <div class="flex flex-wrap items-center gap-2 text-xs md:text-sm text-white/60">
+            <div class="flex items-center gap-2">
+              <span class="text-base material-icons">person</span>
+              <span>By {{ rental.profiles?.full_name }}</span>
+            </div>
+            <div class="flex items-center gap-2 ml-0 md:ml-4">
+              <span class="text-base material-icons">schedule</span>
+              <span>Min {{ rental.min_duration }} days</span>
+            </div>
           </div>
 
           <div class="flex justify-end mt-4">
             <router-link
               :to="`/app/rentals/${rental.id}`"
-              class="px-6 py-2 btn-primary"
+              class="px-4 py-1 text-sm md:px-6 md:py-2 md:text-base btn-primary"
             >
               View Details
             </router-link>
@@ -159,7 +163,7 @@ onMounted(() => {
 
     <div v-if="hasMore" class="flex justify-center mt-8">
       <button
-        class="px-8 py-2 btn-primary"
+        class="px-6 py-2 text-sm md:px-8 md:text-base btn-primary"
         :disabled="loading"
         @click="loadMore"
       >

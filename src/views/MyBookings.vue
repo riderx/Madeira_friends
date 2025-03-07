@@ -106,49 +106,47 @@ onMounted(() => {
 
 <template>
   <div class="container px-4 py-8 mx-auto">
-    <div class="flex items-center justify-between mb-8">
-      <h1 class="text-4xl">
-        Bookings
-      </h1>
+    <h1 class="mb-4 text-3xl md:text-4xl">
+      Bookings
+    </h1>
 
-      <div class="flex items-center gap-4">
-        <!-- View Mode Toggle -->
-        <div class="flex border-2 border-white">
-          <button
-            v-for="mode in ['guest', 'host']"
-            :key="mode"
-            class="px-4 py-2"
-            :class="viewMode === mode ? 'bg-white text-black' : ''"
-            @click="
-              viewMode = mode;
-              statusFilter = 'all';
-              fetchBookings();
-            "
-          >
-            {{ mode.charAt(0).toUpperCase() + mode.slice(1) }}
-          </button>
-        </div>
-
-        <!-- Status Filter -->
-        <select
-          v-model="statusFilter"
-          class="px-3 py-2 uppercase bg-black border-2 border-white"
-          @change="fetchBookings()"
+    <div class="flex flex-wrap items-center justify-end gap-3 mb-8">
+      <!-- View Mode Toggle -->
+      <div class="flex border-2 border-white">
+        <button
+          v-for="mode in ['guest', 'host']"
+          :key="mode"
+          class="px-3 py-2 text-sm md:px-4 md:text-base"
+          :class="viewMode === mode ? 'bg-white text-black' : ''"
+          @click="
+            viewMode = mode;
+            statusFilter = 'all';
+            fetchBookings();
+          "
         >
-          <option value="all">
-            All
-          </option>
-          <option value="pending">
-            Pending
-          </option>
-          <option value="future">
-            Future
-          </option>
-          <option value="past">
-            Past
-          </option>
-        </select>
+          {{ mode.charAt(0).toUpperCase() + mode.slice(1) }}
+        </button>
       </div>
+
+      <!-- Status Filter -->
+      <select
+        v-model="statusFilter"
+        class="px-3 py-2 text-sm uppercase bg-black border-2 border-white md:text-base"
+        @change="fetchBookings()"
+      >
+        <option value="all">
+          All
+        </option>
+        <option value="pending">
+          Pending
+        </option>
+        <option value="future">
+          Future
+        </option>
+        <option value="past">
+          Past
+        </option>
+      </select>
     </div>
 
     <div v-if="loading" class="flex justify-center py-12">

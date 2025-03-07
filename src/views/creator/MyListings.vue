@@ -281,50 +281,48 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
 
 <template>
   <div class="container px-4 py-8 mx-auto">
-    <div class="flex items-center justify-between mb-8">
-      <h1 class="text-4xl">
-        My Listings
-      </h1>
+    <h1 class="mb-4 text-3xl md:text-4xl">
+      My Listings
+    </h1>
 
-      <div class="flex gap-4">
-        <select
-          v-model="ownershipFilter"
-          class="px-3 py-2 uppercase bg-black border-2 border-white"
-          @change="fetchListings()"
-        >
-          <option value="all">
-            All Ownership
-          </option>
-          <option value="owned">
-            Owned
-          </option>
-          <option value="managed">
-            Managed
-          </option>
-        </select>
+    <div class="flex flex-wrap items-center justify-end gap-3 mb-8">
+      <select
+        v-model="ownershipFilter"
+        class="px-3 py-2 text-sm uppercase bg-black border-2 border-white"
+        @change="fetchListings()"
+      >
+        <option value="all">
+          All Ownership
+        </option>
+        <option value="owned">
+          Owned
+        </option>
+        <option value="managed">
+          Managed
+        </option>
+      </select>
 
-        <div class="flex border-2 border-white">
-          <button
-            v-for="tab in ['events', 'rentals']"
-            :key="tab"
-            class="px-4 py-2"
-            :class="activeTab === tab ? 'bg-white text-black' : ''"
-            @click="
-              activeTab = tab;
-              fetchListings();
-            "
-          >
-            {{ tab.charAt(0).toUpperCase() + tab.slice(1) }}
-          </button>
-        </div>
-
+      <div class="flex border-2 border-white">
         <button
-          class="px-6 py-2 btn-primary"
-          @click="showCreateModal = true"
+          v-for="tab in ['events', 'rentals']"
+          :key="tab"
+          class="px-3 py-2 text-sm"
+          :class="activeTab === tab ? 'bg-white text-black' : ''"
+          @click="
+            activeTab = tab;
+            fetchListings();
+          "
         >
-          Create {{ activeTab === "rentals" ? "Rental" : "Event" }}
+          {{ tab.charAt(0).toUpperCase() + tab.slice(1) }}
         </button>
       </div>
+
+      <button
+        class="px-4 py-2 text-sm btn-primary"
+        @click="showCreateModal = true"
+      >
+        Create
+      </button>
     </div>
 
     <div v-if="loading" class="flex justify-center py-12">
@@ -343,31 +341,31 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
           <div
             v-for="event in events"
             :key="event.id"
-            class="p-6 border-2 border-white"
+            class="p-4 border-2 border-white md:p-6"
           >
             <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl">
+              <h3 class="text-lg md:text-xl">
                 {{ event.title }}
               </h3>
-              <span class="badge-category">{{ event.status }}</span>
+              <span class="px-2 py-1 ml-2 text-xs rounded-full badge-category">{{ event.status }}</span>
             </div>
 
             <div class="mb-4 space-y-2">
-              <p>{{ format(new Date(event.date), "PPP p") }}</p>
-              <p>{{ event.location }}</p>
+              <p class="text-sm md:text-base">{{ format(new Date(event.date), "PPP p") }}</p>
+              <p class="text-sm md:text-base">{{ event.location }}</p>
             </div>
 
-            <div class="flex gap-4">
+            <div class="flex flex-wrap gap-2">
               <router-link
                 :to="`/app/events/${event.id}`"
-                class="px-4 py-2 btn-primary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-primary"
               >
                 View
               </router-link>
 
               <button
                 v-if="event.status === 'draft' && event.creator_id === authStore.user?.id"
-                class="px-4 py-2 btn-secondary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-secondary"
                 @click="editEvent(event)"
               >
                 Edit
@@ -375,7 +373,7 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
 
               <button
                 v-if="event.creator_id === authStore.user?.id"
-                class="px-4 py-2 btn-secondary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-secondary"
                 @click="deleteListing('event', event.id)"
               >
                 Delete
@@ -383,7 +381,7 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
 
               <button
                 v-if="event.creator_id !== authStore.user?.id && event.moderators && event.moderators.includes(authStore.user?.id || '')"
-                class="px-4 py-2 btn-secondary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-secondary"
                 @click="stopManaging('event', event.id)"
               >
                 Stop Managing
@@ -404,31 +402,31 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
           <div
             v-for="rental in rentals"
             :key="rental.id"
-            class="p-6 border-2 border-white"
+            class="p-4 border-2 border-white md:p-6"
           >
             <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl">
+              <h3 class="text-lg md:text-xl">
                 {{ rental.title }}
               </h3>
-              <span class="badge-category">{{ rental.status }}</span>
+              <span class="px-2 py-1 ml-2 text-xs rounded-full badge-category">{{ rental.status }}</span>
             </div>
 
             <div class="mb-4 space-y-2">
-              <p>{{ rental.price_per_day }}€ per day</p>
-              <p>{{ rental.location }}</p>
+              <p class="text-sm md:text-base">{{ rental.price_per_day }}€ per day</p>
+              <p class="text-sm md:text-base">{{ rental.location }}</p>
             </div>
 
-            <div class="flex gap-4">
+            <div class="flex flex-wrap gap-2">
               <router-link
                 :to="`/app/rentals/${rental.id}`"
-                class="px-4 py-2 btn-primary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-primary"
               >
                 View
               </router-link>
 
               <button
                 v-if="rental.status === 'draft' && rental.creator_id === authStore.user?.id"
-                class="px-4 py-2 btn-secondary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-secondary"
                 @click="editRental(rental)"
               >
                 Edit
@@ -436,7 +434,7 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
 
               <button
                 v-if="rental.creator_id === authStore.user?.id"
-                class="px-4 py-2 btn-secondary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-secondary"
                 @click="deleteListing('rental', rental.id)"
               >
                 Delete
@@ -444,7 +442,7 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
 
               <button
                 v-if="rental.creator_id !== authStore.user?.id && rental.moderators && rental.moderators.includes(authStore.user?.id || '')"
-                class="px-4 py-2 btn-secondary"
+                class="px-3 py-1 text-sm md:px-4 md:py-2 md:text-base btn-secondary"
                 @click="stopManaging('rental', rental.id)"
               >
                 Stop Managing
