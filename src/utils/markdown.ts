@@ -2,7 +2,7 @@ import MarkdownIt from 'markdown-it'
 
 /**
  * Creates a configured markdown-it instance with security and performance optimizations
- * 
+ *
  * @param options Configuration options
  * @param options.allowHtml Whether to allow HTML in markdown (defaults to false for security)
  * @returns Configured markdown-it instance
@@ -18,7 +18,7 @@ export function createMarkdown(options: { allowHtml?: boolean } = {}) {
 
 /**
  * Safely renders markdown content with length limits to prevent DoS attacks
- * 
+ *
  * @param content Markdown content to render
  * @param options Rendering options
  * @param options.maxLength Maximum length of content to render (defaults to 50000)
@@ -42,7 +42,7 @@ export function renderMarkdown(content: string | null, options: { maxLength?: nu
 /**
  * Formats description text with special handling for newlines
  * Used specifically for event descriptions to ensure proper paragraph formatting
- * 
+ *
  * @param description Markdown content to format and render
  * @param options Rendering options
  * @param options.maxLength Maximum length of content to render (defaults to 50000)

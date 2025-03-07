@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export type Database = {
+export interface Database {
   graphql_public: {
     Tables: {
       [_ in never]: never
@@ -36,7 +36,7 @@ export type Database = {
     Tables: {
       bookings: {
         Row: {
-          booking_type: Database["public"]["Enums"]["booking_type"]
+          booking_type: Database['public']['Enums']['booking_type']
           created_at: string | null
           end_date: string | null
           event_id: string | null
@@ -46,12 +46,12 @@ export type Database = {
           num_attendees: number | null
           rental_id: string | null
           start_date: string
-          status: Database["public"]["Enums"]["booking_status"] | null
+          status: Database['public']['Enums']['booking_status'] | null
           updated_at: string | null
           user_id: string | null
         }
         Insert: {
-          booking_type: Database["public"]["Enums"]["booking_type"]
+          booking_type: Database['public']['Enums']['booking_type']
           created_at?: string | null
           end_date?: string | null
           event_id?: string | null
@@ -61,12 +61,12 @@ export type Database = {
           num_attendees?: number | null
           rental_id?: string | null
           start_date: string
-          status?: Database["public"]["Enums"]["booking_status"] | null
+          status?: Database['public']['Enums']['booking_status'] | null
           updated_at?: string | null
           user_id?: string | null
         }
         Update: {
-          booking_type?: Database["public"]["Enums"]["booking_type"]
+          booking_type?: Database['public']['Enums']['booking_type']
           created_at?: string | null
           end_date?: string | null
           event_id?: string | null
@@ -76,31 +76,31 @@ export type Database = {
           num_attendees?: number | null
           rental_id?: string | null
           start_date?: string
-          status?: Database["public"]["Enums"]["booking_status"] | null
+          status?: Database['public']['Enums']['booking_status'] | null
           updated_at?: string | null
           user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "bookings_event_id_fkey"
-            columns: ["event_id"]
+            foreignKeyName: 'bookings_event_id_fkey'
+            columns: ['event_id']
             isOneToOne: false
-            referencedRelation: "events"
-            referencedColumns: ["id"]
+            referencedRelation: 'events'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "bookings_rental_id_fkey"
-            columns: ["rental_id"]
+            foreignKeyName: 'bookings_rental_id_fkey'
+            columns: ['rental_id']
             isOneToOne: false
-            referencedRelation: "rentals"
-            referencedColumns: ["id"]
+            referencedRelation: 'rentals'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "bookings_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: 'bookings_user_id_fkey'
+            columns: ['user_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -155,7 +155,7 @@ export type Database = {
           moderators: string[] | null
           payment_link: string | null
           rsvp_deadline: string | null
-          status: Database["public"]["Enums"]["listing_status"] | null
+          status: Database['public']['Enums']['listing_status'] | null
           telegram_contact: string
           title: string
           updated_at: string | null
@@ -177,7 +177,7 @@ export type Database = {
           moderators?: string[] | null
           payment_link?: string | null
           rsvp_deadline?: string | null
-          status?: Database["public"]["Enums"]["listing_status"] | null
+          status?: Database['public']['Enums']['listing_status'] | null
           telegram_contact: string
           title: string
           updated_at?: string | null
@@ -199,18 +199,18 @@ export type Database = {
           moderators?: string[] | null
           payment_link?: string | null
           rsvp_deadline?: string | null
-          status?: Database["public"]["Enums"]["listing_status"] | null
+          status?: Database['public']['Enums']['listing_status'] | null
           telegram_contact?: string
           title?: string
           updated_at?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "events_creator_id_fkey"
-            columns: ["creator_id"]
+            foreignKeyName: 'events_creator_id_fkey'
+            columns: ['creator_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -247,11 +247,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "notifications_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: 'notifications_user_id_fkey'
+            columns: ['user_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -265,7 +265,7 @@ export type Database = {
           location_from: string | null
           location_madeira: string | null
           phone: string | null
-          role: Database["public"]["Enums"]["user_role"] | null
+          role: Database['public']['Enums']['user_role'] | null
           telegram_username: string | null
           updated_at: string | null
         }
@@ -278,7 +278,7 @@ export type Database = {
           location_from?: string | null
           location_madeira?: string | null
           phone?: string | null
-          role?: Database["public"]["Enums"]["user_role"] | null
+          role?: Database['public']['Enums']['user_role'] | null
           telegram_username?: string | null
           updated_at?: string | null
         }
@@ -291,7 +291,7 @@ export type Database = {
           location_from?: string | null
           location_madeira?: string | null
           phone?: string | null
-          role?: Database["public"]["Enums"]["user_role"] | null
+          role?: Database['public']['Enums']['user_role'] | null
           telegram_username?: string | null
           updated_at?: string | null
         }
@@ -314,10 +314,10 @@ export type Database = {
           moderators: string[] | null
           price_per_day: number
           security_deposit: number | null
-          status: Database["public"]["Enums"]["listing_status"] | null
+          status: Database['public']['Enums']['listing_status'] | null
           telegram_contact: string
           title: string
-          type: Database["public"]["Enums"]["rental_type"]
+          type: Database['public']['Enums']['rental_type']
           updated_at: string | null
         }
         Insert: {
@@ -336,10 +336,10 @@ export type Database = {
           moderators?: string[] | null
           price_per_day: number
           security_deposit?: number | null
-          status?: Database["public"]["Enums"]["listing_status"] | null
+          status?: Database['public']['Enums']['listing_status'] | null
           telegram_contact: string
           title: string
-          type: Database["public"]["Enums"]["rental_type"]
+          type: Database['public']['Enums']['rental_type']
           updated_at?: string | null
         }
         Update: {
@@ -358,26 +358,26 @@ export type Database = {
           moderators?: string[] | null
           price_per_day?: number
           security_deposit?: number | null
-          status?: Database["public"]["Enums"]["listing_status"] | null
+          status?: Database['public']['Enums']['listing_status'] | null
           telegram_contact?: string
           title?: string
-          type?: Database["public"]["Enums"]["rental_type"]
+          type?: Database['public']['Enums']['rental_type']
           updated_at?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "rentals_creator_id_fkey"
-            columns: ["creator_id"]
+            foreignKeyName: 'rentals_creator_id_fkey'
+            columns: ['creator_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rentals_moderator_id_fkey"
-            columns: ["moderator_id"]
+            foreignKeyName: 'rentals_moderator_id_fkey'
+            columns: ['moderator_id']
             isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -396,11 +396,11 @@ export type Database = {
       }
     }
     Enums: {
-      booking_status: "pending" | "approved" | "rejected" | "expired"
-      booking_type: "event" | "rental"
-      listing_status: "draft" | "pending" | "published" | "rejected"
-      rental_type: "flat" | "house" | "scooter" | "motorbike" | "car"
-      user_role: "user" | "moderator" | "admin"
+      booking_status: 'pending' | 'approved' | 'rejected' | 'expired'
+      booking_type: 'event' | 'rental'
+      listing_status: 'draft' | 'pending' | 'published' | 'rejected'
+      rental_type: 'flat' | 'house' | 'scooter' | 'motorbike' | 'car'
+      user_role: 'user' | 'moderator' | 'admin'
     }
     CompositeTypes: {
       [_ in never]: never
@@ -408,100 +408,99 @@ export type Database = {
   }
 }
 
-type PublicSchema = Database[Extract<keyof Database, "public">]
+type PublicSchema = Database[Extract<keyof Database, 'public'>]
 
 export type Tables<
   PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
-    | { schema: keyof Database },
+  | keyof (PublicSchema['Tables'] & PublicSchema['Views'])
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    ? keyof (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+      Database[PublicTableNameOrOptions['schema']]['Views'])
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+  ? (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+    Database[PublicTableNameOrOptions['schema']]['Views'])[TableName] extends {
       Row: infer R
     }
-    ? R
-    : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-        Row: infer R
-      }
       ? R
       : never
+  : PublicTableNameOrOptions extends keyof (PublicSchema['Tables'] &
+    PublicSchema['Views'])
+    ? (PublicSchema['Tables'] &
+      PublicSchema['Views'])[PublicTableNameOrOptions] extends {
+        Row: infer R
+      }
+        ? R
+        : never
     : never
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['Tables']
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
-    }
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+    Insert: infer I
+  }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I
-      }
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+    ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Insert: infer I
+    }
       ? I
       : never
     : never
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['Tables']
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
-    }
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+    Update: infer U
+  }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U
-      }
+  : PublicTableNameOrOptions extends keyof PublicSchema['Tables']
+    ? PublicSchema['Tables'][PublicTableNameOrOptions] extends {
+      Update: infer U
+    }
       ? U
       : never
     : never
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['Enums']
+  | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
     : never = never,
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+  ? Database[PublicEnumNameOrOptions['schema']]['Enums'][EnumName]
+  : PublicEnumNameOrOptions extends keyof PublicSchema['Enums']
+    ? PublicSchema['Enums'][PublicEnumNameOrOptions]
     : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof PublicSchema["CompositeTypes"]
-    | { schema: keyof Database },
+  | keyof PublicSchema['CompositeTypes']
+  | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
     schema: keyof Database
   }
-    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof Database[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes']
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
-    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+  ? Database[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes'][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema['CompositeTypes']
+    ? PublicSchema['CompositeTypes'][PublicCompositeTypeNameOrOptions]
     : never
-
