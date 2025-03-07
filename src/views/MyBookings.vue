@@ -192,6 +192,25 @@ onMounted(() => {
             {{ booking.message }}
           </div>
 
+          <!-- View Details Link -->
+          <div class="flex justify-end mt-4">
+            <router-link
+              v-if="booking.events?.id"
+              :to="`/app/events/${booking.events.id}`"
+              class="px-6 py-2 btn-primary"
+            >
+              View Event Details
+            </router-link>
+
+            <router-link
+              v-if="booking.rentals?.id"
+              :to="`/app/rentals/${booking.rentals.id}`"
+              class="px-6 py-2 btn-primary"
+            >
+              View Rental Details
+            </router-link>
+          </div>
+
           <!-- Management Actions -->
           <div
             v-if="viewMode === 'host' && booking.status === 'pending'"
