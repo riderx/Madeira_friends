@@ -2,7 +2,6 @@ import type { RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
 import Account from '../views/Account.vue'
-import CreatorLayout from '../views/creator/CreatorLayout.vue'
 import MyListings from '../views/creator/MyListings.vue'
 import EventDetails from '../views/EventDetails.vue'
 import Home from '../views/Home.vue'
@@ -66,18 +65,8 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/app/creator',
-    component: CreatorLayout,
     meta: { requiresAuth: true },
-    children: [
-      {
-        path: '',
-        redirect: '/app/creator/listings',
-      },
-      {
-        path: 'listings',
-        component: MyListings,
-      },
-    ],
+    component: MyListings,
   },
 ]
 
