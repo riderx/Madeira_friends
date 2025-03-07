@@ -118,12 +118,12 @@ onMounted(() => {
 
 <template>
   <div class="container px-4 py-8 mx-auto">
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-3xl md:text-4xl">
+    <div class="mb-6">
+      <h1 class="text-3xl md:text-4xl mb-4">
         Notifications
       </h1>
 
-      <div class="flex gap-3">
+      <div class="flex justify-end gap-3">
         <button
           v-if="notifications.some(n => !n.read)"
           class="px-4 py-2 text-sm border-2 border-white hover:bg-white/10"
