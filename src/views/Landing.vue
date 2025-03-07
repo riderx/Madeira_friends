@@ -5,7 +5,14 @@ import Stats from '../components/landing/Stats.vue'
 import { submitContactForm } from '../lib/contactForm'
 
 async function handleContactSubmit(formData: any) {
-  await submitContactForm(formData)
+  try {
+    await submitContactForm(formData)
+    return { success: true }
+  }
+  catch (error) {
+    console.error('Contact form submission error:', error)
+    return { success: false, error: error instanceof Error ? error.message : 'An unknown error occurred' }
+  }
 }
 </script>
 
