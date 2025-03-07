@@ -30,7 +30,7 @@
     "dompurify": "^3.2.4",
     "lucide-vue-next": "^0.477.0",
     "markdown-it": "^13.0.2",
-    "pinia": "^2.1.7",
+    "pinia": "^3.0.1",
     "uuid": "^9.0.1",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
