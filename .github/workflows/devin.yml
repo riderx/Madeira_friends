@@ -1,11 +1,17 @@
-
 name: Devin Issue Review
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   issue_comment:
     types: [created]
+
 permissions:
   issues: read
   pull-requests: read
+
 jobs:
   review-issue:
     runs-on: ubuntu-latest
