@@ -6,8 +6,12 @@ import { submitContactForm } from '../services/contactService'
 
 async function handleContactSubmit(formData: any) {
   try {
+    // Get the user's IP address (in a real implementation, this would be done server-side)
+    // For this example, we'll use a placeholder IP
+    const ipAddress = '127.0.0.1' // This would normally be obtained server-side
+
     // Submit the form data to the contact service
-    const result = await submitContactForm(formData)
+    const result = await submitContactForm(formData, ipAddress)
 
     if (!result.success) {
       throw new Error(result.error)
