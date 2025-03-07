@@ -25,6 +25,11 @@ const bookingSuccess = ref(false)
 const bookingError = ref('')
 const numberOfAttendees = ref(1)
 
+// Check if the event is in draft mode
+const isDraft = computed(() => {
+  return event.value?.status === 'draft'
+})
+
 // Enhanced markdown configuration
 const md = new MarkdownIt({
   html: false, // Disable HTML for security
@@ -240,6 +245,7 @@ onMounted(() => {
       <div class="p-8 bg-black border-2 border-white">
         <h1 class="mb-6 text-4xl">
           {{ event.title }}
+          <span v-if="isDraft" class="ml-2 text-sm px-2 py-1 bg-yellow-500 text-black">DRAFT</span>
         </h1>
 
         <div class="grid gap-8 mb-8 md:grid-cols-2">
@@ -446,7 +452,11 @@ onMounted(() => {
 
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
-          <div v-if="!authStore.user">
+          <div v-if="isDraft" class="text-yellow-400 text-right mr-4">
+            <span class="material-icons align-middle mr-1">warning</span>
+            <span>This event is currently in draft mode and not available for booking.</span>
+          </div>
+          <div v-else-if="!authStore.user">
             <router-link to="/auth" class="px-8 py-3 btn-primary">
               Login to Book
             </router-link>
@@ -456,8 +466,8 @@ onMounted(() => {
           >
             <button
               class="px-8 py-3 btn-primary"
-              :disabled="!spotsAvailable"
-              :title="!spotsAvailable ? 'No spots available' : ''"
+              :disabled="!spotsAvailable || isDraft"
+              :title="!spotsAvailable ? 'No spots available' : (isDraft ? 'Event is in draft mode' : '')"
               @click="showBookingForm = true"
             >
               Book Now

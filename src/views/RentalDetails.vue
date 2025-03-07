@@ -109,6 +109,11 @@ const hasUserBooked = computed(() => {
   return bookingStatus.value !== null
 })
 
+// Check if the rental is in draft mode
+const isDraft = computed(() => {
+  return rental.value?.status === 'draft'
+})
+
 function formatDescription(description: string | null): string {
   if (!description)
     return ''
@@ -316,6 +321,7 @@ onMounted(() => {
       <div class="p-8 bg-black border-2 border-white">
         <h1 class="mb-6 text-4xl">
           {{ rental.title }}
+          <span v-if="isDraft" class="ml-2 text-sm px-2 py-1 bg-yellow-500 text-black">DRAFT</span>
         </h1>
 
         <div class="grid gap-8 mb-8 md:grid-cols-2">
@@ -549,7 +555,11 @@ onMounted(() => {
 
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
-          <div v-if="!authStore.user">
+          <div v-if="isDraft" class="text-yellow-400 text-right mr-4">
+            <span class="material-icons align-middle mr-1">warning</span>
+            <span>This rental is currently in draft mode and not available for booking.</span>
+          </div>
+          <div v-else-if="!authStore.user">
             <router-link to="/auth" class="px-8 py-3 btn-primary">
               Login to Book
             </router-link>
@@ -559,6 +569,8 @@ onMounted(() => {
           >
             <button
               class="px-8 py-3 btn-primary"
+              :disabled="isDraft"
+              :title="isDraft ? 'Rental is in draft mode' : ''"
               @click="showBookingForm = true"
             >
               Book Now

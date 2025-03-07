@@ -20,3 +20,4 @@ Clear naming conventions
 use bun and bunx not npm and node
 Code DRY and make sure the code 
 Align the happy path to the left edge
+Make the least change possible
