@@ -13,11 +13,11 @@ jobs:
       - name: Check for @devin mention
         id: check-mention
         run: |
-        echo "Issue Comment: ${{ github.event.comment.body }}"
-        if [[ "${{ github.event.comment.body }}" != *"@devin"* ]]; then
-        echo "No @devin mention found. Exiting."
-        exit 0
-        fi
+          echo "Issue Comment: ${{ github.event.comment.body }}"
+          if [[ "${{ github.event.comment.body }}" != *"@devin"* ]]; then
+          echo "No @devin mention found. Exiting."
+          exit 0
+          fi
       - name: Fetch issue comments
         id: fetch-comments
         run: |
