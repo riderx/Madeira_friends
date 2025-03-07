@@ -33,8 +33,8 @@ const authStore = useAuthStore()
 const loading = ref(false)
 const events = ref<Database['public']['Tables']['events']['Row'][]>([])
 const rentals = ref<Database['public']['Tables']['rentals']['Row'][]>([])
-const activeFilter = ref('owned') // 'owned' or 'managed'
-const activeTab = ref('events')
+const ownershipFilter = ref('all') // 'all', 'owned' or 'managed'
+const activeTab = ref('events') // 'events' or 'rentals'
 const showCreateModal = ref(false)
 const newEvent = ref<Database['public']['Tables']['events']['Row']>({
   ...INITIAL_EVENT,
@@ -88,12 +88,16 @@ async function createEvent() {
     saving.value = true
     error.value = ''
 
+    // Extract the id from newEvent.value and create a new object without it
+    const { id, ...eventData } = newEvent.value
+
     const { error: createError } = await supabase
       .from('events')
       .insert([
         {
-          ...newEvent.value,
+          ...eventData,
           creator_id: authStore.user?.id,
+          status: 'draft',
         },
       ])
       .select()
@@ -123,51 +127,58 @@ async function fetchListings() {
   try {
     loading.value = true
 
-    if (activeFilter.value === 'owned') {
-      // Fetch listings where user is creator
-      const [eventsResponse, rentalsResponse] = await Promise.all([
-        supabase
-          .from('events')
-          .select(`*, profiles!events_creator_id_fkey(*)`)
-          .eq('creator_id', authStore.user?.id)
-          .order('created_at', { ascending: false }),
-        supabase
-          .from('rentals')
-          .select(`*, profiles!rentals_creator_id_fkey(*)`)
-          .eq('creator_id', authStore.user?.id)
-          .order('created_at', { ascending: false }),
-      ])
+    // Prepare queries based on activeTab
+    let query
 
-      if (eventsResponse.error)
-        throw eventsResponse.error
-      if (rentalsResponse.error)
-        throw rentalsResponse.error
+    if (activeTab.value === 'events') {
+      query = supabase
+        .from('events')
+        .select(`*, profiles!events_creator_id_fkey(*)`)
+        .order('created_at', { ascending: false })
 
-      events.value = eventsResponse.data
-      rentals.value = rentalsResponse.data
+      // Apply ownership filter
+      if (ownershipFilter.value === 'owned') {
+        query = query.eq('creator_id', authStore.user?.id)
+      }
+      else if (ownershipFilter.value === 'managed') {
+        query = query.contains('moderators', [authStore.user?.id])
+      }
+      else {
+        // For 'all', get both owned and managed
+        query = query.or(`creator_id.eq.${authStore.user?.id},moderators.cs.{${authStore.user?.id}}`)
+      }
+
+      const { data, error } = await query
+
+      if (error)
+        throw error
+
+      events.value = data as Database['public']['Tables']['events']['Row'][]
     }
-    else {
-      // Fetch listings where user is a moderator
-      const [eventsResponse, rentalsResponse] = await Promise.all([
-        supabase
-          .from('events')
-          .select(`*, profiles!events_creator_id_fkey(*)`)
-          .contains('moderators', [authStore.user?.id])
-          .order('created_at', { ascending: false }),
-        supabase
-          .from('rentals')
-          .select(`*, profiles!rentals_creator_id_fkey(*)`)
-          .contains('moderators', [authStore.user?.id])
-          .order('created_at', { ascending: false }),
-      ])
+    else if (activeTab.value === 'rentals') {
+      query = supabase
+        .from('rentals')
+        .select(`*, profiles!rentals_creator_id_fkey(*)`)
+        .order('created_at', { ascending: false })
 
-      if (eventsResponse.error)
-        throw eventsResponse.error
-      if (rentalsResponse.error)
-        throw rentalsResponse.error
+      // Apply ownership filter
+      if (ownershipFilter.value === 'owned') {
+        query = query.eq('creator_id', authStore.user?.id)
+      }
+      else if (ownershipFilter.value === 'managed') {
+        query = query.contains('moderators', [authStore.user?.id])
+      }
+      else {
+        // For 'all', get both owned and managed
+        query = query.or(`creator_id.eq.${authStore.user?.id},moderators.cs.{${authStore.user?.id}}`)
+      }
 
-      events.value = eventsResponse.data
-      rentals.value = rentalsResponse.data
+      const { data, error } = await query
+
+      if (error)
+        throw error
+
+      rentals.value = data as Database['public']['Tables']['rentals']['Row'][]
     }
   }
   catch (error) {
@@ -242,159 +253,153 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
       </h1>
 
       <div class="flex gap-4">
+        <select
+          v-model="ownershipFilter"
+          class="px-3 py-2 uppercase bg-black border-2 border-white"
+          @change="fetchListings()"
+        >
+          <option value="all">
+            All Ownership
+          </option>
+          <option value="owned">
+            Owned
+          </option>
+          <option value="managed">
+            Managed
+          </option>
+        </select>
+
         <div class="flex border-2 border-white">
           <button
-            v-for="filter in ['owned', 'managed']"
-            :key="filter"
+            v-for="tab in ['events', 'rentals']"
+            :key="tab"
             class="px-4 py-2"
-            :class="activeFilter === filter ? 'bg-white text-black' : ''"
+            :class="activeTab === tab ? 'bg-white text-black' : ''"
             @click="
-              activeFilter = filter;
+              activeTab = tab;
               fetchListings();
             "
           >
-            {{ filter.charAt(0).toUpperCase() + filter.slice(1) }}
+            {{ tab.charAt(0).toUpperCase() + tab.slice(1) }}
           </button>
         </div>
 
         <button
-          v-if="activeFilter === 'owned'"
           class="px-6 py-2 btn-primary"
           @click="showCreateModal = true"
         >
-          Create {{ activeTab === "events" ? "Event" : "Rental" }}
+          Create {{ activeTab === "rentals" ? "Rental" : "Event" }}
         </button>
       </div>
-    </div>
-
-    <div class="flex gap-4 mb-8">
-      <button
-        class="flex-1 py-2 border-2"
-        :class="
-          activeTab === 'events'
-            ? 'bg-white text-black'
-            : 'border-white text-white'
-        "
-        @click="activeTab = 'events'"
-      >
-        Events
-      </button>
-      <button
-        class="flex-1 py-2 border-2"
-        :class="
-          activeTab === 'rentals'
-            ? 'bg-white text-black'
-            : 'border-white text-white'
-        "
-        @click="activeTab = 'rentals'"
-      >
-        Rentals
-      </button>
     </div>
 
     <div v-if="loading" class="flex justify-center py-12">
       <span class="loading loading-spinner loading-lg" />
     </div>
 
-    <div v-else-if="activeTab === 'events'" class="space-y-6">
-      <div v-if="events.length === 0" class="py-8 text-center">
-        <p class="text-white/60">
-          No events created yet.
-        </p>
-      </div>
-      <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div
-          v-for="event in events"
-          :key="event.id"
-          class="p-6 border-2 border-white"
-        >
-          <div class="flex items-start justify-between mb-4">
-            <h3 class="text-xl">
-              {{ event.title }}
-            </h3>
-            <span class="badge-category">{{ event.status }}</span>
-          </div>
+    <div v-else>
+      <!-- Events section -->
+      <div v-if="activeTab === 'events'" class="space-y-6">
+        <div v-if="events.length === 0" class="py-8 text-center">
+          <p class="text-white/60">
+            No events created yet.
+          </p>
+        </div>
+        <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            v-for="event in events"
+            :key="event.id"
+            class="p-6 border-2 border-white"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-xl">
+                {{ event.title }}
+              </h3>
+              <span class="badge-category">{{ event.status }}</span>
+            </div>
 
-          <div class="mb-4 space-y-2">
-            <p>{{ format(new Date(event.date), "PPP p") }}</p>
-            <p>{{ event.location }}</p>
-          </div>
+            <div class="mb-4 space-y-2">
+              <p>{{ format(new Date(event.date), "PPP p") }}</p>
+              <p>{{ event.location }}</p>
+            </div>
 
-          <div class="flex gap-4">
-            <router-link
-              :to="`/events/${event.id}`"
-              class="px-4 py-2 btn-primary"
-            >
-              View
-            </router-link>
+            <div class="flex gap-4">
+              <router-link
+                :to="`/app/events/${event.id}`"
+                class="px-4 py-2 btn-primary"
+              >
+                View
+              </router-link>
 
-            <button
-              v-if="activeFilter === 'owned'"
-              class="px-4 py-2 btn-secondary"
-              @click="deleteListing('event', event.id)"
-            >
-              Delete
-            </button>
+              <button
+                v-if="event.creator_id === authStore.user?.id"
+                class="px-4 py-2 btn-secondary"
+                @click="deleteListing('event', event.id)"
+              >
+                Delete
+              </button>
 
-            <button
-              v-if="activeFilter === 'managed'"
-              class="px-4 py-2 btn-secondary"
-              @click="stopManaging('event', event.id)"
-            >
-              Stop Managing
-            </button>
+              <button
+                v-if="event.creator_id !== authStore.user?.id && event.moderators && event.moderators.includes(authStore.user?.id || '')"
+                class="px-4 py-2 btn-secondary"
+                @click="stopManaging('event', event.id)"
+              >
+                Stop Managing
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div v-else class="space-y-6">
-      <div v-if="rentals.length === 0" class="py-8 text-center">
-        <p class="text-white/60">
-          No rentals created yet.
-        </p>
-      </div>
-      <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div
-          v-for="rental in rentals"
-          :key="rental.id"
-          class="p-6 border-2 border-white"
-        >
-          <div class="flex items-start justify-between mb-4">
-            <h3 class="text-xl">
-              {{ rental.title }}
-            </h3>
-            <span class="badge-category">{{ rental.status }}</span>
-          </div>
+      <!-- Rentals section -->
+      <div v-else-if="activeTab === 'rentals'" class="space-y-6">
+        <div v-if="rentals.length === 0" class="py-8 text-center">
+          <p class="text-white/60">
+            No rentals created yet.
+          </p>
+        </div>
+        <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            v-for="rental in rentals"
+            :key="rental.id"
+            class="p-6 border-2 border-white"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-xl">
+                {{ rental.title }}
+              </h3>
+              <span class="badge-category">{{ rental.status }}</span>
+            </div>
 
-          <div class="mb-4 space-y-2">
-            <p>{{ rental.price_per_day }}€ per day</p>
-            <p>{{ rental.location }}</p>
-          </div>
+            <div class="mb-4 space-y-2">
+              <p>{{ rental.price_per_day }}€ per day</p>
+              <p>{{ rental.location }}</p>
+            </div>
 
-          <div class="flex gap-4">
-            <router-link
-              :to="`/rentals/${rental.id}`"
-              class="px-4 py-2 btn-primary"
-            >
-              View
-            </router-link>
+            <div class="flex gap-4">
+              <router-link
+                :to="`/app/rentals/${rental.id}`"
+                class="px-4 py-2 btn-primary"
+              >
+                View
+              </router-link>
 
-            <button
-              v-if="activeFilter === 'owned'"
-              class="px-4 py-2 btn-secondary"
-              @click="deleteListing('rental', rental.id)"
-            >
-              Delete
-            </button>
+              <button
+                v-if="rental.creator_id === authStore.user?.id"
+                class="px-4 py-2 btn-secondary"
+                @click="deleteListing('rental', rental.id)"
+              >
+                Delete
+              </button>
 
-            <button
-              v-if="activeFilter === 'managed'"
-              class="px-4 py-2 btn-secondary"
-              @click="stopManaging('rental', rental.id)"
-            >
-              Stop Managing
-            </button>
+              <button
+                v-if="rental.creator_id !== authStore.user?.id && rental.moderators && rental.moderators.includes(authStore.user?.id || '')"
+                class="px-4 py-2 btn-secondary"
+                @click="stopManaging('rental', rental.id)"
+              >
+                Stop Managing
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -404,7 +409,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
     <dialog :open="showCreateModal" class="modal modal-bottom sm:modal-middle">
       <div class="w-full max-w-2xl p-8 mx-auto bg-black border-2 border-white">
         <h2 class="mb-6 text-2xl">
-          Create New Event
+          Create New {{ activeTab === "rentals" ? "Rental" : "Event" }}
         </h2>
 
         <form class="space-y-6" @submit.prevent="createEvent">
@@ -555,7 +560,7 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
               :disabled="saving"
             >
               <span v-if="saving" class="loading loading-spinner" />
-              <span v-else>Create Event</span>
+              <span v-else>Create {{ activeTab === "rentals" ? "Rental" : "Event" }}</span>
             </button>
           </div>
         </form>
