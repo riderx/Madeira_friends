@@ -2,7 +2,8 @@
 // Black, white, and yellow color scheme
 // No rounded corners
 
-To reset the dB after added migration, do Supabase dB reset
+To reset the db after some test, do `supabase db reset`
+To test migration you created do `supabase migration up`
 to create a migration file, do Supabase migration new
 We use tailwind v4 and daisy UI the max we can, we design bold and brutalist design with main color black and white and highlight yellow
 create test for DB with supabase test new, and then run the test, you should test your RLS, and functions
@@ -13,3 +14,4 @@ To update supabase type run bun run gen:types:local after db reset
 - Single responsibility principle
 - Explicit props with default values
 - Clear naming conventions
+use bun and bunx not npm
