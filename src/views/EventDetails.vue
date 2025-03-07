@@ -245,7 +245,7 @@ onMounted(() => {
       <div class="p-8 bg-black border-2 border-white">
         <h1 class="mb-6 text-4xl">
           {{ event.title }}
-          <span v-if="isDraft" class="ml-2 text-sm px-2 py-1 bg-yellow-500 text-black">DRAFT</span>
+          <span v-if="isDraft" class="px-2 py-1 ml-2 text-sm text-black bg-yellow-500">DRAFT</span>
         </h1>
 
         <div class="grid gap-8 mb-8 md:grid-cols-2">
@@ -285,7 +285,7 @@ onMounted(() => {
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="material-icons">telegram</span>
+              <span class="material-icons">WhatsApp</span>
               <a
                 :href="`https://t.me/${event.telegram_contact.replace('@', '')}`"
                 target="_blank"
@@ -452,8 +452,8 @@ onMounted(() => {
 
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
-          <div v-if="isDraft" class="text-yellow-400 text-right mr-4">
-            <span class="material-icons align-middle mr-1">warning</span>
+          <div v-if="isDraft" class="mr-4 text-right text-yellow-400">
+            <span class="mr-1 align-middle material-icons">warning</span>
             <span>This event is currently in draft mode and not available for booking.</span>
           </div>
           <div v-else-if="!authStore.user">

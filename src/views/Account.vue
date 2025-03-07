@@ -234,7 +234,7 @@ onMounted(() => {
             </div>
 
             <div>
-              <label class="block mb-2 text-sm font-bold uppercase">Telegram Username</label>
+              <label class="block mb-2 text-sm font-bold uppercase">WhatsApp Username</label>
               <input
                 v-model="profile.telegram_username"
                 type="text"
