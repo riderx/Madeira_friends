@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import type { Database } from '../types/supabase'
 import { format } from 'date-fns'
-import MarkdownIt from 'markdown-it'
 import { onMounted, ref } from 'vue'
 import { supabase } from '../lib/supabase'
+import { createMarkdownRenderer } from '../utils/markdown'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Profile = Database['public']['Tables']['profiles']['Row']
-const md = new MarkdownIt({
-  breaks: true,
-  linkify: true,
-  typographer: true,
-})
+const md = createMarkdownRenderer()
 const events = ref<(Event & { profiles: Profile })[]>([])
 const loading = ref(true)
 const page = ref(1)

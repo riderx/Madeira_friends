@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Database } from '../types/supabase'
 import { format } from 'date-fns'
-import MarkdownIt from 'markdown-it'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
+import { createMarkdownRenderer } from '../utils/markdown'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Profile = Database['public']['Tables']['profiles']['Row']
@@ -31,12 +31,7 @@ const isDraft = computed(() => {
 })
 
 // Enhanced markdown configuration
-const md = new MarkdownIt({
-  html: false, // Disable HTML for security
-  breaks: true, // Convert \n to <br>
-  linkify: true, // Auto-convert URLs to links
-  typographer: true, // Enable smart quotes and other typographic replacements
-})
+const md = createMarkdownRenderer()
 
 // Check if user has already booked
 const hasUserBooked = computed(() => {
