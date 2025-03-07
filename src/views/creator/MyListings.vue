@@ -455,7 +455,7 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
 
     <!-- Create Event Modal -->
     <dialog :open="showCreateModal" class="modal modal-bottom sm:modal-middle">
-      <div class="w-full max-w-2xl p-8 mx-auto bg-black border-2 border-white">
+      <div class="w-full max-w-2xl p-8 mx-auto overflow-y-auto max-h-[90vh] bg-black border-2 border-white">
         <h2 class="mb-6 text-2xl">
           {{ isEditing ? 'Edit' : 'Create New' }} {{ activeTab === "rentals" ? "Rental" : "Event" }}
         </h2>
@@ -620,5 +620,20 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
 <style scoped>
 button {
   transition: all 0.2s;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-height: 700px) {
+  .modal > div {
+    margin: 1rem 0;
+    max-height: calc(100vh - 2rem);
+  }
 }
 </style>
