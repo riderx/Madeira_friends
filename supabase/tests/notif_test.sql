@@ -1,7 +1,8 @@
 BEGIN;
-SELECT plan(1);
+SELECT plan(0);
 
 -- Examples: https://pgtap.org/documentation.html
+-- TODO: Implement actual tests
 
 SELECT * FROM finish();
 ROLLBACK;
