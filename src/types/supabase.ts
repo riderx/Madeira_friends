@@ -220,6 +220,7 @@ export type Database = {
           data: Json | null
           id: string
           message: string
+          read: boolean
           title: string
           type: string
           user_id: string | null
@@ -229,6 +230,7 @@ export type Database = {
           data?: Json | null
           id?: string
           message: string
+          read?: boolean
           title: string
           type: string
           user_id?: string | null
@@ -238,6 +240,7 @@ export type Database = {
           data?: Json | null
           id?: string
           message?: string
+          read?: boolean
           title?: string
           type?: string
           user_id?: string | null

@@ -18,6 +18,7 @@ async function fetchUnreadCount() {
       .from('notifications')
       .select('*', { count: 'exact', head: true })
       .eq('user_id', authStore.user.id)
+      .eq('read', false) // Only count unread notifications
     
     if (error) throw error
     
