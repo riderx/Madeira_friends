@@ -29,3 +29,6 @@ USING (
 CREATE POLICY "Allow anyone to insert contact submissions" 
 ON "public"."contact_submissions" FOR INSERT 
 WITH CHECK (true);
+
+-- delete table contact_form
+DROP TABLE IF EXISTS "public"."contact_form";
