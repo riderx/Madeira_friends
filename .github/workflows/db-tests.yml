@@ -13,8 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Supabase CLI
-        uses: supabase/setup-cli@latest
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.15.8
 
       - name: Start Supabase
         run: supabase start
