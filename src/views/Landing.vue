@@ -94,7 +94,7 @@ async function handleContactSubmit(formData: any) {
 
           <div class="flex justify-center">
             <button
-              class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-white border-2 border-white hover:bg-black hover:text-white"
+              class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-white border-2 border-white cursor-pointer hover:bg-black hover:text-white"
               @click="navigateToRegister"
             >
               JOIN OUR COMMUNITY
@@ -169,7 +169,7 @@ async function handleContactSubmit(formData: any) {
 
         <div class="flex justify-center mb-8">
           <button
-            class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-white border-2 border-white hover:bg-black hover:text-white"
+            class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-white border-2 border-white cursor-pointer hover:bg-black hover:text-white"
             @click="navigateToRegister"
           >
             JOIN US TODAY
@@ -310,7 +310,7 @@ async function handleContactSubmit(formData: any) {
             <p class="mb-4">
               Partner with us to reach the international community
             </p>
-            <a href="#contact" class="inline-block px-6 py-3 btn-primary">
+            <a href="#contact" class="inline-block px-6 py-3 cursor-pointer btn-primary">
               BECOME A PARTNER
             </a>
           </div>
@@ -322,7 +322,7 @@ async function handleContactSubmit(formData: any) {
             <p class="mb-4">
               Support our mission and help us grow
             </p>
-            <a href="#supportus" class="inline-block px-6 py-3 btn-primary">
+            <a href="#supportus" class="inline-block px-6 py-3 cursor-pointer btn-primary">
               SUPPORT US
             </a>
           </div>
@@ -334,7 +334,7 @@ async function handleContactSubmit(formData: any) {
             <p class="mb-4">
               Let's create something amazing together
             </p>
-            <a href="#contact" class="inline-block px-6 py-3 btn-primary">
+            <a href="#contact" class="inline-block px-6 py-3 cursor-pointer btn-primary">
               GET IN TOUCH
             </a>
           </div>
@@ -362,14 +362,14 @@ async function handleContactSubmit(formData: any) {
           <a
             href="https://buy.stripe.com/5kA5ltaTI3vgffOeVb"
             target="_blank"
-            class="px-8 py-4 font-bold text-white uppercase bg-black border-2 border-black hover:bg-white hover:text-black"
+            class="px-8 py-4 font-bold text-white uppercase bg-black border-2 border-black cursor-pointer hover:bg-white hover:text-black"
           >
             SUPPORT MONTHLY
           </a>
           <a
             href="https://buy.stripe.com/bIY8xF8LA2rc5Fe8wM"
             target="_blank"
-            class="px-8 py-4 font-bold text-white uppercase bg-black border-2 border-black hover:bg-white hover:text-black"
+            class="px-8 py-4 font-bold text-white uppercase bg-black border-2 border-black cursor-pointer hover:bg-white hover:text-black"
           >
             ONE-OFF DONATION
           </a>
@@ -435,7 +435,7 @@ async function handleContactSubmit(formData: any) {
         </div>
         <div class="mb-6">
           <button
-            class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-yellow-400 border-2 border-yellow-400 hover:bg-black hover:text-yellow-400"
+            class="px-6 py-3 font-bold text-black transition-colors duration-200 bg-yellow-400 border-2 border-yellow-400 cursor-pointer hover:bg-black hover:text-yellow-400"
             @click="navigateToRegister"
           >
             BECOME A MEMBER
