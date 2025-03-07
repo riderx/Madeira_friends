@@ -227,6 +227,21 @@ async function submitBooking() {
   bookingError.value = ''
 
   try {
+    // First, check if profile exists for this user
+    const { data: profileData, error: profileError } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', authStore.user.id)
+      .maybeSingle()
+
+    // If profile doesn't exist, ask user to complete their profile first
+    if (profileError || !profileData) {
+      bookingError.value = 'Please complete your profile before booking. Go to your profile page first.'
+      router.push({ path: '/app/account', query: { booking: 'required' } })
+      return
+    }
+
+    // Create the booking
     const { error } = await supabase
       .from('bookings')
       .insert({

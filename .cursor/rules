@@ -1,17 +1,21 @@
-// BRUTALIST DESIGN RULES
-// Black, white, and yellow color scheme
-// No rounded corners
-
-To reset the db after some test, do `supabase db reset`
-To test migration you created do `supabase migration up`
-to create a migration file, do Supabase migration new
+BRUTALIST DESIGN RULES
+Black, white, and yellow color scheme
+No rounded corners
 We use tailwind v4 and daisy UI the max we can, we design bold and brutalist design with main color black and white and highlight yellow
-create test for DB with supabase test new, and then run the test, you should test your RLS, and functions
-To update supabase type run bun run gen:types:local after db reset
 
-- Keep components small and focused
-- Maximum 50 lines per component
-- Single responsibility principle
-- Explicit props with default values
-- Clear naming conventions
-use bun and bunx not npm
+To create new database migration do `supabase migration new [NAME]`
+To migrate the database you created do `supabase db push --local`
+To create db test do `supabase test new `
+Test your RLS, and functions
+To run db test do `supabase db test`
+To reset the db after some test, do `supabase db reset`
+
+To update supabase type run bun run gen:types:local after db reset
+Keep components small and focused
+Maximum 50 lines per component
+Single responsibility principle
+Explicit props with default values
+Clear naming conventions
+use bun and bunx not npm and node
+Code DRY and make sure the code 
+Align the happy path to the left edge

@@ -61,7 +61,7 @@ BEGIN
     telegram_contact,
     images,
     status,
-    moderator_id
+    moderators
   ) VALUES 
   (
     gen_random_uuid(),
@@ -77,7 +77,7 @@ BEGIN
     '@surfmadeira',
     ARRAY['https://images.unsplash.com/photo-1502680390469-be75c86b636f'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -93,7 +93,7 @@ BEGIN
     '@hikemadeira',
     ARRAY['https://images.unsplash.com/photo-1613664161831-35ca95a4b953'],
     'draft',
-    null
+    '{}'::uuid[]
   ),
   (
     gen_random_uuid(),
@@ -109,7 +109,7 @@ BEGIN
     '@yogamadeira',
     ARRAY['https://images.unsplash.com/photo-1506126613408-eca07ce68773'],
     'pending',
-    null
+    '{}'::uuid[]
   );
 
   -- Create test rentals
@@ -127,7 +127,7 @@ BEGIN
     telegram_contact,
     images,
     status,
-    moderator_id
+    moderators
   ) VALUES 
   (
     gen_random_uuid(),
@@ -143,7 +143,7 @@ BEGIN
     '@rentmadeira',
     ARRAY['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -159,7 +159,7 @@ BEGIN
     '@scootermadeira',
     ARRAY['https://images.unsplash.com/photo-1494976388531-d1058494cdd8'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -175,7 +175,7 @@ BEGIN
     '@villamadeira',
     ARRAY['https://images.unsplash.com/photo-1580587771525-78b9dba3b914'],
     'draft',
-    null
+    ARRAY[moderator_id]
   );
 END $$;
 
@@ -214,7 +214,7 @@ BEGIN
     telegram_contact,
     images,
     status,
-    moderator_id
+    moderators
   ) VALUES 
   (
     gen_random_uuid(),
@@ -230,7 +230,7 @@ BEGIN
     '@madeirawine',
     ARRAY['https://images.unsplash.com/photo-1510812431401-41d2bd2722f3'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -246,7 +246,7 @@ BEGIN
     '@photosmadeira',
     ARRAY['https://images.unsplash.com/photo-1452587925148-ce544e77e70d'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -262,7 +262,7 @@ BEGIN
     '@levadaguide',
     ARRAY['https://images.unsplash.com/photo-1551632811-561732d1e306'],
     'pending',
-    null
+    '{}'::uuid[]
   ),
   (
     gen_random_uuid(),
@@ -278,7 +278,7 @@ BEGIN
     '@oceantours',
     ARRAY['https://images.unsplash.com/photo-1607153333879-c174d265f1d2'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   );
 
   -- Add more rentals
@@ -296,7 +296,7 @@ BEGIN
     telegram_contact,
     images,
     status,
-    moderator_id
+    moderators
   ) VALUES 
   (
     gen_random_uuid(),
@@ -312,7 +312,7 @@ BEGIN
     '@luxurymadeira',
     ARRAY['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -328,7 +328,7 @@ BEGIN
     '@villasmadeira',
     ARRAY['https://images.unsplash.com/photo-1518780664697-55e3ad937233'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -344,7 +344,7 @@ BEGIN
     '@vesparental',
     ARRAY['https://images.unsplash.com/photo-1621972750749-0fbb1abb7736'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -360,7 +360,7 @@ BEGIN
     '@motorent',
     ARRAY['https://images.unsplash.com/photo-1558981285-6f0c94958bb6'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   ),
   (
     gen_random_uuid(),
@@ -376,6 +376,6 @@ BEGIN
     '@teslarental',
     ARRAY['https://images.unsplash.com/photo-1536700503339-1e4b06520771'],
     'published',
-    moderator_id
+    ARRAY[moderator_id]
   );
 END $$;

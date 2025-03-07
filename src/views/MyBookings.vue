@@ -20,6 +20,7 @@ const statusFilter = ref('all') // 'pending', 'future', 'past', 'all'
 
 async function fetchBookings() {
   try {
+    bookings.value = []
     loading.value = true
     const now = new Date().toISOString()
 
@@ -38,8 +39,14 @@ async function fetchBookings() {
       query = query.eq('user_id', authStore.user?.id)
     }
     else {
+      // Host view: show bookings for events/rentals created by user or where user is a moderator
+      const userId = authStore.user?.id
+      if (!userId) {
+        throw new Error('User not authenticated')
+      }
+
       query = query.or(
-        `events.creator_id.eq.${authStore.user?.id},rentals.creator_id.eq.${authStore.user?.id}`,
+        `events.creator_id.eq.${userId},rentals.creator_id.eq.${userId},events.moderators.cs.{${userId}},rentals.moderators.cs.{${userId}}`,
       )
     }
 

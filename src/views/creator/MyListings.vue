@@ -13,14 +13,14 @@ const INITIAL_EVENT = {
   creator_id: null,
   date: '',
   deleted_at: null,
-  description: '',
+  description: null,
   id: '',
   images: [],
   is_paid: false,
   location: '',
   max_attendees: null,
   moderation_note: null,
-  moderator_id: null,
+  moderators: [] as string[] | null,
   payment_link: null,
   rsvp_deadline: null,
   status: null,
@@ -122,32 +122,53 @@ async function fetchListings() {
     return
   try {
     loading.value = true
-    const [eventsResponse, rentalsResponse] = await Promise.all([
-      supabase
-        .from('events')
-        .select(`*, profiles!events_creator_id_fkey(*)`)
-        .eq(
-          activeFilter.value === 'owned' ? 'creator_id' : 'moderator_id',
-          authStore.user?.id,
-        )
-        .order('created_at', { ascending: false }),
-      supabase
-        .from('rentals')
-        .select(`*, profiles!rentals_creator_id_fkey(*)`)
-        .eq(
-          activeFilter.value === 'owned' ? 'creator_id' : 'moderator_id',
-          authStore.user?.id,
-        )
-        .order('created_at', { ascending: false }),
-    ])
 
-    if (eventsResponse.error)
-      throw eventsResponse.error
-    if (rentalsResponse.error)
-      throw rentalsResponse.error
+    if (activeFilter.value === 'owned') {
+      // Fetch listings where user is creator
+      const [eventsResponse, rentalsResponse] = await Promise.all([
+        supabase
+          .from('events')
+          .select(`*, profiles!events_creator_id_fkey(*)`)
+          .eq('creator_id', authStore.user?.id)
+          .order('created_at', { ascending: false }),
+        supabase
+          .from('rentals')
+          .select(`*, profiles!rentals_creator_id_fkey(*)`)
+          .eq('creator_id', authStore.user?.id)
+          .order('created_at', { ascending: false }),
+      ])
 
-    events.value = eventsResponse.data
-    rentals.value = rentalsResponse.data
+      if (eventsResponse.error)
+        throw eventsResponse.error
+      if (rentalsResponse.error)
+        throw rentalsResponse.error
+
+      events.value = eventsResponse.data
+      rentals.value = rentalsResponse.data
+    }
+    else {
+      // Fetch listings where user is a moderator
+      const [eventsResponse, rentalsResponse] = await Promise.all([
+        supabase
+          .from('events')
+          .select(`*, profiles!events_creator_id_fkey(*)`)
+          .contains('moderators', [authStore.user?.id])
+          .order('created_at', { ascending: false }),
+        supabase
+          .from('rentals')
+          .select(`*, profiles!rentals_creator_id_fkey(*)`)
+          .contains('moderators', [authStore.user?.id])
+          .order('created_at', { ascending: false }),
+      ])
+
+      if (eventsResponse.error)
+        throw eventsResponse.error
+      if (rentalsResponse.error)
+        throw rentalsResponse.error
+
+      events.value = eventsResponse.data
+      rentals.value = rentalsResponse.data
+    }
   }
   catch (error) {
     console.error('Error fetching listings:', error)
@@ -178,10 +199,29 @@ async function deleteListing(type: 'event' | 'rental', id: string) {
 }
 
 async function stopManaging(type: 'event' | 'rental', id: string) {
+  if (!authStore.user?.id)
+    return
+
   try {
+    // First get the current moderators array
+    const { data, error: fetchError } = await supabase
+      .from(type === 'event' ? 'events' : 'rentals')
+      .select('moderators')
+      .eq('id', id)
+      .single()
+
+    if (fetchError)
+      throw fetchError
+
+    // Remove current user from moderators array
+    const moderators = (data.moderators || []).filter(
+      (modId: string) => modId !== authStore.user?.id,
+    )
+
+    // Update with new moderators array
     const { error } = await supabase
       .from(type === 'event' ? 'events' : 'rentals')
-      .update({ moderator_id: null })
+      .update({ moderators })
       .eq('id', id)
 
     if (error)

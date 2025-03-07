@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid'
 import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
 
@@ -10,6 +11,7 @@ const saving = ref(false)
 const uploading = ref(false)
 const error = ref('')
 const success = ref('')
+const route = useRoute()
 
 const profile = ref({
   full_name: '',
@@ -48,6 +50,11 @@ async function loadProfile() {
         location_madeira: data.location_madeira || '',
         avatar_url: data.avatar_url || '',
       }
+
+      // Check for query parameter indicating redirect from booking
+      if (route.query.booking === 'required') {
+        success.value = 'Please complete your profile to continue with your booking.'
+      }
     }
     else {
       // Create profile if it doesn't exist
@@ -85,6 +92,9 @@ async function loadProfile() {
           location_madeira: newProfile.location_madeira || '',
           avatar_url: newProfile.avatar_url || '',
         }
+
+        // Show notification for new users
+        success.value = 'Profile created! Please complete your details before making bookings.'
       }
     }
   }
