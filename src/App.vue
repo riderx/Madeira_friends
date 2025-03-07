@@ -55,7 +55,9 @@ onMounted(async () => {
 
     <!-- App content once authentication is determined -->
     <template v-else>
-      <router-view />
+      <div :class="{ 'pb-24': showNavigation }">
+        <router-view />
+      </div>
       <Navigation v-if="showNavigation" />
       <StructuredData />
     </template>
