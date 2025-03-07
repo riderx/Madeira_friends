@@ -25,7 +25,7 @@ watch(
       console.log(
         'User not authenticated but on app path, redirecting to login',
       )
-      router.push('/login')
+      router.push('/auth')
     }
   },
 )

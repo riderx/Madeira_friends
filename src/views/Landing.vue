@@ -8,7 +8,7 @@ import { submitContactForm } from '../services/contactService'
 const router = useRouter()
 
 function navigateToRegister() {
-  router.push('/register')
+  router.push('/auth')
 }
 
 async function handleContactSubmit(formData: any) {

@@ -2,13 +2,12 @@ import type { RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
 import Account from '../views/Account.vue'
+import Auth from '../views/Auth.vue'
 import MyListings from '../views/creator/MyListings.vue'
+import Event from '../views/Event.vue'
 import EventDetails from '../views/EventDetails.vue'
-import Home from '../views/Home.vue'
 import Landing from '../views/Landing.vue'
-import Login from '../views/Login.vue'
 import MyBookings from '../views/MyBookings.vue'
-import Register from '../views/Register.vue'
 import RentalDetails from '../views/RentalDetails.vue'
 import Rentals from '../views/Rentals.vue'
 
@@ -25,17 +24,12 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/app/events',
-    component: Home,
+    component: Event,
     meta: { requiresAuth: true },
   },
   {
-    path: '/login',
-    component: Login,
-    meta: { requiresAuth: false },
-  },
-  {
-    path: '/register',
-    component: Register,
+    path: '/auth',
+    component: Auth,
     meta: { requiresAuth: false },
   },
   {
@@ -91,14 +85,14 @@ export function setupRouterGuards(router: any) {
     if (requiresAuth && !authStore.user) {
       // Save the original destination for redirect after login
       sessionStorage.setItem('redirectPath', to.fullPath)
-      next('/login')
+      next('/auth')
     }
     else if (
       !requiresAuth
       && authStore.user
-      && (to.path === '/login' || to.path === '/register')
+      && (to.path === '/auth' || to.path === '/auth')
     ) {
-      // If user is logged in and tries to access login/register pages, redirect to app
+      // If user is logged in and tries to access login/auth pages, redirect to app
       next('/app')
     }
     else {

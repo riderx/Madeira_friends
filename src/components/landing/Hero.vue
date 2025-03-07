@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function navigateToRegister() {
-  router.push('/register')
+  router.push('/auth')
 }
 </script>
 
@@ -12,7 +12,7 @@ function navigateToRegister() {
   <div class="relative text-white bg-black">
     <div class="absolute flex gap-2 top-4 right-4">
       <button
-        class="px-4 py-2 text-sm font-bold text-black transition-colors duration-200 bg-white border-2 border-white hover:bg-black hover:border-white hover:text-white cursor-pointer"
+        class="px-4 py-2 text-sm font-bold text-black transition-colors duration-200 bg-white border-2 border-white cursor-pointer hover:bg-black hover:border-white hover:text-white"
         @click="navigateToRegister"
       >
         JOIN
@@ -34,7 +34,7 @@ function navigateToRegister() {
       </p>
 
       <div class="flex justify-center mb-16">
-        <a href="#supportus" class="px-8 py-4 font-bold text-center text-black transition-colors bg-yellow-400 border-2 border-yellow-400 hover:bg-black hover:text-yellow-400 min-w-48 cursor-pointer">
+        <a href="#supportus" class="px-8 py-4 font-bold text-center text-black transition-colors bg-yellow-400 border-2 border-yellow-400 cursor-pointer hover:bg-black hover:text-yellow-400 min-w-48">
           BECOME A SUPPORTER
         </a>
       </div>

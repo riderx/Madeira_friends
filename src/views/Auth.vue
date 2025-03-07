@@ -17,7 +17,7 @@ function validateForm() {
   return true
 }
 
-async function handleRegister() {
+async function handleSubmit() {
   try {
     if (!validateForm())
       return
@@ -25,14 +25,26 @@ async function handleRegister() {
     loading.value = true
     error.value = ''
 
-    const { error: signUpError } = await supabase.auth.signUp({
+    // First attempt to login
+    const { error: signInError } = await supabase.auth.signInWithPassword({
       email: email.value,
       password: password.value,
     })
 
-    if (signUpError) {
-      error.value = signUpError.message
-      return
+    // If login fails, try to register the user
+    if (signInError) {
+      // Register logic
+      const { error: signUpError } = await supabase.auth.signUp({
+        email: email.value,
+        password: password.value,
+      })
+
+      if (signUpError) {
+        error.value = signUpError.message
+        return
+      }
+
+      // If registration is successful, the user is already logged in via Supabase
     }
 
     router.push('/app')
@@ -56,11 +68,11 @@ async function handleRegister() {
           class="w-24 h-24 mx-auto mb-4"
         >
         <h1 class="mb-8 text-4xl font-bold text-center uppercase">
-          Register
+          Register / Login
         </h1>
       </div>
 
-      <form class="space-y-6" @submit.prevent="handleRegister">
+      <form class="space-y-6" @submit.prevent="handleSubmit">
         <div>
           <label for="email" class="block text-sm font-bold uppercase">Email</label>
           <input
@@ -93,17 +105,8 @@ async function handleRegister() {
           :disabled="loading"
         >
           <span v-if="loading" class="loading loading-spinner" />
-          <span v-else>Register</span>
+          <span v-else>Go</span>
         </button>
-
-        <div class="pt-4 text-center">
-          <router-link
-            to="/login"
-            class="px-2 font-bold text-white uppercase hover:bg-white hover:text-black"
-          >
-            Already have an account? Login
-          </router-link>
-        </div>
       </form>
     </div>
   </div>

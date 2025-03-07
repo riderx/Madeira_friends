@@ -535,7 +535,7 @@ onMounted(() => {
         <!-- Action Buttons -->
         <div class="flex justify-end mt-8">
           <div v-if="!authStore.user">
-            <router-link to="/login" class="px-8 py-3 btn-primary">
+            <router-link to="/auth" class="px-8 py-3 btn-primary">
               Login to Book
             </router-link>
           </div>
