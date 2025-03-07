@@ -5,6 +5,8 @@ const emit = defineEmits(['submit'])
 const submitting = ref(false)
 const error = ref('')
 const success = ref('')
+// Honeypot field - bots will fill this out, humans won't see it
+const honeypot = ref('')
 
 const form = ref({
   name: '',
@@ -14,25 +16,51 @@ const form = ref({
   message: '',
 })
 
+// Debounce function to prevent multiple submissions
+let debounceTimer: number | null = null
+
 async function handleSubmit() {
+  // If already submitting or debounce active, ignore
+  if (submitting.value || debounceTimer)
+    return
+
   try {
+    // If honeypot is filled, silently reject (bot detected)
+    if (honeypot.value) {
+      // Simulate success but don't actually submit
+      success.value = 'Message sent successfully! We will get back to you soon.'
+      return
+    }
+
+    // Set debounce
+    debounceTimer = window.setTimeout(() => {
+      debounceTimer = null
+    }, 2000) // 2 seconds debounce
+
     submitting.value = true
     error.value = ''
     success.value = ''
 
-    await emit('submit', form.value)
+    const result = await emit('submit', form.value)
 
-    success.value = 'Message sent successfully! We will get back to you soon.'
-    form.value = {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
+    // Check if the submission was successful
+    if (result && result[0] && result[0].success) {
+      success.value = 'Message sent successfully! We will get back to you soon.'
+      form.value = {
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+      }
+    }
+    else {
+      const errorMessage = result && result[0] && result[0].error
+      error.value = errorMessage || 'Failed to send message. Please try again.'
     }
   }
   catch (e) {
-    error.value = 'Failed to send message. Please try again.'
+    error.value = e instanceof Error ? e.message : 'Failed to send message. Please try again.'
     console.error(e)
   }
   finally {
@@ -61,6 +89,16 @@ async function handleSubmit() {
           placeholder="Your Email"
           required
           class="w-full px-4 py-3 text-white bg-black border-2 border-white"
+        >
+      </div>
+
+      <!-- Honeypot field - hidden from users but visible to bots -->
+      <div style="display: none;">
+        <input
+          v-model="honeypot"
+          type="text"
+          name="website"
+          autocomplete="off"
         >
       </div>
 
