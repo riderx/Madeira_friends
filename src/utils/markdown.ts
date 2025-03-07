@@ -11,8 +11,7 @@ export function createMarkdown(options: { allowHtml?: boolean } = {}) {
     html: options.allowHtml || false, // Disable HTML by default for security
     breaks: true, // Convert \n to <br>
     linkify: true, // Auto-convert URLs to links
-    typographer: true, // Enable smart quotes and other typographic replacements
-    maxNesting: 20, // Prevent excessive nesting that could cause performance issues
+    typographer: true // Enable smart quotes and other typographic replacements
   })
 }
 
