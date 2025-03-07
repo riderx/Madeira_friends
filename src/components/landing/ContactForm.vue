@@ -83,7 +83,13 @@ async function handleSubmit() {
     error.value = ''
     success.value = ''
 
-    await emit('submit', form.value)
+    const result = await emit('submit', form.value)
+
+    // Handle the case where emit returns a result (this depends on how emit is implemented)
+    if (result && typeof result === 'object' && 'error' in result) {
+      error.value = result.error
+      return
+    }
 
     success.value = 'Message sent successfully! We will get back to you soon.'
     form.value = {
@@ -95,8 +101,9 @@ async function handleSubmit() {
       honeypot: '',
     }
   }
-  catch (e) {
-    error.value = 'Failed to send message. Please try again.'
+  catch (e: any) {
+    // Display more specific error message if available
+    error.value = e?.message || 'Failed to send message. Please try again.'
     console.error(e)
   }
   finally {

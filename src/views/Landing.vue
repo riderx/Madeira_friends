@@ -6,10 +6,14 @@ import { submitContactForm } from '../services/contactService'
 
 async function handleContactSubmit(formData: any) {
   try {
+    // Get client IP address (in a real implementation, this would be done server-side)
+    const ipAddress = '0.0.0.0' // This is a placeholder
+
     // Submit the form data to the contact service
-    const result = await submitContactForm(formData)
+    const result = await submitContactForm(formData, ipAddress)
 
     if (!result.success) {
+      console.warn(`Contact form submission failed: ${result.errorType} - ${result.error}`)
       throw new Error(result.error)
     }
 
