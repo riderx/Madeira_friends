@@ -14,9 +14,18 @@ jobs:
         id: check-mention
         run: |
           echo "Issue Comment: ${{ github.event.comment.body }}"
+          echo "Comment Author: ${{ github.event.comment.user.login }}"
+          
+          # Check if the comment author is riderx
+          if [[ "${{ github.event.comment.user.login }}" != "riderx" ]]; then
+            echo "Comment not from riderx. Ignoring."
+            exit 0
+          fi
+          
+          # Check for @devin mention
           if [[ "${{ github.event.comment.body }}" != *"@devin"* ]]; then
-          echo "No @devin mention found. Exiting."
-          exit 0
+            echo "No @devin mention found. Exiting."
+            exit 0
           fi
       - name: Fetch issue comments
         id: fetch-comments
