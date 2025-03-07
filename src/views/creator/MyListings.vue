@@ -88,18 +88,7 @@ function removeImage(index: number) {
 async function editEvent(event: Database['public']['Tables']['events']['Row']) {
   isEditing.value = true
   editId.value = event.id
-  
-  // Format the date for datetime-local input
-  const formattedEvent = { ...event }
-  if (formattedEvent.date) {
-    // Convert to local timezone format for datetime-local input
-    const date = new Date(formattedEvent.date)
-    formattedEvent.date = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
-      .toISOString()
-      .slice(0, 16) // Format to YYYY-MM-DDThh:mm
-  }
-  
-  newEvent.value = formattedEvent
+  newEvent.value = { ...event }
   showCreateModal.value = true
 }
 
@@ -283,14 +272,8 @@ async function stopManaging(type: 'event' | 'rental', id: string) {
 async function editRental(rental: Database['public']['Tables']['rentals']['Row']) {
   isEditing.value = true
   editId.value = rental.id
-  
   // Type assertion to avoid type errors - we're only using this to populate the form
-  // For rentals, we should handle any date fields if they exist
-  const formattedRental = { ...rental }
-  
-  // If rental has date fields like start_date or availability_date, they would be formatted here
-  
-  newEvent.value = formattedRental as any
+  newEvent.value = rental as any
   activeTab.value = 'rentals'
   showCreateModal.value = true
 }
