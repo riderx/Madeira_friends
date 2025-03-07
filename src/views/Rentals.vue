@@ -21,9 +21,6 @@ const perPage = 9
 const rentalTypes = ['flat', 'house', 'scooter', 'motorbike', 'car']
 
 async function fetchRentals() {
-  if (!selectedType.value) {
-    throw new Error('Selected type is required')
-  }
   try {
     let query = supabase
       .from('rentals')
