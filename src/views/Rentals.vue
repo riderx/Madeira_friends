@@ -114,7 +114,7 @@ onMounted(() => {
             class="object-cover w-full h-full"
           >
           <div class="absolute top-2 right-2">
-            <span class="px-2 py-1 text-xs rounded-full badge-category">{{ rental.type }}</span>
+            <span class="px-2 py-1 text-xs badge-category">{{ rental.type }}</span>
           </div>
         </figure>
 

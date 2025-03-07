@@ -347,12 +347,16 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
               <h3 class="text-lg md:text-xl">
                 {{ event.title }}
               </h3>
-              <span class="px-2 py-1 ml-2 text-xs rounded-full badge-category">{{ event.status }}</span>
+              <span class="px-2 py-1 ml-2 text-xs badge-category">{{ event.status }}</span>
             </div>
 
             <div class="mb-4 space-y-2">
-              <p class="text-sm md:text-base">{{ format(new Date(event.date), "PPP p") }}</p>
-              <p class="text-sm md:text-base">{{ event.location }}</p>
+              <p class="text-sm md:text-base">
+                {{ format(new Date(event.date), "PPP p") }}
+              </p>
+              <p class="text-sm md:text-base">
+                {{ event.location }}
+              </p>
             </div>
 
             <div class="flex flex-wrap gap-2">
@@ -412,8 +416,12 @@ async function editRental(rental: Database['public']['Tables']['rentals']['Row']
             </div>
 
             <div class="mb-4 space-y-2">
-              <p class="text-sm md:text-base">{{ rental.price_per_day }}€ per day</p>
-              <p class="text-sm md:text-base">{{ rental.location }}</p>
+              <p class="text-sm md:text-base">
+                {{ rental.price_per_day }}€ per day
+              </p>
+              <p class="text-sm md:text-base">
+                {{ rental.location }}
+              </p>
             </div>
 
             <div class="flex flex-wrap gap-2">

@@ -192,7 +192,7 @@ onMounted(() => {
           <!-- Unread indicator -->
           <div
             v-if="!notification.read"
-            class="w-3 h-3 bg-blue-500 rounded-full"
+            class="w-3 h-3 bg-blue-500"
             title="Unread notification"
           />
         </div>
