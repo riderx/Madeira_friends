@@ -42,6 +42,36 @@ export interface Database {
         }
         Relationships: []
       }
+      contact_form: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          phone: string | null
+          subject: string
+          message: string
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          phone?: string | null
+          subject: string
+          message: string
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          phone?: string | null
+          subject?: string
+          message?: string
+          created_at?: string | null
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           booking_type: Database['public']['Enums']['booking_type']
