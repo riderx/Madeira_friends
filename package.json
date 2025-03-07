@@ -44,7 +44,7 @@
     "eslint": "^9.21.0",
     "glob": "^10.4.5",
     "postcss": "^8.4.32",
-    "supabase": "^1.152.1",
+    "supabase": "^2.0.0",
     "tailwindcss": "^4.0.11",
     "tsx": "^4.19.3",
     "typescript": "^5.2.2",
