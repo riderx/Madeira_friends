@@ -2,10 +2,23 @@
 import ContactForm from '../components/landing/ContactForm.vue'
 import Hero from '../components/landing/Hero.vue'
 import Stats from '../components/landing/Stats.vue'
-import { submitContactForm } from '../lib/contactForm'
+import { submitContactForm } from '../services/contactService'
 
 async function handleContactSubmit(formData: any) {
-  await submitContactForm(formData)
+  try {
+    // Submit the form data to the contact service
+    const result = await submitContactForm(formData)
+
+    if (!result.success) {
+      throw new Error(result.error)
+    }
+
+    return true
+  }
+  catch (e) {
+    console.error('Error submitting contact form:', e)
+    throw e
+  }
 }
 </script>
 
