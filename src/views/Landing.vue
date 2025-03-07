@@ -2,17 +2,20 @@
 import ContactForm from '../components/landing/ContactForm.vue'
 import Hero from '../components/landing/Hero.vue'
 import Stats from '../components/landing/Stats.vue'
+import { supabase } from '../lib/supabase'
 
 async function handleContactSubmit(formData: any) {
-  // try {
-  //   // Here you would typically send the form data to your backend
-  //   // For now, we'll just simulate a successful submission
-  //   await new Promise(resolve => setTimeout(resolve, 1000))
-  // }
-  // catch (e) {
-  //   throw e
-  // }
-  console.log(formData)
+  try {
+    // Insert the contact message into the database
+    const { error } = await supabase.from('contact_messages').insert([formData])
+    if (error)
+      throw error
+    console.log('Contact form submitted:', formData)
+  }
+  catch (e) {
+    console.error('Error submitting contact form:', e)
+    throw e
+  }
 }
 </script>
 
