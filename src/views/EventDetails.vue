@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Database } from '../types/supabase'
 import { format } from 'date-fns'
-import MarkdownIt from 'markdown-it'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
+import { formatEventDescription } from '../utils/markdown'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Profile = Database['public']['Tables']['profiles']['Row']
@@ -30,13 +30,7 @@ const isDraft = computed(() => {
   return event.value?.status === 'draft'
 })
 
-// Enhanced markdown configuration
-const md = new MarkdownIt({
-  html: false, // Disable HTML for security
-  breaks: true, // Convert \n to <br>
-  linkify: true, // Auto-convert URLs to links
-  typographer: true, // Enable smart quotes and other typographic replacements
-})
+// Check if the event is in draft mode
 
 // Check if user has already booked
 const hasUserBooked = computed(() => {
@@ -51,15 +45,7 @@ const spotsAvailable = computed(() => {
 })
 
 function formatDescription(description: string | null) {
-  if (!description)
-    return ''
-
-  // Replace multiple consecutive newlines with double breaks
-  const formattedText = description
-    .replace(/\n{3,}/g, '\n\n') // Normalize multiple newlines to at most 2
-    .replace(/\n/g, '\n\n') // Ensure single newlines are treated as paragraphs
-
-  return md.render(formattedText)
+  return formatEventDescription(description, { maxLength: 20000 })
 }
 
 async function fetchEvent() {
