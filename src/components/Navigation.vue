@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import NotificationsBadge from './NotificationsBadge.vue'
 
 const route = useRoute()
 const currentPath = computed(() => route.path)
+const isAccountPage = computed(() => currentPath.value.startsWith('/app/account'))
 </script>
 
 <template>
@@ -61,13 +63,14 @@ const currentPath = computed(() => route.path)
 
       <router-link
         to="/app/account"
-        class="flex flex-col items-center p-2"
+        class="relative flex flex-col items-center p-2"
         :class="{
           'text-white': currentPath.startsWith('/app/account'),
           'text-white/60': !currentPath.startsWith('/app/account'),
         }"
       >
         <i class="text-2xl fas fa-user" />
+        <NotificationsBadge v-if="!isAccountPage" />
         <span class="mt-1 text-xs">Profile</span>
       </router-link>
     </div>

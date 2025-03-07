@@ -8,6 +8,7 @@ import Event from '../views/Event.vue'
 import EventDetails from '../views/EventDetails.vue'
 import Landing from '../views/Landing.vue'
 import MyBookings from '../views/MyBookings.vue'
+import Notifications from '../views/Notifications.vue'
 import RentalDetails from '../views/RentalDetails.vue'
 import Rentals from '../views/Rentals.vue'
 
@@ -55,6 +56,11 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/app/bookings',
     component: MyBookings,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/app/notifications',
+    component: Notifications,
     meta: { requiresAuth: true },
   },
   {

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid'
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
+import { Bell } from 'lucide-vue-next'
+import NotificationsBadge from '../components/NotificationsBadge.vue'
 
 const authStore = useAuthStore()
+const router = useRouter()
 const loading = ref(false)
 const saving = ref(false)
 const uploading = ref(false)
@@ -176,6 +179,10 @@ async function signOut() {
   await supabase.auth.signOut()
 }
 
+function goToNotifications() {
+  router.push('/app/notifications')
+}
+
 onMounted(() => {
   if (authStore.user) {
     loadProfile()
@@ -185,9 +192,19 @@ onMounted(() => {
 
 <template>
   <div class="container px-4 py-8 mx-auto">
-    <h1 class="mb-8 text-4xl">
-      Account
-    </h1>
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-4xl">
+        Account
+      </h1>
+      
+      <button 
+        class="relative p-2 border-2 border-white hover:bg-white/10"
+        @click="goToNotifications"
+      >
+        <Bell class="w-6 h-6" />
+        <NotificationsBadge />
+      </button>
+    </div>
 
     <div v-if="loading" class="flex justify-center py-12">
       <span class="loading loading-spinner loading-lg" />
