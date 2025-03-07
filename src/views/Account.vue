@@ -144,7 +144,9 @@ async function uploadAvatar(event: Event) {
 
     // Upload image
     const fileExt = file.name.split('.').pop()
-    const filePath = `${authStore.user?.id}/${uuidv4()}.${fileExt}`
+    const fileName = `${uuidv4()}.${fileExt}`
+    // Use the required path pattern: user_id/visibility/filename
+    const filePath = `${authStore.user?.id}/public/${fileName}`
 
     const { error: uploadError } = await supabase.storage
       .from('avatars')

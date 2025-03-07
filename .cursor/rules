@@ -9,6 +9,7 @@ To create db test do `supabase test new `
 Test your RLS, and functions
 To run db test do `supabase db test`
 To reset the db after some test, do `supabase db reset`
+You are not allowed to restart supabase it take too much time
 
 To update supabase type run bun run gen:types:local after db reset
 Keep components small and focused
